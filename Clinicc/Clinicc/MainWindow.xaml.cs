@@ -23,6 +23,8 @@ namespace Clinicc
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content = new MainPage();
         }
+
     }
 }
