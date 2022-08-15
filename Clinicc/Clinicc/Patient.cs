@@ -12,7 +12,7 @@ namespace Clinicc
     using System;
     using System.Collections.Generic;
     
-    public partial class Patient
+    public partial class PatientModel
     {
         public int Id_pat { get; set; }
         public string name { get; set; }
@@ -22,5 +22,23 @@ namespace Clinicc
         public string login { get; set; }
         public string adress { get; set; }
         public string med_history_name { get; set; }
+
+        //public PatientModel(int _id, string _name, string _surname, string _pesel, string _login, string _password)
+        //{
+        //    Id_pat = _id;
+        //    name = _name;
+        //    surname = _surname;
+        //    PESEL = _pesel;
+        //    login = _login;
+        //    password = _password;
+        //}
+        //public void AddPatient(int _id, string _name, string _surname, string _pesel, string _login, string _password)
+        //{
+        //    ClinicDatabaseEntities1 db = new ClinicDatabaseEntities1();
+        //    PatientModel patient = new PatientModel(_id, _name, _surname, _pesel, _login, _password);
+
+        //    db.Patients.Add(patient);
+        //    db.SaveChanges();
+        //}
     }
 }

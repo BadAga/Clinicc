@@ -29,5 +29,10 @@ namespace Clinicc
         {
             this.NavigationService.Navigate(new SignUpPage());
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

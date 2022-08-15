@@ -24,6 +24,8 @@ namespace Clinicc
         {
             InitializeComponent();
             MainFrame.Content = new MainPage();
+            
+            
         }
 
     }

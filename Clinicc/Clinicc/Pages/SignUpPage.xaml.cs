@@ -27,7 +27,7 @@ namespace Clinicc
 
         private void GoBackLogInBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new MainPage());
         }
     }
 }

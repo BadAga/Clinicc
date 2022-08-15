@@ -93,7 +93,14 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Model\Appointment.cs" />
+    <Compile Include="Model\Day.cs" />
+    <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Patient.cs" />
+    <Compile Include="Model\Schedule.cs" />
+    <Compile Include="Model\Specialization.cs" />
+    <Compile Include="Model\Users.cs" />
+    <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Patient.cs">
@@ -102,13 +109,13 @@
     <Compile Include="Schedule.cs">
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SignUpPage.xaml.cs">
+    <Compile Include="Pages\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Specialization.cs">
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
-    <Page Include="MainPage.xaml">
+    <Page Include="Pages\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,7 +141,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SignUpPage.xaml">
+    <Page Include="Pages\SignUpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,6 +201,7 @@
       <DependentUpon>ClinicManagmentModel.edmx</DependentUpon>
       <LastGenOutput>ClinicManagmentModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="DataSource\SpecializationDictionary.txt" />
     <Resource Include="Images\doctor1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +219,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

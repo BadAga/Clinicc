@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinicc"
         mc:Ignorable="d"
-        Title="Clinic" Height="450" Width="800" FontFamily="Segoe UI Light" FontSize="20">
+        Title="Clinic" Height="450" Width="700" FontFamily="Segoe UI Light" FontSize="20">
 
     <Grid Background="#2C3639">
         <Grid.ColumnDefinitions>
@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
             <RowDefinition/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>

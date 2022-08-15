@@ -22,5 +22,12 @@ namespace Clinicc
         public string Password { get; set; }
         public int Id_SPEC { get; set; }
         public Nullable<int> Id_Schedule { get; set; }
+
+      
+        public void AddDoctor(int _id, string _name, string _surname, string _pesel, string _login, string _password)
+        {
+
+        }
+
     }
 }

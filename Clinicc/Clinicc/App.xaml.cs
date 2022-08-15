@@ -13,5 +13,11 @@ namespace Clinicc
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Clinicc.Model.Users users = new Clinicc.Model.Users();
+
+            base.OnStartup(e);
+        }
     }
 }
