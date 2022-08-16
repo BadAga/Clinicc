@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Clinicc.Model
 {
-    public class Users
+    public class Hospital
     {
         private Dictionary<int, Doctor> doctors;
         private Dictionary<int, Patient> patients;
 
-        public Users()
+        public Hospital()
         {
             doctors = new Dictionary<int, Doctor>();
             patients = new Dictionary<int, Patient>();
@@ -20,32 +20,27 @@ namespace Clinicc.Model
         {
             if(NoLoginReapeating(doc))
             {
-                doctors.Add(doc.Id_doc, doc);
+                doctors.Add(doc.Id, doc);
             }           
         }
         public void AddPatient(Patient pat)
         {
             NoLoginReapeating(pat);
-            patients.Add(pat.Id_pat, pat);
+            patients.Add(pat.Id, pat);
         }
 
-        public bool NoLoginReapeating(Doctor doc)
+        public bool NoLoginReapeating(User user)
         {
-            foreach (Doctor doctor in doctors.Values)
+            foreach (User existing_user in doctors.Values)
             {
-                if(doctor.login==doc.login)
+                if(existing_user.login== user.login)
                 {
                     return false;
                 }
             }
-            return true;
-        }
-
-        public bool NoLoginReapeating(Patient pat)
-        {
-            foreach (Patient patient in patients.Values)
+            foreach (User existing_user in patients.Values)
             {
-                if (patient.login == pat.login)
+                if (existing_user.login == user.login)
                 {
                     return false;
                 }

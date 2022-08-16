@@ -99,7 +99,8 @@
     <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\Schedule.cs" />
     <Compile Include="Model\Specialization.cs" />
-    <Compile Include="Model\Users.cs" />
+    <Compile Include="Model\Hospital.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
