@@ -12,7 +12,8 @@
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -91,11 +92,12 @@
                 </Button.Template>
             </Button>
         </Grid>
+        <!--logo-->
+        <Image Grid.Row="1" Grid.Column="3" Source="/Images/care_light.png" />
         <Frame x:Name="MainFrame" 
-               Grid.Row="2" Grid.ColumnSpan="4" 
+               Grid.Row="2" Grid.ColumnSpan="5" 
                Background="#3F4E4F"
-               NavigationUIVisibility="Hidden">
-            
+               NavigationUIVisibility="Hidden">            
         </Frame>
         <!--MainView-->
         

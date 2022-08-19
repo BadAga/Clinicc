@@ -40,7 +40,7 @@
             <StackPanel  
                         VerticalAlignment="Center" Margin="-54,0,0,0">
                 <TextBlock Grid.Row="0" Grid.Column="1" 
-                       Text="New to Clinic?"
+                       Text="New to Clinicc?"
                        FontSize="30"
                        FontFamily="Segoe UI Light"                       
                        Margin="20,30,20,0"
@@ -104,7 +104,8 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     Content="Log In"
-                    FontSize="20" Cursor="Hand">
+                    FontSize="20" Cursor="Hand"
+                    Click="LogInBtn_Click">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#A27B5C"/>

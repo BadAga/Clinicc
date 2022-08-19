@@ -26,3 +26,5 @@ C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Pages\MainPag
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Pages\SignUpPage.g.cs
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Pages\MainPage.baml
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Pages\SignUpPage.baml
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Pages\PatientMainPage.g.cs
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Pages\PatientMainPage.baml

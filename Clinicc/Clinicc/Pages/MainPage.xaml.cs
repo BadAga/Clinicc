@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinicc.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,11 @@ namespace Clinicc
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void LogInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new PatientMainPage());
         }
     }
 }
