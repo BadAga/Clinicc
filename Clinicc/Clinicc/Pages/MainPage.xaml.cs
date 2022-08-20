@@ -31,11 +31,6 @@ namespace Clinicc
             this.NavigationService.Navigate(new SignUpPage());
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new PatientMainPage());

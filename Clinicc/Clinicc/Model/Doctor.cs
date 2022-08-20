@@ -12,7 +12,7 @@ namespace Clinicc.Model
 
         public Schedule schedule;
 
-        public Doctor(int _id,string _name, string _surname, string _pesel, string _login, string _password)
+        public Doctor(int _id,string _name, string _surname, string _pesel, string _login, string _password, string spec)
         {
             name = _name;
             surname = _surname;
@@ -22,7 +22,30 @@ namespace Clinicc.Model
             Id = _id;
 
             schedule = new Schedule();
+            specialization = new Specialization(int.Parse(spec));
+        }
+        public Doctor(string _name, string _surname, string _pesel, string _login, string _password, string spec)
+        {
+            name = _name;
+            surname = _surname;
+            PESEL = _pesel;
+            login = _login;
+            password = _password;
+            Id = 0;
 
+            schedule = new Schedule();
+            specialization = new Specialization(int.Parse(spec));
+        }
+        public string GetFullLineDatabase()
+        {
+            string line = GetLineDatabase() + ' ' + specialization.Id_SPEC;
+            return line;
+        }
+
+        public void SaveInDatabase()
+        {
+            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\ExistingDoctors.txt";
+            SaveUserInDatabase(fileName, GetFullLineDatabase());
         }
     }
 }

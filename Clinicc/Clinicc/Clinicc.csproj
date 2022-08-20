@@ -119,6 +119,10 @@
     <Compile Include="Specialization.cs">
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PatHomeViewModel.cs" />
+    <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="Pages\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +213,8 @@
       <DependentUpon>ClinicManagmentModel.edmx</DependentUpon>
       <LastGenOutput>ClinicManagmentModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="DataSource\ExistingPatients.txt" />
+    <Resource Include="DataSource\ExistingDoctors.txt" />
     <Resource Include="Images\care_light.png" />
     <Resource Include="Images\edit.png" />
     <Resource Include="Images\user.png" />

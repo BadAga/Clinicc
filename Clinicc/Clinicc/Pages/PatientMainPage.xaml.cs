@@ -24,5 +24,10 @@ namespace Clinicc.Pages
         {
             InitializeComponent();
         }
+
+        private void PatientMyAppointmentsBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

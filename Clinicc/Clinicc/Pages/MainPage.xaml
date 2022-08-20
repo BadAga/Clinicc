@@ -48,6 +48,7 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"/>
                 <Button x:Name="RegisterBtn" 
+                    Command="{Binding SignUpMPCommand}"
                     Content="Sign Up"
                     FontSize="20" 
                     Cursor="Hand"
@@ -92,15 +93,20 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Margin="110,10,70,10">
-                <Label Foreground="#DCD7C9" Content="Login:"/>
-                <TextBox Foreground="#DCD7C9" Background="#2C3639" TextChanged="TextBox_TextChanged"/>
+                <!--username-->
+                <Label Foreground="#DCD7C9" Content="Username:"/>
+                <TextBox Foreground="#DCD7C9" Background="#2C3639" 
+                         Text="{Binding UsernameMP, UpdateSourceTrigger=PropertyChanged}"/>
+                <!--password-->
                 <Label Foreground="#DCD7C9" Content="Password:"/>
-                <TextBox Foreground="#DCD7C9" Background="#2C3639"/>
+                <TextBox Foreground="#DCD7C9" Background="#2C3639"
+                         Text="{Binding PasswordMP, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <!--log in buttons-->
             <StackPanel Orientation="Horizontal" Grid.Row="1" 
                         Margin="60,10,10,10">
                 <Button x:Name="LogInBtn" 
+                    Command="{Binding LogInMPCommand}"
                     Grid.Row="2"
                     Grid.Column="0"
                     Content="Log In"
@@ -141,6 +147,7 @@
                             Foreground="#DCD7C9"
                             FontSize="15"/>
                     <Button x:Name="ForgotPassBtn" 
+                    Command="{Binding ForgotPasswordMPCommand}"
                     Grid.Row="1"
                     Content="Click here"
                     FontSize="18" Cursor="Hand" >

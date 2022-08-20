@@ -15,9 +15,12 @@ namespace Clinicc
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            
             Clinicc.Model.Hospital users = new Clinicc.Model.Hospital();
-
+            users.AddExistingDoctors();
+            users.AddExistingPatients();
             base.OnStartup(e);
         }
+        
     }
 }

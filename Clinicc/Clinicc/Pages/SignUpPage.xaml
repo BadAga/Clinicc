@@ -35,19 +35,24 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"
                     Margin="20,5,20,10"  >
             <Label Foreground="#DCD7C9" FontSize="15" >Username:</Label>
-            <TextBox Foreground="#DCD7C9" Background="#2C3639"></TextBox>
+            <TextBox Foreground="#DCD7C9" Background="#2C3639"
+                     Text="{Binding UsernameSUP, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Foreground="#DCD7C9" FontSize="15">Password:</Label>
-            <TextBox Foreground="#DCD7C9" Background="#2C3639"></TextBox>
+            <TextBox Foreground="#DCD7C9" Background="#2C3639"
+                     Text="{Binding PassowrdSUP, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Foreground="#DCD7C9" FontSize="15">Name:</Label>
-            <TextBox Foreground="#DCD7C9" Background="#2C3639"></TextBox>
+            <TextBox Foreground="#DCD7C9" Background="#2C3639"
+                     Text="{Binding NameSUP, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Foreground="#DCD7C9" FontSize="15">Surname:</Label>
-            <TextBox Foreground="#DCD7C9" Background="#2C3639"></TextBox>
+            <TextBox Foreground="#DCD7C9" Background="#2C3639"
+                     Text="{Binding SurnameSUP, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Foreground="#DCD7C9" FontSize="15">PESEL:</Label>
-            <TextBox Foreground="#DCD7C9" Background="#2C3639"></TextBox>
+            <TextBox Foreground="#DCD7C9" Background="#2C3639"
+                     Text="{Binding PeselSUP, UpdateSourceTrigger=PropertyChanged}"/>
 
         </StackPanel>
         <!--create account confiramtion-->
@@ -68,8 +73,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="CraeteAccountBtn"                     
+            <Button x:Name="CraeteAccountBtn" 
+                    Command="{Binding CreateAccountSUPCommand}"
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
                     Content="Create Account"
                     FontSize="20" Cursor="Hand">
                 <Button.Style>
@@ -101,7 +107,8 @@
                        Grid.Row="3" Grid.Column="0">
             Already have an account?
             </TextBlock>
-            <Button x:Name="GoBackLogInBtn"                     
+            <Button x:Name="GoBackLogInBtn" 
+                    Command="{Binding LogInSUPCommand}"
                     Content="Log In"
                     FontSize="13" Cursor="Hand"
                     Background="Transparent"

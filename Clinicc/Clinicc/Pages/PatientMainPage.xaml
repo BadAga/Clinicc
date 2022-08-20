@@ -42,7 +42,8 @@
             <Separator Background="#1E2527"/>
             
             <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="AccountOverviewBtn"                     
+                    x:Name="AccountOverviewBtn" 
+                    Command="{Binding OverviewHPCommand}"
                     Content="Overview"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
@@ -69,7 +70,8 @@
                 </Button.Template>
             </Button>           
             <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="RecentActivityBtn"                     
+                    x:Name="RecentActivityBtn"  
+                     Command="{Binding RecentActivityHPCommand}"
                     Content="Recent Activity"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
@@ -101,8 +103,9 @@
             </Label>
             <Separator Background="#1E2527"/>
 
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="BookAppointmentBtn"                     
+            <Button x:Name="BookAppointmentBtn"                 
+                    Command="{Binding BookAppHPCommand }"    
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="Book an appointment"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
@@ -128,11 +131,12 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="PatientMyAppointmentsBtn"                     
+            <Button x:Name="PatientMyAppointmentsBtn"                
+                    Command="{Binding PatAppointmentsHPCommand}"
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="My appointments"
                     FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0">
+                    Margin="5,0,0,0" Click="PatientMyAppointmentsBtn_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#A27B5C"/>
@@ -155,8 +159,9 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="PatientMyPrescriptionsBtn"                     
+            <Button x:Name="PatientMyPrescriptionsBtn" 
+                    Command="{Binding PatPrescriptionsHPCommand}"
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="My prescriptions"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
@@ -224,8 +229,10 @@
                     <TextBlock  Grid.Row="0" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="NAME:" VerticalAlignment="Center" Margin="2" />
                     <TextBox Grid.Row="0" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
-                               Margin="5,5,0,5" MaxLength="20"/>
+                               Margin="5,5,0,5" MaxLength="20"
+                             Text="{Binding NameHP, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="PatEditNameBtn"
+                            Command="{Binding EditNameHPCommand}"
                             Grid.Row="0" Grid.Column="3" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent"
@@ -259,8 +266,10 @@
                     <TextBlock  Grid.Row="0" Grid.Column="4" Foreground="#DCD7C9" 
                                 FontSize="8" Text="SURNAME:" VerticalAlignment="Center" Margin="5" />
                     <TextBox Grid.Row="0" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639" 
-                              Margin="5,5,0,5" MaxLength="30" />
+                             Margin="5,5,0,5" MaxLength="30"
+                             Text="{Binding SurameHP, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="PatEditSurnameBtn"
+                            Command="{Binding EditSurnameHPCommand}"
                             Grid.Row="0" Grid.Column="6" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 
@@ -293,8 +302,10 @@
                     <TextBlock  Grid.Row="1" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="PESEL:" VerticalAlignment="Center" Margin="2" />
                     <TextBox Grid.Row="1" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
-                                Margin="5,5,0,5"  MaxLength="11"/>
+                             Margin="5,5,0,5"  MaxLength="11"
+                             Text="{Binding PeselHP , UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="PatEditPeselBtn"
+                            Command="{Binding EditPeselHPCommand}"
                             Grid.Row="1" Grid.Column="3" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 
@@ -327,8 +338,10 @@
                     <TextBlock  Grid.Row="1" Grid.Column="4" Foreground="#DCD7C9" 
                                 FontSize="8" Text="ADDRESS:" VerticalAlignment="Center" Margin="5" />
                     <TextBox Grid.Row="1" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639 "
-                               Margin="5,5,0,5" MaxLength="20"/>
+                             Margin="5,5,0,5" MaxLength="20"
+                             Text="{Binding AddressHP, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="PatEditAddressBtn"
+                            Command="{Binding EditAddressHPCommand}"
                             Grid.Row="1" Grid.Column="6" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 
@@ -361,8 +374,10 @@
                     <TextBlock  Grid.Row="2" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="USERNAME:" VerticalAlignment="Center" Margin="2" />
                     <TextBox Grid.Row="2" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
-                                Margin="5,5,0,5"  MaxLength="20"/>
+                             Margin="5,5,0,5"  MaxLength="20"
+                             Text="{Binding UsernameHP, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="PatEditUsernameBtn"
+                            Command="{Binding EditUsernameHPCommand}"
                             Grid.Row="2" Grid.Column="3" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 

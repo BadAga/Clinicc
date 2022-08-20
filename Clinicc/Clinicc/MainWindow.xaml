@@ -98,7 +98,7 @@
                Grid.Row="2" Grid.ColumnSpan="5" 
                Background="#3F4E4F"
                NavigationUIVisibility="Hidden">            
-        </Frame>
+        </Frame >
         <!--MainView-->
         
     </Grid>
