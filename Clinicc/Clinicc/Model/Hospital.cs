@@ -9,8 +9,8 @@ namespace Clinicc.Model
 {
     public class Hospital
     {
-        private Dictionary<int, Doctor> doctors;
-        private Dictionary<int, Patient> patients;
+        public Dictionary<int, Doctor> doctors { get; set; }
+        public Dictionary<int, Patient> patients { get; set; }
 
         public Hospital()
         {
@@ -18,7 +18,7 @@ namespace Clinicc.Model
             patients = new Dictionary<int, Patient>();
         }
 
-        public void  AddExistingDoctors()
+        public void AddExistingDoctors()
         {
             string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\ExistingDoctors.txt";
 
@@ -128,7 +128,7 @@ namespace Clinicc.Model
             }
             return true;
         }
-        public bool TryLogIn(string login, string password)
+        private bool TryLogIn(string login, string password)
         {
             bool login_found = false;
             bool successful_login = false; //true if login and password match, false if wrong password
@@ -168,6 +168,25 @@ namespace Clinicc.Model
             }
             //to do: no user found message
             return login_found;
+        }
+        private bool CheckIfUser(string login)
+        {
+            foreach(var doc in doctors)
+            {
+                if(doc.Value.login == login)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }        
+        public bool LogIn(string login, string password)
+        {            
+            if (CheckIfUser(login))
+            {
+                return TryLogIn(login, password);
+            }
+            return false;
         }
     }
 }

@@ -70,11 +70,11 @@ namespace Clinicc.ViewModels
         {
             get
             {
-                return _pesel;
+                return _address;
             }
             set
             {
-                _pesel = value;
+                _address = value;
                 OnPropertyChanged(nameof(AddressHP));
             }
         }

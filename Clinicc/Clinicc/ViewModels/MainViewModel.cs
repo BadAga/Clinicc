@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Clinicc.Commands;
+using Clinicc.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,5 +43,11 @@ namespace Clinicc.ViewModels
         public ICommand LogInMPCommand { get; }
         public ICommand ForgotPasswordMPCommand { get; }
         public ICommand SignUpMPCommand { get; }
+
+
+        public MainViewModel(Hospital hospital )
+        {
+            LogInMPCommand = new LogInCommand(this,hospital);
+        }
     }
 }

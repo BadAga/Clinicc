@@ -1,15 +1,13 @@
-﻿<Page x:Class="Clinicc.SignUpPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Clinicc"
-      mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="640"
-      FontFamily="Segoe UI Light" FontSize="20" 
-      Title="SignUpPage">
-
-    <Grid x:Name="SignUpView">
+﻿<UserControl x:Class="Clinicc.Views.SignUpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clinicc.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="640"
+             FontFamily="Segoe UI Light" FontSize="20" >
+    <Grid x:Name="SignupView">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -112,7 +110,6 @@
                     Content="Log In"
                     FontSize="13" Cursor="Hand"
                     Background="Transparent"
-                    Click="GoBackLogInBtn_Click" 
                     Grid.Row="3" Grid.Column="1"                    
                     BorderBrush="Transparent" 
                     VerticalAlignment="Bottom" Height="28"
@@ -150,4 +147,4 @@
 
         </Grid>
     </Grid>
-</Page>
+</UserControl>

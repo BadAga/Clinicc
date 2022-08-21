@@ -90,6 +90,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\CreateAccountCommand.cs" />
+    <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Doctor.cs">
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
@@ -101,32 +104,29 @@
     <Compile Include="Model\Specialization.cs" />
     <Compile Include="Model\Hospital.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Pages\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\PatientMainPage.xaml.cs">
-      <DependentUpon>PatientMainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Patient.cs">
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Schedule.cs">
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SignUpPage.xaml.cs">
-      <DependentUpon>SignUpPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Specialization.cs">
       <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PatHomeViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Page Include="Pages\MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientHomePageView.xaml.cs">
+      <DependentUpon>PatientHomePageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignUpView.xaml.cs">
+      <DependentUpon>SignUpView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -149,11 +149,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\PatientMainPage.xaml">
+    <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\SignUpPage.xaml">
+    <Page Include="Views\PatientHomePageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +217,7 @@
       <DependentUpon>ClinicManagmentModel.edmx</DependentUpon>
       <LastGenOutput>ClinicManagmentModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="DataSource\DocPeselList.txt" />
     <Resource Include="DataSource\ExistingPatients.txt" />
     <Resource Include="DataSource\ExistingDoctors.txt" />
     <Resource Include="Images\care_light.png" />

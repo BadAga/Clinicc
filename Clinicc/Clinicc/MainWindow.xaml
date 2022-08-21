@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Clinicc"
+        xmlns:local="clr-namespace:Clinicc" 
+        xmlns:views="clr-namespace:Clinicc.Views" xmlns:viewmodels="clr-namespace:Clinicc.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Clinic" Height="450" Width="700" FontFamily="Segoe UI Light" FontSize="20">
 
@@ -94,12 +95,14 @@
         </Grid>
         <!--logo-->
         <Image Grid.Row="1" Grid.Column="3" Source="/Images/care_light.png" />
-        <Frame x:Name="MainFrame" 
-               Grid.Row="2" Grid.ColumnSpan="5" 
-               Background="#3F4E4F"
-               NavigationUIVisibility="Hidden">            
-        </Frame >
-        <!--MainView-->
+
+        <views:MainView Grid.Row="2" Grid.ColumnSpan="5" 
+                        Background="#3F4E4F"
+                        DataContext="{Binding CurrentViewModel}"/>
+        <!--views:PatientHomePageView Grid.Row="2" Grid.ColumnSpan="5" Background="#3F4E4F"/>-->
+        <!--<views:SignUpView Grid.Row="2" Grid.ColumnSpan="5" 
+                          Background="#3F4E4F"/>-->
+       
         
     </Grid>
 </Window>

@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Clinicc.Pages
+namespace Clinicc.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy PatientMainPage.xaml
+    /// Logika interakcji dla klasy MainView.xaml
     /// </summary>
-    public partial class PatientMainPage : Page
+    public partial class MainView : UserControl
     {
-        public PatientMainPage()
+        public MainView()
         {
             InitializeComponent();
-        }
-
-        private void PatientMyAppointmentsBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

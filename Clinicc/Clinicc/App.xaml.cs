@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Clinicc.ViewModels;
+using Clinicc.Model;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,12 +15,21 @@ namespace Clinicc
     /// </summary>
     public partial class App : Application
     {
+        private Hospital _hospital;
+        public App()
+        {
+            _hospital = new Hospital();
+            _hospital.AddExistingDoctors();
+            _hospital.AddExistingPatients();
+        }
         protected override void OnStartup(StartupEventArgs e)
         {
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainWindowViewModel(_hospital)
+            };
+            MainWindow.Show();            
             
-            Clinicc.Model.Hospital users = new Clinicc.Model.Hospital();
-            users.AddExistingDoctors();
-            users.AddExistingPatients();
             base.OnStartup(e);
         }
         

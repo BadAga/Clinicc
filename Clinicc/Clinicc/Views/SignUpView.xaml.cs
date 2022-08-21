@@ -13,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Clinicc
+namespace Clinicc.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy SignUpView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SignUpView : UserControl
     {
-        public MainWindow()
+        public SignUpView()
         {
             InitializeComponent();
-           // MainFrame.Content = new MainPage();
-            
-            
         }
-
     }
 }

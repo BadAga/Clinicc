@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Clinicc.Commands;
+using Clinicc.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -83,6 +85,12 @@ namespace Clinicc.ViewModels
         //commands
         public ICommand CreateAccountSUPCommand { get; }
         public ICommand LogInSUPCommand { get; }
+        public ICommand LogOutSUPCommand { get; }
 
+
+        public SignUpViewModel()
+        {
+            CreateAccountSUPCommand = new CreateAccountCommand();
+        }
     }
 }

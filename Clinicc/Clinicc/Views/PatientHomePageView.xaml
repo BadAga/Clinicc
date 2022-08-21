@@ -1,15 +1,13 @@
-﻿<Page x:Class="Clinicc.Pages.PatientMainPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Clinicc.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="640" FontSize="12" Foreground="#1E2527"
-      FontFamily="Segoe UI Light"
-      Title="PatientMainPage">
-
-    <Grid x:Name="PatientHomePageView" Background="#3F4E4F">
+﻿<UserControl x:Class="Clinicc.Views.PatientHomePageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Clinicc.Views"
+             mc:Ignorable="d" 
+            d:DesignHeight="400" d:DesignWidth="640" FontSize="12" Foreground="#1E2527"
+            FontFamily="Segoe UI Light">
+    <Grid x:Name="PatientHomepageView" Background="#3F4E4F">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3.3*"/>
@@ -40,7 +38,7 @@
                 ACCOUNT
             </Label>
             <Separator Background="#1E2527"/>
-            
+
             <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
                     x:Name="AccountOverviewBtn" 
                     Command="{Binding OverviewHPCommand}"
@@ -68,7 +66,7 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
-            </Button>           
+            </Button>
             <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
                     x:Name="RecentActivityBtn"  
                      Command="{Binding RecentActivityHPCommand}"
@@ -136,7 +134,7 @@
                     Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="My appointments"
                     FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0" Click="PatientMyAppointmentsBtn_Click">
+                    Margin="5,0,0,0" >
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#A27B5C"/>
@@ -188,6 +186,48 @@
                 </Button.Template>
             </Button>
         </StackPanel>
+        <!--logout btn-->
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="1" Grid.Column="1"               
+                    x:Name="LogOutBtn" 
+                    Command="{Binding LogOutSUPCommand}"
+                    Content="Log Out"
+                    FontSize="15" Cursor="Hand"
+                    Margin="5">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#A27B5C"/>
+                        <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                        <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#81624a "/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" Height="30"
+                                CornerRadius="15" Width="80">
+                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
         <!--account overview-->
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -198,7 +238,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>                
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
@@ -219,13 +259,13 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>            
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--pic-->
                     <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Source="/Images/user.png"
                            Width="100" Margin="20,5,5,5"/>
                     <!--user data-->
-                        <!--name-->
+                    <!--name-->
                     <TextBlock  Grid.Row="0" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="NAME:" VerticalAlignment="Center" Margin="2" />
                     <TextBox Grid.Row="0" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
@@ -242,7 +282,7 @@
                            VerticalAlignment="Bottom" Width="8" />
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>                                
+                                <Setter Property="Background" Value="Transparent"/>
                                 <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
                                 <Setter Property="Cursor" Value="Hand"/>
                                 <Style.Triggers>
@@ -261,7 +301,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                   
+
                     <!--surname-->
                     <TextBlock  Grid.Row="0" Grid.Column="4" Foreground="#DCD7C9" 
                                 FontSize="8" Text="SURNAME:" VerticalAlignment="Center" Margin="5" />
@@ -407,7 +447,7 @@
                         </Button.Template>
                     </Button>
                     <!--change password btn-->
-                                       
+
                     <Button                      
                     Content="Change profile picture here"
                     FontSize="12" Cursor="Hand"
@@ -439,5 +479,6 @@
                 </Grid>
             </StackPanel>
         </Grid>
+
     </Grid>
-</Page>
+</UserControl>

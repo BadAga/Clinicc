@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\App.xaml
-4746838921
+41283319052
 4-1535751145
-28-1236957187
+32683273860
 18-545806795
-Pages\MainPage.xaml;MainWindow.xaml;Pages\PatientMainPage.xaml;Pages\SignUpPage.xaml;
+MainWindow.xaml;Views\MainView.xaml;Views\PatientHomePageView.xaml;Views\SignUpView.xaml;
 
 False
 

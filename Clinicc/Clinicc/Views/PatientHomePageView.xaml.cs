@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Clinicc
+namespace Clinicc.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy SignUpPage.xaml
+    /// Logika interakcji dla klasy PatientHomePageView.xaml
     /// </summary>
-    public partial class SignUpPage : Page
+    public partial class PatientHomePageView : UserControl
     {
-        public SignUpPage()
+        public PatientHomePageView()
         {
             InitializeComponent();
-        }
-
-        private void GoBackLogInBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new MainPage());
         }
     }
 }

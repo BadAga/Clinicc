@@ -43,5 +43,27 @@ namespace Clinicc.Model
                 tw.WriteLine(data_to_insert);
             }
         }
+        static public bool CheckIfDoctor(string pesel_to_check)
+        {
+            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\DocPeselList.txt";
+            IEnumerable<string> pesel_list = File.ReadLines(fileName);
+            foreach(var pesel in pesel_list)
+            {
+                if(pesel==pesel_to_check)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool SucessfullLogIn(string entered_password)
+        {
+            if(password==entered_password)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }
