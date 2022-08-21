@@ -1,5 +1,6 @@
 ﻿using Clinicc.Commands;
 using Clinicc.Model;
+using Clinicc.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,9 +46,10 @@ namespace Clinicc.ViewModels
         public ICommand SignUpMPCommand { get; }
 
 
-        public MainViewModel(Hospital hospital )
+        public MainViewModel(Hospital hospital, NavigationStore navigation )
         {
-            LogInMPCommand = new LogInCommand(this,hospital);
+            LogInMPCommand = new LogInCommand(this,hospital,navigation);
+            SignUpMPCommand = new NavigateToSignUpViewCommand(navigation,hospital);
         }
     }
 }

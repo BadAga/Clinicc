@@ -1,4 +1,5 @@
 ﻿using Clinicc.Model;
+using Clinicc.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,18 @@ namespace Clinicc.ViewModels
 {
     public class MainWindowViewModel:ViewModelBase
     {
-        public ViewModelBase CurrentViewModel { get; }
+        private NavigationStore _navigation;
+        public ViewModelBase CurrentViewModel => _navigation.CurrentViewModel;
 
-        public MainWindowViewModel(Hospital hospital)
+        public MainWindowViewModel(NavigationStore navigation)
         {
-            CurrentViewModel = new MainViewModel(hospital);
+            this._navigation = navigation;
+
+            this._navigation.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        }
+        private void OnCurrentViewModelChanged()
+        {
+           OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }

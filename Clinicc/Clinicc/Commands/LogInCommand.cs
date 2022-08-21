@@ -1,4 +1,5 @@
 ﻿using Clinicc.Model;
+using Clinicc.Stores;
 using Clinicc.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,17 +15,20 @@ namespace Clinicc.Commands
 
         private MainViewModel _MainViewModel;
 
-        public LogInCommand(MainViewModel mainViewModel, Hospital hospital)
+        private NavigationStore _navigation;
+
+        public LogInCommand(MainViewModel mainViewModel, Hospital hospital,NavigationStore navigation)
         {
             this.hospital = hospital;
             this._MainViewModel = mainViewModel;
+            this._navigation = navigation;
         }
 
         public override void Execute(object parameter)
         {
             if (hospital.LogIn(_MainViewModel.UsernameMP, _MainViewModel.PasswordMP))
             {
-                //show homepage
+                _navigation.CurrentViewModel = new PatHomeViewModel();
             }
             else
             {

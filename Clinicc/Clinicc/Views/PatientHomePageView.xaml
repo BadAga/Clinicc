@@ -5,222 +5,87 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Clinicc.Views"
              mc:Ignorable="d" 
-            d:DesignHeight="400" d:DesignWidth="640" FontSize="12" Foreground="#1E2527"
+            d:DesignHeight="450" d:DesignWidth="700" FontSize="12" Foreground="#1E2527"
             FontFamily="Segoe UI Light">
-    <Grid x:Name="PatientHomepageView" Background="#3F4E4F">
+    <Grid Background="#2C3639">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3.3*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <!--project name-->
-        <Grid Grid.Row="0" Grid.Column="0" Background="#A27B5C">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition  Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="/Images/care_dark.png"
-                   VerticalAlignment="Center" HorizontalAlignment="Center" 
-                   Height="36" Width="36" Margin="5,0,0,0"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" 
-                       VerticalAlignment="Center" HorizontalAlignment="Left"
-                       Margin="5" Foreground="#1E2527" FontSize="26" >
-            Clinicc
-            </TextBlock>
-        </Grid>
+
         <!--menu-->
-        <StackPanel x:Name="OptionsBarPM" Grid.Row="1" Background="#A27B5C">
-            <!--<Separator Background="#1E2527"/>-->
-            <Label Foreground="#1E2527" FontSize="10" Opacity="20"  Margin="5,0,0,0">
-                ACCOUNT
-            </Label>
-            <Separator Background="#1E2527"/>
+        <Grid x:Name="MainMenu" Grid.Row="1" Grid.Column="1" Height="28" 
+              VerticalAlignment="Center">
 
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="AccountOverviewBtn" 
-                    Command="{Binding OverviewHPCommand}"
-                    Content="Overview"
-                    FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#A27B5C"/>
-                        <Setter Property="TextElement.Foreground" Value="#1E2527"/>
-                        <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#81624a "/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" Height="30">
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="RecentActivityBtn"  
-                     Command="{Binding RecentActivityHPCommand}"
-                    Content="Recent Activity"
-                    FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#A27B5C"/>
-                        <Setter Property="TextElement.Foreground" Value="#1E2527"/>
-                        <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#81624a "/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" Height="30">
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-
-            <Label Foreground="#1E2527" FontSize="10" Opacity="20" Margin="5,0,0,0">
-                APPOINTMENTS
-            </Label>
-            <Separator Background="#1E2527"/>
-
-            <Button x:Name="BookAppointmentBtn"                 
-                    Command="{Binding BookAppHPCommand }"    
-                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                    Content="Book an appointment"
-                    FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#A27B5C"/>
-                        <Setter Property="TextElement.Foreground" Value="#1E2527"/>
-                        <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#81624a "/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" Height="30">
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button x:Name="PatientMyAppointmentsBtn"                
-                    Command="{Binding PatAppointmentsHPCommand}"
-                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                    Content="My appointments"
-                    FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0" >
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#A27B5C"/>
-                        <Setter Property="TextElement.Foreground" Value="#1E2527"/>
-                        <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#81624a "/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" Height="30">
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button x:Name="PatientMyPrescriptionsBtn" 
-                    Command="{Binding PatPrescriptionsHPCommand}"
-                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                    Content="My prescriptions"
-                    FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#A27B5C"/>
-                        <Setter Property="TextElement.Foreground" Value="#1E2527"/>
-                        <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#81624a "/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" Height="30">
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </StackPanel>
-        <!--logout btn-->
-        <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Button Grid.Row="1" Grid.Column="1"               
-                    x:Name="LogOutBtn" 
-                    Command="{Binding LogOutSUPCommand}"
-                    Content="Log Out"
-                    FontSize="15" Cursor="Hand"
-                    Margin="5">
+            <Button Content="About" x:Name="AboutBtn"
+                    Grid.Column="0"
+                    FontSize="16" 
+                    Margin="0,0,10,0"                    
+                    BorderBrush="#1f1919">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Background" Value="#A27B5C"/>
-                        <Setter Property="TextElement.Foreground" Value="#1E2527"/>
-                        <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                        <Setter Property="Background" Value="#3F4E4F"/>
+                        <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
                         <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#81624a "/>
+                                <Setter Property="Background" Value="#161b1c "/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" Height="30"
-                                CornerRadius="15" Width="80">
+                        <Border CornerRadius="15" 
+                                BorderThickness="2" 
+                                BorderBrush="#161b1c"
+                                Padding="2"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="Help" x:Name="HelpBtn"
+                    Grid.Column="1"
+                    FontSize="16"  
+                    Margin="10,0,10,0"
+                    BorderThickness="0" Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#3F4E4F"/>
+                        <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#161b1c "/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" 
+                                BorderThickness="2" 
+                                BorderBrush="#161b1c"
+                                Padding="2"
+                                Background="{TemplateBinding Background}">
                             <ContentPresenter VerticalAlignment="Center" 
                                               HorizontalAlignment="Center"/>
                         </Border>
@@ -228,257 +93,484 @@
                 </Button.Template>
             </Button>
         </Grid>
-        <!--account overview-->
-        <Grid Grid.Row="1" Grid.Column="1">
+        <!--logo-->
+        <Image Grid.Row="1" Grid.Column="3" Source="/Images/care_light.png" />
+        <Grid x:Name="PatientHomepageView" 
+          Grid.Row="2" Grid.ColumnSpan="5" 
+          Background="#3F4E4F">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="3.3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
-                <Label Foreground="#DCD7C9" Content="Account Overview" FontSize="20"
+            <!--project name-->
+            <Grid Grid.Row="0" Grid.Column="0" Background="#A27B5C">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition  Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/Images/care_dark.png"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" 
+                   Height="36" Width="36" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" 
+                       VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Margin="5" Foreground="#1E2527" FontSize="26" >
+            Clinicc
+                </TextBlock>
+            </Grid>
+            <!--menu-->
+            <StackPanel x:Name="OptionsBarPM" Grid.Row="1" Background="#A27B5C">
+                <!--<Separator Background="#1E2527"/>-->
+                <Label Foreground="#1E2527" FontSize="10" Opacity="20"  Margin="5,0,0,0">
+                    ACCOUNT
+                </Label>
+                <Separator Background="#1E2527"/>
+
+                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
+                    x:Name="AccountOverviewBtn" 
+                    Command="{Binding OverviewHPCommand}"
+                    Content="Overview"
+                    FontSize="15" Cursor="Hand"
+                    Margin="5,0,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#81624a "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" Height="30">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Left"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
+                    x:Name="RecentActivityBtn"  
+                     Command="{Binding RecentActivityHPCommand}"
+                    Content="Recent Activity"
+                    FontSize="15" Cursor="Hand"
+                    Margin="5,0,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#81624a "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" Height="30">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Left"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Label Foreground="#1E2527" FontSize="10" Opacity="20" Margin="5,0,0,0">
+                    APPOINTMENTS
+                </Label>
+                <Separator Background="#1E2527"/>
+
+                <Button x:Name="BookAppointmentBtn"                 
+                    Command="{Binding BookAppHPCommand }"    
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    Content="Book an appointment"
+                    FontSize="15" Cursor="Hand"
+                    Margin="5,0,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#81624a "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" Height="30">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Left"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="PatientMyAppointmentsBtn"                
+                    Command="{Binding PatAppointmentsHPCommand}"
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    Content="My appointments"
+                    FontSize="15" Cursor="Hand"
+                    Margin="5,0,0,0" >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#81624a "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" Height="30">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Left"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="PatientMyPrescriptionsBtn" 
+                    Command="{Binding PatPrescriptionsHPCommand}"
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    Content="My prescriptions"
+                    FontSize="15" Cursor="Hand"
+                    Margin="5,0,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#81624a "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" Height="30">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Left"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            <!--logout btn-->
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="1" Grid.Column="1"               
+                    x:Name="LogOutBtn" 
+                    Command="{Binding LogOutSUPCommand}"
+                    Content="Log Out"
+                    FontSize="15" Cursor="Hand"
+                    Margin="5">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#81624a "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" Height="30"
+                                CornerRadius="15" Width="80">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <!--account overview-->
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Label Foreground="#DCD7C9" Content="Account Overview" FontSize="20"
                        FontFamily="Segoe UI"/>
-                <!--user info-->
-                <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <!--pic-->
-                    <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Source="/Images/user.png"
+                    <!--user info-->
+                    <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--pic-->
+                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Source="/Images/user.png"
                            Width="100" Margin="20,5,5,5"/>
-                    <!--user data-->
-                    <!--name-->
-                    <TextBlock  Grid.Row="0" Grid.Column="1" Foreground="#DCD7C9" 
+                        <!--user data-->
+                        <!--name-->
+                        <TextBlock  Grid.Row="0" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="NAME:" VerticalAlignment="Center" Margin="2" />
-                    <TextBox Grid.Row="0" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
+                        <TextBox Grid.Row="0" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
                                Margin="5,5,0,5" MaxLength="20"
                              Text="{Binding NameHP, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="PatEditNameBtn"
+                        <Button x:Name="PatEditNameBtn"
                             Command="{Binding EditNameHPCommand}"
                             Grid.Row="0" Grid.Column="3" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent"
                             Background="Transparent" 
                             Cursor="Hand" >
-                        <Image Source="/Images/edit.png" 
+                            <Image Source="/Images/edit.png" 
                            VerticalAlignment="Bottom" Width="8" />
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" 
                                               HorizontalAlignment="Left"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
 
-                    <!--surname-->
-                    <TextBlock  Grid.Row="0" Grid.Column="4" Foreground="#DCD7C9" 
+                        <!--surname-->
+                        <TextBlock  Grid.Row="0" Grid.Column="4" Foreground="#DCD7C9" 
                                 FontSize="8" Text="SURNAME:" VerticalAlignment="Center" Margin="5" />
-                    <TextBox Grid.Row="0" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639" 
+                        <TextBox Grid.Row="0" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639" 
                              Margin="5,5,0,5" MaxLength="30"
                              Text="{Binding SurameHP, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="PatEditSurnameBtn"
+                        <Button x:Name="PatEditSurnameBtn"
                             Command="{Binding EditSurnameHPCommand}"
                             Grid.Row="0" Grid.Column="6" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 
                             Background="Transparent" 
                             Cursor="Hand" >
-                        <Image Source="/Images/edit.png" 
+                            <Image Source="/Images/edit.png" 
                            VerticalAlignment="Bottom" Width="8" />
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" 
                                               HorizontalAlignment="Left"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <!--pesel-->
-                    <TextBlock  Grid.Row="1" Grid.Column="1" Foreground="#DCD7C9" 
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <!--pesel-->
+                        <TextBlock  Grid.Row="1" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="PESEL:" VerticalAlignment="Center" Margin="2" />
-                    <TextBox Grid.Row="1" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
+                        <TextBox Grid.Row="1" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
                              Margin="5,5,0,5"  MaxLength="11"
                              Text="{Binding PeselHP , UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="PatEditPeselBtn"
+                        <Button x:Name="PatEditPeselBtn"
                             Command="{Binding EditPeselHPCommand}"
                             Grid.Row="1" Grid.Column="3" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 
                             Background="Transparent" 
                             Cursor="Hand" >
-                        <Image Source="/Images/edit.png" 
+                            <Image Source="/Images/edit.png" 
                            VerticalAlignment="Bottom" Width="8" />
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" 
                                               HorizontalAlignment="Left"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <!--address-->
-                    <TextBlock  Grid.Row="1" Grid.Column="4" Foreground="#DCD7C9" 
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <!--address-->
+                        <TextBlock  Grid.Row="1" Grid.Column="4" Foreground="#DCD7C9" 
                                 FontSize="8" Text="ADDRESS:" VerticalAlignment="Center" Margin="5" />
-                    <TextBox Grid.Row="1" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639 "
+                        <TextBox Grid.Row="1" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639 "
                              Margin="5,5,0,5" MaxLength="20"
                              Text="{Binding AddressHP, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="PatEditAddressBtn"
+                        <Button x:Name="PatEditAddressBtn"
                             Command="{Binding EditAddressHPCommand}"
                             Grid.Row="1" Grid.Column="6" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 
                             Background="Transparent" 
                             Cursor="Hand" >
-                        <Image Source="/Images/edit.png" 
+                            <Image Source="/Images/edit.png" 
                            VerticalAlignment="Bottom" Width="8" />
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" 
                                               HorizontalAlignment="Left"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <!--username-->
-                    <TextBlock  Grid.Row="2" Grid.Column="1" Foreground="#DCD7C9" 
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <!--username-->
+                        <TextBlock  Grid.Row="2" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="USERNAME:" VerticalAlignment="Center" Margin="2" />
-                    <TextBox Grid.Row="2" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
+                        <TextBox Grid.Row="2" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
                              Margin="5,5,0,5"  MaxLength="20"
                              Text="{Binding UsernameHP, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="PatEditUsernameBtn"
+                        <Button x:Name="PatEditUsernameBtn"
                             Command="{Binding EditUsernameHPCommand}"
                             Grid.Row="2" Grid.Column="3" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 
                             Background="Transparent" 
                             Cursor="Hand" >
-                        <Image Source="/Images/edit.png" 
+                            <Image Source="/Images/edit.png" 
                            VerticalAlignment="Bottom" Width="8" />
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" 
                                               HorizontalAlignment="Left"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <!--change password btn-->
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <!--change password btn-->
 
-                    <Button                      
+                        <Button                      
                     Content="Change profile picture here"
                     FontSize="12" Cursor="Hand"
                     Background="Transparent"
                     Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3"                 
                     BorderBrush="Transparent" 
                     VerticalAlignment="Center" Margin="5,0,0,0">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Foreground" Value="#c8c0aa"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
+                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Foreground" Value="#c8c0aa"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
 
-                            <ControlTemplate TargetType="Button">
-                                <Label Foreground="{TemplateBinding Foreground}">
-                                    <ContentPresenter/>
-                                </Label>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </Grid>
-            </StackPanel>
+                                <ControlTemplate TargetType="Button">
+                                    <Label Foreground="{TemplateBinding Foreground}">
+                                        <ContentPresenter/>
+                                    </Label>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
         </Grid>
-
     </Grid>
+    
 </UserControl>

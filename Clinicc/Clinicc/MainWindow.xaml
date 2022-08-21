@@ -4,105 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinicc" 
-        xmlns:views="clr-namespace:Clinicc.Views" xmlns:viewmodels="clr-namespace:Clinicc.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        xmlns:views="clr-namespace:Clinicc.Views" 
+        xmlns:viewmodels="clr-namespace:Clinicc.ViewModels"         
         mc:Ignorable="d"
         Title="Clinic" Height="450" Width="700" FontFamily="Segoe UI Light" FontSize="20">
 
-    <Grid Background="#2C3639">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="Auto" MinHeight="30"/>
-            <RowDefinition/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
+    <Grid>      
+    <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:MainViewModel}">
+                <views:MainView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SignUpViewModel}">
+                <views:SignUpView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:PatHomeViewModel}">
+                <views:PatientHomePageView />
+            </DataTemplate>
+        </Grid.Resources>
 
-        <!--menu-->
-        <Grid x:Name="MainMenu" Grid.Row="1" Grid.Column="1" Height="28" 
-              VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="About" x:Name="AboutBtn"
-                    Grid.Column="0"
-                    FontSize="16" 
-                    Margin="0,0,10,0"                    
-                    BorderBrush="#1f1919">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#3F4E4F"/>
-                        <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#161b1c "/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="15" 
-                                BorderThickness="2" 
-                                BorderBrush="#161b1c"
-                                Padding="2"
-                                Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-            <Button Content="Help" x:Name="HelpBtn"
-                    Grid.Column="1"
-                    FontSize="16"  
-                    Margin="10,0,10,0"
-                    BorderThickness="0" Cursor="Hand">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#3F4E4F"/>
-                        <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#161b1c "/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="15" 
-                                BorderThickness="2" 
-                                BorderBrush="#161b1c"
-                                Padding="2"
-                                Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </Grid>
-        <!--logo-->
-        <Image Grid.Row="1" Grid.Column="3" Source="/Images/care_light.png" />
-
-        <views:MainView Grid.Row="2" Grid.ColumnSpan="5" 
-                        Background="#3F4E4F"
-                        DataContext="{Binding CurrentViewModel}"/>
-        <!--views:PatientHomePageView Grid.Row="2" Grid.ColumnSpan="5" Background="#3F4E4F"/>-->
-        <!--<views:SignUpView Grid.Row="2" Grid.ColumnSpan="5" 
-                          Background="#3F4E4F"/>-->
-       
-        
-    </Grid>
+        <ContentControl Content="{Binding CurrentViewModel}"/>
+    </Grid>    
 </Window>

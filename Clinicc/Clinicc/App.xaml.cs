@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Clinicc.Stores;
 
 namespace Clinicc
 {
@@ -16,17 +17,21 @@ namespace Clinicc
     public partial class App : Application
     {
         private Hospital _hospital;
+        private NavigationStore _navigation;
         public App()
         {
             _hospital = new Hospital();
             _hospital.AddExistingDoctors();
             _hospital.AddExistingPatients();
+            _navigation = new NavigationStore();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
+            _navigation.CurrentViewModel = new MainViewModel(_hospital,_navigation);
+
             MainWindow = new MainWindow()
             {
-                DataContext = new MainWindowViewModel(_hospital)
+                DataContext = new MainWindowViewModel(_navigation)
             };
             MainWindow.Show();            
             

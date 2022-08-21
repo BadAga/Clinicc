@@ -5,22 +5,111 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Clinicc.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="640">
-    <Grid>
-        <Grid x:Name="MainViewPage" >
+             d:DesignHeight="450" d:DesignWidth="700">
+    <Grid Background="#2C3639">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <!--menu-->
+        <Grid x:Name="MainMenu" Grid.Row="1" Grid.Column="1" Height="28" 
+              VerticalAlignment="Center">
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <!--Header-->
-            <StackPanel Grid.Row="0" Grid.Column="0" Margin="40,0,40,0">
-                <TextBlock 
+            <Button Content="About" x:Name="AboutBtn"
+                    Grid.Column="0"
+                    FontSize="16" 
+                    Margin="0,0,10,0"                    
+                    BorderBrush="#1f1919">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#3F4E4F"/>
+                        <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#161b1c "/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" 
+                                BorderThickness="2" 
+                                BorderBrush="#161b1c"
+                                Padding="2"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Content="Help" x:Name="HelpBtn"
+                    Grid.Column="1"
+                    FontSize="16"  
+                    Margin="10,0,10,0"
+                    BorderThickness="0" Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#3F4E4F"/>
+                        <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#161b1c "/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" 
+                                BorderThickness="2" 
+                                BorderBrush="#161b1c"
+                                Padding="2"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+        <!--logo-->
+        <Image Grid.Row="1" Grid.Column="3" Source="/Images/care_light.png" />
+        <Grid Grid.Row="2" Grid.ColumnSpan="5" 
+                        Background="#3F4E4F">
+            <Grid x:Name="MainViewPage" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--Header-->
+                <StackPanel Grid.Row="0" Grid.Column="0" Margin="40,0,40,0">
+                    <TextBlock 
                        Text="Welcome Back!"
                        FontSize="45"
                        FontFamily="Segoe UI"                       
@@ -28,17 +117,17 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="#DCD7C9"/>
-                <TextBlock 
+                    <TextBlock 
                        Text="Log in to your account below"                                         
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="#DCD7C9"/>
-            </StackPanel>
-            <!--register-->
-            <Grid Grid.RowSpan="3" Grid.Column="2">
-                <StackPanel  
+                </StackPanel>
+                <!--register-->
+                <Grid Grid.RowSpan="3" Grid.Column="2">
+                    <StackPanel  
                         VerticalAlignment="Center" Margin="-54,0,0,0">
-                    <TextBlock Grid.Row="0" Grid.Column="1" 
+                        <TextBlock Grid.Row="0" Grid.Column="1" 
                        Text="New to Clinicc?"
                        FontSize="30"
                        FontFamily="Segoe UI Light"                       
@@ -46,134 +135,136 @@
                        Foreground="#DCD7C9"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"/>
-                    <Button x:Name="RegisterBtn" 
+                        <Button x:Name="RegisterBtn" 
                     Command="{Binding SignUpMPCommand}"
                     Content="Sign Up"
                     FontSize="20" 
                     Cursor="Hand"
                     Margin="10" >
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#A27B5C"/>
-                                <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#81624a "/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="150" Height="60" CornerRadius="28"
-                                Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-
-                </StackPanel>
-            </Grid>
-            <!--image-->
-            <Grid Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="352,43,23,-8" Panel.ZIndex="-1">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/Images/stethoscope.png"/>
-                </Grid.Background>
-            </Grid>
-            <!--log in view-->
-            <Grid Grid.Row="1" Grid.Column="0" Margin="0,0,40,0" Grid.RowSpan="2" >
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Margin="110,10,70,10">
-                    <!--username-->
-                    <Label Foreground="#DCD7C9" Content="Username:"/>
-                    <TextBox Foreground="#DCD7C9" Background="#2C3639" 
-                         Text="{Binding UsernameMP, UpdateSourceTrigger=PropertyChanged}"/>
-                    <!--password-->
-                    <Label Foreground="#DCD7C9" Content="Password:"/>
-                    <TextBox Foreground="#DCD7C9" Background="#2C3639"
-                         Text="{Binding PasswordMP, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <!--log in buttons-->
-                <StackPanel Orientation="Horizontal" Grid.Row="1" 
-                        Margin="60,10,10,10">
-                    <Button x:Name="LogInBtn" 
-                    Command="{Binding LogInMPCommand}"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Content="Log In"
-                    FontSize="20" Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#A27B5C"/>
-                                <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#81624a "/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="120" Height="50" CornerRadius="25"
-                                Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    <!--forgotten password-->
-                    <Grid Margin="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock  Grid.Row="0"
-                            Text="Forgot your password?"
-                            Margin="10,2,2,10"
-                            Foreground="#DCD7C9"
-                            FontSize="15"/>
-                        <Button x:Name="ForgotPassBtn" 
-                    Command="{Binding ForgotPasswordMPCommand}"
-                    Grid.Row="1"
-                    Content="Click here"
-                    FontSize="18" Cursor="Hand" >
                             <Button.Style>
                                 <Style TargetType="Button">
-                                    <Setter Property="Background" Value="#344041 "/>
+                                    <Setter Property="Background" Value="#A27B5C"/>
                                     <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
                                     <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
                                     <Setter Property="Cursor" Value="Hand"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#161b1c "/>
+                                            <Setter Property="Background" Value="#81624a "/>
                                         </Trigger>
                                     </Style.Triggers>
                                 </Style>
                             </Button.Style>
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Border  CornerRadius="10"                                          
-                                         Background="{TemplateBinding Background}">
+                                    <Border Width="150" Height="60" CornerRadius="28"
+                                Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center" 
                                               HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                    </Grid>
-                </StackPanel>
+
+                    </StackPanel>
+                </Grid>
+                <!--image-->
+                <Grid Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="352,43,23,-8" Panel.ZIndex="-1">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/stethoscope.png"/>
+                    </Grid.Background>
+                </Grid>
+                <!--log in view-->
+                <Grid Grid.Row="1" Grid.Column="0" Margin="0,0,40,0" Grid.RowSpan="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="110,10,70,10">
+                        <!--username-->
+                        <Label Foreground="#DCD7C9" Content="Username:"/>
+                        <TextBox Foreground="#DCD7C9" Background="#2C3639" 
+                         Text="{Binding UsernameMP, UpdateSourceTrigger=PropertyChanged}"/>
+                        <!--password-->
+                        <Label Foreground="#DCD7C9" Content="Password:"/>
+                        <TextBox Foreground="#DCD7C9" Background="#2C3639"
+                         Text="{Binding PasswordMP, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <!--log in buttons-->
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" 
+                        Margin="60,10,10,10">
+                        <Button x:Name="LogInBtn" 
+                    Command="{Binding LogInMPCommand}"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Content="Log In"
+                    FontSize="20" Cursor="Hand">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#A27B5C"/>
+                                    <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
+                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#81624a "/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Width="120" Height="50" CornerRadius="25"
+                                Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <!--forgotten password-->
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock  Grid.Row="0"
+                            Text="Forgot your password?"
+                            Margin="10,2,2,10"
+                            Foreground="#DCD7C9"
+                            FontSize="15"/>
+                            <Button x:Name="ForgotPassBtn" 
+                    Command="{Binding ForgotPasswordMPCommand}"
+                    Grid.Row="1"
+                    Content="Click here"
+                    FontSize="18" Cursor="Hand" >
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="#344041 "/>
+                                        <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
+                                        <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#161b1c "/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border  CornerRadius="10"                                          
+                                         Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
+    
 </UserControl>
