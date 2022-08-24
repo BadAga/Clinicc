@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Clinicc.Views"
              mc:Ignorable="d" 
-            d:DesignHeight="450" d:DesignWidth="700" FontSize="12" Foreground="#1E2527"
+            d:DesignHeight="470" d:DesignWidth="700" FontSize="12" Foreground="#1E2527"
             FontFamily="Segoe UI Light">
     <Grid Background="#2C3639">
         <Grid.ColumnDefinitions>
@@ -95,6 +95,7 @@
         </Grid>
         <!--logo-->
         <Image Grid.Row="1" Grid.Column="3" Source="/Images/care_light.png" />
+        <!--view-->
         <Grid x:Name="PatientHomepageView" 
           Grid.Row="2" Grid.ColumnSpan="5" 
           Background="#3F4E4F">
@@ -288,7 +289,7 @@
                 </Grid.RowDefinitions>
                 <Button Grid.Row="1" Grid.Column="1"               
                     x:Name="LogOutBtn" 
-                    Command="{Binding LogOutSUPCommand}"
+                    Command="{Binding LogOutHPCommand}"
                     Content="Log Out"
                     FontSize="15" Cursor="Hand"
                     Margin="5">

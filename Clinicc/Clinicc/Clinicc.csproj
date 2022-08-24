@@ -82,22 +82,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Appointment.cs">
-      <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClinicManagmentModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CreateAccountCommand.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Commands\NavigateToMainViewCommand.cs" />
     <Compile Include="Commands\NavigateToSignUpViewCommand.cs" />
-    <Compile Include="Doctor.cs">
-      <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Day.cs" />
     <Compile Include="Model\Doctor.cs" />
@@ -106,15 +95,6 @@
     <Compile Include="Model\Specialization.cs" />
     <Compile Include="Model\Hospital.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Patient.cs">
-      <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Schedule.cs">
-      <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Specialization.cs">
-      <DependentUpon>ClinicManagmentModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -137,16 +117,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ClinicManagmentModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ClinicManagmentModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClinicManagmentModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ClinicManagmentModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -183,13 +153,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="ClinicManagmentModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ClinicManagmentModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ClinicManagmentModel.edmx.diagram">
-      <DependentUpon>ClinicManagmentModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -209,16 +172,6 @@
     <Content Include="ClinicDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>ClinicDatabase.mdf</DependentUpon>
-    </Content>
-    <Content Include="ClinicManagmentModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ClinicManagmentModel.edmx</DependentUpon>
-      <LastGenOutput>ClinicManagmentModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ClinicManagmentModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ClinicManagmentModel.edmx</DependentUpon>
-      <LastGenOutput>ClinicManagmentModel.cs</LastGenOutput>
     </Content>
     <Resource Include="DataSource\DocPeselList.txt" />
     <Resource Include="DataSource\ExistingPatients.txt" />

@@ -34,23 +34,27 @@ namespace Clinicc.Model
 
             foreach (string line in lines)
             {
-                var words = line.Split(' ');
-                id = words[0];
-                name = words[1];
-                surname = words[2];
-                pesel = words[3];
-                login = words[4];
-                password = words[5];
-                spec = words[6];
-                Doctor new_doctor = new Doctor(int.Parse(id), name, surname, pesel, login, password, spec);
-                AddDoctor(new_doctor);
-                id = String.Empty;
-                name = String.Empty;
-                surname = String.Empty;
-                pesel = String.Empty;
-                login = String.Empty;
-                password = String.Empty;
-                spec = String.Empty;
+                var words = line.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+                if (words.Length == 7)
+                {
+                    id = words[0];
+                    name = words[1];
+                    surname = words[2];
+                    pesel = words[3];
+                    login = words[4];
+                    password = words[5];
+                    spec = words[6];
+
+                    Doctor new_doctor = new Doctor(int.Parse(id), name, surname, pesel, login, password, spec);
+                    AddDoctor(new_doctor);
+                    id = String.Empty;
+                    name = String.Empty;
+                    surname = String.Empty;
+                    pesel = String.Empty;
+                    login = String.Empty;
+                    password = String.Empty;
+                    spec = String.Empty;
+                }
             }
         }
         public void AddExistingPatients()
@@ -68,25 +72,29 @@ namespace Clinicc.Model
 
             foreach (string line in lines)
             {
-                var words = line.Split(' ');
-                id = words[0];
-                name = words[1];
-                surname = words[2];
-                pesel = words[3];
-                login = words[4];
-                password = words[5];
-               
-                Patient new_patient = new Patient(int.Parse(id), name, surname, pesel, login, password);
-                AddPatient(new_patient);
+
+                var words = line.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+                if (words.Length == 6)
+                {
+                    id = words[0];
+                    name = words[1];
+                    surname = words[2];
+                    pesel = words[3];
+                    login = words[4];
+                    password = words[5];
+
+                    Patient new_patient = new Patient(int.Parse(id), name, surname, pesel, login, password);
+                    AddPatient(new_patient);                   
+                }
                 id = String.Empty;
                 name = String.Empty;
                 surname = String.Empty;
                 pesel = String.Empty;
                 login = String.Empty;
-                password = String.Empty;                
+                password = String.Empty;
             }
         }
-        public void AddDoctor(Doctor doc)
+        public bool AddDoctor(Doctor doc)
         {
             if(NoLoginReapeating(doc))
             {
@@ -95,22 +103,27 @@ namespace Clinicc.Model
                     doc.Id = doctors.Count()+1;
                 }
                 doctors.Add(doc.Id, doc);
-            }           
+                return true;
+            }
+            return false;
             //to do: login exists messagge
         }
-        public void AddPatient(Patient pat)
+        public bool AddPatient(Patient pat)
         {
             if (NoLoginReapeating(pat))
             {
                 if(pat.Id==0)
                 {
                     pat.Id=patients.Count()+1;
+                    
                 }
                 patients.Add(pat.Id, pat);
+                return true;
             }
+            return false;
             //to do: login exists messagge
         }
-        public bool NoLoginReapeating(User user)
+        private bool NoLoginReapeating(User user)
         {
             foreach (User existing_user in doctors.Values)
             {
@@ -128,46 +141,49 @@ namespace Clinicc.Model
             }
             return true;
         }
-        private bool TryLogIn(string login, string password)
+        public int LogIn(string login, string password)
         {
-            bool login_found = false;
-            bool successful_login = false; //true if login and password match, false if wrong password
-            foreach (var patient in patients)
+            return TryLogIn(login, password);
+        }
+        private int TryLogIn(string login, string password)
+        {
+            int successful_login = 0;
+            if (CheckIfUser(login))
             {
-                if (patient.Value.login == login)
+                foreach (var patient in patients)
                 {
-                    login_found = true;
-                    if (patient.Value.password == password)
+                    if (patient.Value.login == login)
                     {
-                        successful_login = true;
+                        if (patient.Value.password == password)
+                        {
+                            successful_login = 1;
+                        }
+                        else
+                        {
+                            successful_login = 2;
+                        }
+                        return successful_login;
                     }
-                    else
+                }
+                foreach (var doctor in doctors)
+                {
+                    if (doctor.Value.login == login)
                     {
-                        successful_login = false;
-                        //to do: wrong password message
+                        if (doctor.Value.password == password)
+                        {
+                            successful_login = 1;
+                        }
+                        else
+                        {
+                            successful_login = 2;
+
+                        }
+                        return successful_login;
                     }
-                    return successful_login;
                 }
             }
-            foreach (var doctor in doctors)
-            {
-                if (doctor.Value.login == login)
-                {
-                    login_found = true;
-                    if (doctor.Value.password == password)
-                    {
-                        successful_login = true;
-                    }
-                    else
-                    {
-                        successful_login = false;
-                        //to do: wrong password message
-                    }
-                    return successful_login;
-                }
-            }
-            //to do: no user found message
-            return login_found;
+             
+            return 0;
         }
         private bool CheckIfUser(string login)
         {
@@ -178,15 +194,15 @@ namespace Clinicc.Model
                     return true;
                 }
             }
-            return false;
-        }        
-        public bool LogIn(string login, string password)
-        {            
-            if (CheckIfUser(login))
+            foreach (var pat in patients)
             {
-                return TryLogIn(login, password);
+                if (pat.Value.login == login)
+                {
+                    return true;
+                }
             }
             return false;
         }
+       
     }
 }

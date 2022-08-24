@@ -7,7 +7,10 @@
         xmlns:views="clr-namespace:Clinicc.Views" 
         xmlns:viewmodels="clr-namespace:Clinicc.ViewModels"         
         mc:Ignorable="d"
-        Title="Clinic" Height="450" Width="700" FontFamily="Segoe UI Light" FontSize="20">
+        ResizeMode="NoResize"
+        SizeToContent="Manual"
+        Height="470" Width="700"
+        Title="Clinic"  FontFamily="Segoe UI Light" FontSize="20">
 
     <Grid>      
     <Grid.Resources>

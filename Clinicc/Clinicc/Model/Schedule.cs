@@ -11,8 +11,9 @@ namespace Clinicc.Model
         private int id_doc;
         public Dictionary< DateTime , Day> calendars;
 
-        public Schedule()
+        public Schedule(int id)
         {
+            this.id_doc = id;
             calendars = new Dictionary<DateTime, Day>();
         }
 

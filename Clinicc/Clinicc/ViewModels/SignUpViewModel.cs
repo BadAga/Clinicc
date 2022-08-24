@@ -86,12 +86,12 @@ namespace Clinicc.ViewModels
         //commands
         public ICommand CreateAccountSUPCommand { get; }
         public ICommand LogInSUPCommand { get; }
-        public ICommand LogOutSUPCommand { get; }
+        
 
 
         public SignUpViewModel(Hospital hospital, NavigationStore navigation)
         {
-            CreateAccountSUPCommand = new CreateAccountCommand();
+            CreateAccountSUPCommand = new CreateAccountCommand(hospital,navigation,this);
             LogInSUPCommand=new NavigateToMainViewCommand(navigation,hospital);
         }
     }

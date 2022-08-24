@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Clinicc.Commands;
+using Clinicc.Model;
+using Clinicc.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,7 +68,8 @@ namespace Clinicc.ViewModels
             }
         }
 
-        private string _address;
+        private string _address;       
+
         public string AddressHP
         {
             get
@@ -87,6 +91,7 @@ namespace Clinicc.ViewModels
         public ICommand PatPrescriptionsHPCommand { get; }
         public ICommand ChangePicHPCommand { get; }
 
+        public ICommand LogOutHPCommand { get; }
         public ICommand EditNameHPCommand { get; }
         public ICommand EditSurnameHPCommand { get; }
         public ICommand EditPeselHPCommand { get; }
@@ -94,5 +99,9 @@ namespace Clinicc.ViewModels
         public ICommand EditUsernameHPCommand { get; }
 
 
+        public PatHomeViewModel(Hospital hospital, NavigationStore navigation)
+        {
+            LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital); 
+        }
     }
 }

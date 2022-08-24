@@ -33,7 +33,7 @@ namespace Clinicc.Model
         }
         protected string GetLineDatabase()
         {
-            string line = Id + ' ' + name + ' ' + surname + ' ' + PESEL + ' ' + login + ' ' + password;
+            string line = Id.ToString() + ' ' + name + ' ' + surname + ' ' + PESEL + ' ' + login + ' ' + password;
             return line;
         }
         protected void SaveUserInDatabase(string filename, string data_to_insert)
@@ -47,12 +47,18 @@ namespace Clinicc.Model
         {
             string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\DocPeselList.txt";
             IEnumerable<string> pesel_list = File.ReadLines(fileName);
-            foreach(var pesel in pesel_list)
+            string pesel = String.Empty;
+            foreach(var line in pesel_list)
             {
-                if(pesel==pesel_to_check)
+                var words = line.Split(' ');
+                if (words.Length > 0)
                 {
-                    return true;
-                }
+                    pesel = words[0];
+                    if (pesel == pesel_to_check)
+                    {
+                        return true;
+                    }
+                }               
             }
             return false;
         }

@@ -39,7 +39,21 @@ namespace Clinicc.ViewModels
                 OnPropertyChanged(nameof(PasswordMP));
             }
         }
-       
+
+        private string _login_message;
+        public string LoginMessage
+        {
+            get
+            {
+                return _login_message;
+            }
+            set
+            {
+                _login_message = value;
+                OnPropertyChanged(nameof(LoginMessage));
+            }
+        }
+
         //commands
         public ICommand LogInMPCommand { get; }
         public ICommand ForgotPasswordMPCommand { get; }

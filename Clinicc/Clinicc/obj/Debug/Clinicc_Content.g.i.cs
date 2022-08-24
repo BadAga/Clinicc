@@ -10,7 +10,5 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("clinicdatabase.mdf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("clinicdatabase_log.ldf")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("clinicmanagmentmodel.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("clinicmanagmentmodel.tt")]
 
 

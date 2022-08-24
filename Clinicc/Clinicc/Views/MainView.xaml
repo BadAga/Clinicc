@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Clinicc.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="700">
+             d:DesignHeight="470" d:DesignWidth="700">
     <Grid Background="#2C3639">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -94,6 +94,7 @@
         </Grid>
         <!--logo-->
         <Image Grid.Row="1" Grid.Column="3" Source="/Images/care_light.png" />
+        <!--main content-->
         <Grid Grid.Row="2" Grid.ColumnSpan="5" 
                         Background="#3F4E4F">
             <Grid x:Name="MainViewPage" >
@@ -168,7 +169,7 @@
                     </StackPanel>
                 </Grid>
                 <!--image-->
-                <Grid Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="352,43,23,-8" Panel.ZIndex="-1">
+                <Grid Grid.RowSpan="3" Grid.ColumnSpan="3" Margin="319,10,10,21" Panel.ZIndex="-1">
                     <Grid.Background>
                         <ImageBrush ImageSource="/Images/stethoscope.png"/>
                     </Grid.Background>
@@ -178,20 +179,32 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Margin="110,10,70,10">
+                    <StackPanel Grid.Row="0" Margin="95,10,65,10" Name="DataGetter">
                         <!--username-->
                         <Label Foreground="#DCD7C9" Content="Username:"/>
                         <TextBox Foreground="#DCD7C9" Background="#2C3639" 
-                         Text="{Binding UsernameMP, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding UsernameMP, UpdateSourceTrigger=PropertyChanged}"
+                               Width="{Binding ElementName=DataGetter,Path=ActualWidth}"/>
                         <!--password-->
                         <Label Foreground="#DCD7C9" Content="Password:"/>
-                        <TextBox Foreground="#DCD7C9" Background="#2C3639"
+                        <TextBox Foreground="#DCD7C9" Background="#2C3639" 
+                                 Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
                          Text="{Binding PasswordMP, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
+                    <!--message-->
+                    <TextBlock Grid.Row="1" Text="{Binding LoginMessage}"
+                                Margin="40,0,30,0"
+                               FontSize="13"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Foreground="OrangeRed"> 
+                        <ContentPresenter VerticalAlignment="Center"/>
+                        </TextBlock>
                     <!--log in buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" 
-                        Margin="60,10,10,10">
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" 
+                        Margin="60,3,10,10">
                         <Button x:Name="LogInBtn" 
                     Command="{Binding LogInMPCommand}"
                     Grid.Row="2"
