@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Clinicc.Model
 {
     public class Hospital
-    {
+    {        
         public Dictionary<int, Doctor> doctors { get; set; }
         public Dictionary<int, Patient> patients { get; set; }
 
@@ -96,17 +99,33 @@ namespace Clinicc.Model
         }
         public bool AddDoctor(Doctor doc)
         {
-            if(NoLoginReapeating(doc))
+
+            if (NoLoginReapeating(doc))
             {
-                if(doc.Id==0)
+                Clinicc.Doctor doc_to_update;
+                using (var db = new DatabaseEntities())
                 {
-                    doc.Id = doctors.Count()+1;
+                    doc_to_update = db.Doctors.Where(dr => dr.PESEL == doc.PESEL).SingleOrDefault<Clinicc.Doctor>();                              
                 }
-                doctors.Add(doc.Id, doc);
+                if (doc_to_update != null)
+                {
+                    doc_to_update.name = doc.name;
+                    doc_to_update.surname = doc.surname;
+                    doc_to_update.password = doc.password;
+                    doc_to_update.login = doc.login;
+                    doc_to_update.spec_id = doc.specialization.Id_SPEC;
+                    var existing_doc = new Clinicc.Doctor { PESEL = doc.PESEL, name = doc.name };
+                }
+                using (var db = new DatabaseEntities())
+                {
+                    db.Entry(doc_to_update).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return true;
             }
             return false;
             //to do: login exists messagge
+
         }
         public bool AddPatient(Patient pat)
         {
@@ -125,9 +144,15 @@ namespace Clinicc.Model
         }
         private bool NoLoginReapeating(User user)
         {
-            foreach (User existing_user in doctors.Values)
+
+            DatabaseEntities db = new DatabaseEntities();
+
+            
+            var docs = from d in db.Doctors where d.login != null select d;
+            
+            foreach (var doc in docs)
             {
-                if(existing_user.login== user.login)
+                if ((doc.login == user.login))
                 {
                     return false;
                 }

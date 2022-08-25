@@ -35,7 +35,7 @@ namespace Clinicc.Commands
                 new_doc.SetSpecializationFromDictionary();
                 if (_hospital.AddDoctor(new_doc))
                 {
-                    new_doc.SaveInDatabase();
+                   // new_doc.SaveInDatabase();
                     _navigation.CurrentViewModel = new PatHomeViewModel(_hospital, _navigation);
                 }
 

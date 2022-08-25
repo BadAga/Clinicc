@@ -8,7 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("clinicdatabase.mdf")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("clinicdatabase_log.ldf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("cliniccmanagmentmodels.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("cliniccmanagmentmodels.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database.mdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database_log.ldf")]
 
 

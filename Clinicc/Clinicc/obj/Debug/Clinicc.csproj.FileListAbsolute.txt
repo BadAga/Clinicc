@@ -19,8 +19,6 @@ C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Clinicc.cspro
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Clinicc.csproj.CopyComplete
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Clinicc.exe
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Clinicc.pdb
-C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\bin\Debug\ClinicDatabase.mdf
-C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\bin\Debug\ClinicDatabase_log.ldf
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Clinicc_Content.g.cs
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\MainView.g.cs
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\PatientHomePageView.g.cs
@@ -29,3 +27,5 @@ C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\GeneratedInte
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\MainView.baml
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\PatientHomePageView.baml
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\SignUpView.baml
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\bin\Debug\Database.mdf
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\bin\Debug\Database_log.ldf

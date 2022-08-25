@@ -398,7 +398,7 @@
                                 FontSize="8" Text="SURNAME:" VerticalAlignment="Center" Margin="5" />
                         <TextBox Grid.Row="0" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639" 
                              Margin="5,5,0,5" MaxLength="30"
-                             Text="{Binding SurameHP, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding SurnameHP, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button x:Name="PatEditSurnameBtn"
                             Command="{Binding EditSurnameHPCommand}"
                             Grid.Row="0" Grid.Column="6" 

@@ -124,27 +124,27 @@
                 <Label Foreground="#DCD7C9" FontSize="13" >Username:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                       Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
-                     Text="{Binding UsernameSUP, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding UsernameSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="20" />
 
                 <Label Foreground="#DCD7C9" FontSize="13">Password:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                       Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
-                         Text="{Binding PassowrdSUP, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding PasswordSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
 
                 <Label Foreground="#DCD7C9" FontSize="13">Name:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                       Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
-                         Text="{Binding NameSUP, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding NameSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="20"/>
 
                 <Label Foreground="#DCD7C9" FontSize="13">Surname:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                       Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
-                         Text="{Binding SurnameSUP, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding SurnameSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
 
                 <Label Foreground="#DCD7C9" FontSize="13">PESEL:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                      Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
-                         Text="{Binding PeselSUP, UpdateSourceTrigger=PropertyChanged}"/>
+                         Text="{Binding PeselSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="11"/>
 
             </StackPanel>
             <!--create account confiramtion-->
