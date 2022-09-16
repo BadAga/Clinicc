@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Clinicc.Views"
              mc:Ignorable="d" 
              d:DesignHeight="470" d:DesignWidth="700" 
-             FontFamily="Segoe UI Light" FontSize="20" >
+             FontFamily="Segoe UI Light" FontSize="15" >
     <Grid Background="#2C3639">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -120,31 +120,42 @@
             </TextBlock>
             <!--data getter-->
             <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"
-                    Margin="20,5,20,10" Name="DataGetter"  >
+                    Margin="15,5,20,10" Name="DataGetter"  >
+                <!--username-->
                 <Label Foreground="#DCD7C9" FontSize="13" >Username:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
-                      Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
-                     Text="{Binding UsernameSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="20" />
-
+                         Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
+                         Text="{Binding UsernameSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="20" />
+                <Label Foreground="OrangeRed" FontSize="10" HorizontalAlignment="Center" 
+                       Content="{Binding UsernameMessage}"/>
+                <!--password-->
                 <Label Foreground="#DCD7C9" FontSize="13">Password:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                       Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
                          Text="{Binding PasswordSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
-
+                <Label Foreground="OrangeRed" FontSize="10" HorizontalAlignment="Center" 
+                       Content="{Binding PasswordMessage}"/>
+                <!--name-->
                 <Label Foreground="#DCD7C9" FontSize="13">Name:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                       Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
                          Text="{Binding NameSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="20"/>
-
+                <Label Foreground="OrangeRed" FontSize="10" HorizontalAlignment="Center" 
+                       Content="{Binding NameMessage}"/>
+                <!--surname-->
                 <Label Foreground="#DCD7C9" FontSize="13">Surname:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                       Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
                          Text="{Binding SurnameSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
-
+                <Label Foreground="OrangeRed" FontSize="10" HorizontalAlignment="Center" 
+                       Content="{Binding SurnameMessage}"/>
+                <!--pesel-->
                 <Label Foreground="#DCD7C9" FontSize="13">PESEL:</Label>
                 <TextBox Foreground="#DCD7C9" Background="#2C3639" Opacity="0.8"
                      Width="{Binding ElementName=DataGetter,Path=ActualWidth}"
                          Text="{Binding PeselSUP, UpdateSourceTrigger=PropertyChanged}" MaxLength="11"/>
+                <Label Foreground="OrangeRed" FontSize="10" HorizontalAlignment="Center" 
+                       Content="{Binding PeselMessage}"/>
 
             </StackPanel>
             <!--create account confiramtion-->

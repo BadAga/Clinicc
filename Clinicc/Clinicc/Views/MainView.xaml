@@ -194,9 +194,9 @@
                          Text="{Binding PasswordMP, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                     <!--message-->
-                    <TextBlock Grid.Row="1" Text="{Binding LoginMessage}"
+                    <TextBlock  Grid.Row="1" Text="{Binding LoginMessage}"
                                 Margin="40,0,30,0"
-                               FontSize="13"
+                                FontSize="13"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 Foreground="OrangeRed"> 

@@ -12,6 +12,7 @@ namespace Clinicc.ViewModels
 {
     public class SignUpViewModel:ViewModelBase
     {
+        //inputs
         private string _username;
         public string UsernameSUP
         {
@@ -82,7 +83,87 @@ namespace Clinicc.ViewModels
             }
         }
 
+        //messages
+        private string _username_message;
+        public string UsernameMessage
+        {
+            get
+            {
+                return _username_message;
+            }
+            set
+            {
+                _username_message = value;
+                OnPropertyChanged(nameof(UsernameMessage));
+            }
+        }
 
+        private string _password_message;
+        public string PasswordMessage
+        {
+            get
+            {
+                return _password_message;
+            }
+            set
+            {
+                _password_message = value;
+                OnPropertyChanged(nameof(PasswordMessage));
+            }
+        }
+
+        private string _name_message;
+        public string NameMessage
+        {
+            get
+            {
+                return _name_message;
+            }
+            set
+            {
+                _name_message = value;
+                OnPropertyChanged(nameof(NameMessage));
+            }
+        }
+
+        private string _surname_message;
+        public string SurnameMessage
+        {
+            get
+            {
+                return _surname_message;
+            }
+            set
+            {
+                _surname_message = value;
+                OnPropertyChanged(nameof(SurnameMessage));
+            }
+        }
+
+        private string _pesel_message;
+        public string PeselMessage
+        {
+            get
+            {
+                return _pesel_message;
+            }
+            set
+            {
+                _pesel_message = value;
+                OnPropertyChanged(nameof(PeselMessage));
+            }
+        }
+
+  
+
+        public void TrimInputs()
+        {
+            _username = _username.Trim();
+            _password = _password.Trim();
+            _name= _name.Trim();
+            _surname= _surname.Trim();
+            _pesel= _pesel.Trim();
+        }
         //commands
         public ICommand CreateAccountSUPCommand { get; }
         public ICommand LogInSUPCommand { get; }

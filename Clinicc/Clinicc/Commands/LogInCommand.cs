@@ -23,7 +23,7 @@ namespace Clinicc.Commands
             this._MainViewModel = mainViewModel;
             this._navigation = navigation;
         }
-        private void  HandleMassages(int code)
+        private void HandleMessages(int code)
         {
             if(code == 0)
             {
@@ -44,7 +44,7 @@ namespace Clinicc.Commands
             }
             else
             {
-                HandleMassages(answer);
+                HandleMessages(answer);
                 //well massages need to be handled
             }
         }
