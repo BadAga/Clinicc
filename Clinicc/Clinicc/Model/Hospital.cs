@@ -99,7 +99,6 @@ namespace Clinicc.Model
         }
         public bool AddDoctor(Doctor doc)
         {
-
             if (NoLoginReapeating(doc))
             {
                 Clinicc.Doctor doc_to_update;
@@ -123,25 +122,31 @@ namespace Clinicc.Model
                 }
                 return true;
             }
-            return false;
-            //to do: login exists messagge
+            return false;         
 
         }
         public bool AddPatient(Patient pat)
         {
             if (NoLoginReapeating(pat))
             {
-                if(pat.Id==0)
+                Clinicc.Patient new_pat = new Clinicc.Patient();
+                new_pat.login=pat.login;
+                new_pat.surname=pat.surname;
+                new_pat.password=pat.password;
+                new_pat.name = pat.name;
+                new_pat.PESEL = pat.PESEL;                
+                using (var db = new DatabaseEntities())
                 {
-                    pat.Id=patients.Count()+1;
-                    
+                    db.Patients.Add(new_pat);
+                    db.SaveChanges();
                 }
-                patients.Add(pat.Id, pat);
                 return true;
             }
             return false;
+            
             //to do: login exists messagge
         }
+
         private bool NoLoginReapeating(User user)
         {
 
@@ -166,6 +171,7 @@ namespace Clinicc.Model
             }
             return true;
         }
+
         public int LogIn(string login, string password)
         {
             return TryLogIn(login, password);
@@ -175,58 +181,55 @@ namespace Clinicc.Model
             int successful_login = 0;
             if (CheckIfUser(login))
             {
-                foreach (var patient in patients)
-                {
-                    if (patient.Value.login == login)
-                    {
-                        if (patient.Value.password == password)
-                        {
-                            successful_login = 1;
-                        }
-                        else
-                        {
-                            successful_login = 2;
-                        }
-                        return successful_login;
-                    }
-                }
-                foreach (var doctor in doctors)
-                {
-                    if (doctor.Value.login == login)
-                    {
-                        if (doctor.Value.password == password)
-                        {
-                            successful_login = 1;
-                        }
-                        else
-                        {
-                            successful_login = 2;
+                successful_login = 2;
+                Clinicc.Doctor doc_to_log;
+                Clinicc.Patient pat_to_log;
 
-                        }
-                        return successful_login;
+                using (var db = new DatabaseEntities())
+                {
+                    doc_to_log = db.Doctors.Where(dr => dr.login == login).FirstOrDefault<Clinicc.Doctor>();
+                }
+                using (var db = new DatabaseEntities())
+                {
+                    pat_to_log = db.Patients.Where(pat => pat.login == login).FirstOrDefault<Clinicc.Patient>();
+                }
+                if(doc_to_log!=null)
+                {
+                    if(doc_to_log.password==password)
+                    {
+                        successful_login = 1;
                     }
                 }
-            }
-             
-            return 0;
+                else
+                {
+                    if (pat_to_log.password == password)
+                    {
+                        successful_login = 1;
+                    }
+                }
+            }             
+            return successful_login;
         }
+
         private bool CheckIfUser(string login)
         {
-            foreach(var doc in doctors)
+            Clinicc.Doctor doc_to_log;
+            Clinicc.Patient pat_to_log;
+  
+            using (var db = new DatabaseEntities())
             {
-                if(doc.Value.login == login)
-                {
-                    return true;
-                }
+                doc_to_log = db.Doctors.Where(dr => dr.login == login).FirstOrDefault<Clinicc.Doctor>();
             }
-            foreach (var pat in patients)
+            using (var db = new DatabaseEntities())
             {
-                if (pat.Value.login == login)
-                {
-                    return true;
-                }
+                pat_to_log = db.Patients.Where(pat => pat.login == login).FirstOrDefault<Clinicc.Patient>();
             }
-            return false;
+
+            if (doc_to_log == null&&pat_to_log==null)
+            {
+                return false;
+            }
+            return true;     
         }
        
     }

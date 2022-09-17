@@ -82,20 +82,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CliniccManagmentModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CliniccManagmentModels.Context.tt</DependentUpon>
+    <Compile Include="Appointment.cs">
+      <DependentUpon>CliniccDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CliniccManagmentModels.cs">
+    <Compile Include="CliniccDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CliniccManagmentModels.tt</DependentUpon>
+      <DependentUpon>CliniccDBModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CliniccManagmentModels.Designer.cs">
+    <Compile Include="CliniccDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CliniccManagmentModels.edmx</DependentUpon>
+      <DependentUpon>CliniccDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CliniccDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CliniccDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CreateAccountCommand.cs" />
@@ -103,7 +106,7 @@
     <Compile Include="Commands\NavigateToMainViewCommand.cs" />
     <Compile Include="Commands\NavigateToSignUpViewCommand.cs" />
     <Compile Include="Doctor.cs">
-      <DependentUpon>CliniccManagmentModels.tt</DependentUpon>
+      <DependentUpon>CliniccDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Day.cs" />
@@ -114,8 +117,14 @@
     <Compile Include="Model\Specialization.cs" />
     <Compile Include="Model\Hospital.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Patient.cs">
+      <DependentUpon>CliniccDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Schedule.cs">
+      <DependentUpon>CliniccDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Specialization.cs">
-      <DependentUpon>CliniccManagmentModels.tt</DependentUpon>
+      <DependentUpon>CliniccDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -175,12 +184,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="CliniccManagmentModels.edmx">
+    <EntityDeploy Include="CliniccDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CliniccManagmentModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>CliniccDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="CliniccManagmentModels.edmx.diagram">
-      <DependentUpon>CliniccManagmentModels.edmx</DependentUpon>
+    <None Include="CliniccDBModel.edmx.diagram">
+      <DependentUpon>CliniccDBModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -221,15 +230,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CliniccManagmentModels.Context.tt">
+    <Content Include="CliniccDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CliniccManagmentModels.edmx</DependentUpon>
-      <LastGenOutput>CliniccManagmentModels.Context.cs</LastGenOutput>
+      <DependentUpon>CliniccDBModel.edmx</DependentUpon>
+      <LastGenOutput>CliniccDBModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="CliniccManagmentModels.tt">
+    <Content Include="CliniccDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CliniccManagmentModels.edmx</DependentUpon>
-      <LastGenOutput>CliniccManagmentModels.cs</LastGenOutput>
+      <DependentUpon>CliniccDBModel.edmx</DependentUpon>
+      <LastGenOutput>CliniccDBModel.cs</LastGenOutput>
     </Content>
     <Content Include="Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

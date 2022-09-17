@@ -14,7 +14,6 @@ namespace Clinicc.Model
         public DateTime date { get; set; }
 
         public int Id_doc;
-
         public TimeSpan Length => end_time - start_time;
 
         public int Id_pat;

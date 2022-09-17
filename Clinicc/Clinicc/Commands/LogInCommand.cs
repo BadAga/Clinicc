@@ -3,6 +3,7 @@ using Clinicc.Stores;
 using Clinicc.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,8 @@ namespace Clinicc.Commands
             this._hospital = hospital;
             this._MainViewModel = mainViewModel;
             this._navigation = navigation;
+
+            _MainViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
         private void HandleMessages(int code)
         {
@@ -33,6 +36,13 @@ namespace Clinicc.Commands
             {
                 _MainViewModel.LoginMessage = "Wrong password";
             }
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return !string.IsNullOrEmpty(_MainViewModel.UsernameMP) &&
+                    !string.IsNullOrEmpty(_MainViewModel.PasswordMP) &&                    
+                    base.CanExecute(parameter);
         }
         public override void Execute(object parameter)
         {
@@ -46,6 +56,15 @@ namespace Clinicc.Commands
             {
                 HandleMessages(answer);
                 //well massages need to be handled
+            }
+        }
+
+        private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MainViewModel.UsernameMP) ||
+                e.PropertyName == nameof(MainViewModel.PasswordMP))
+            {
+                OnCanExecutedChanged();
             }
         }
     }

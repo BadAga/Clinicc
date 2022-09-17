@@ -22,7 +22,7 @@ namespace Clinicc
         {
             _hospital = new Hospital();
             //_hospital.AddExistingDoctors();
-            _hospital.AddExistingPatients();
+            //_hospital.AddExistingPatients();
             _navigation = new NavigationStore();           
         }
         protected override void OnStartup(StartupEventArgs e)

@@ -35,13 +35,13 @@ namespace Clinicc.Model
             foreach (char c in input)
             {
                 char character = Char.ToLower(c);
-                if ((character >= 'a' && character <= 'z') || 
-                    IsPolishLetter(character))
+                if (!((character >= 'a' && character <= 'z') || 
+                    IsPolishLetter(character)))
                 {
-                    return true;
-                }
+                    return false;
+                }                
             }
-            return false;
+            return true;
         }
         static private bool IsPolishLetter(char c)
         {            
