@@ -92,8 +92,7 @@ namespace Clinicc.Commands
                     new_doc.SetSpecializationFromDictionary();
                     if (_hospital.AddDoctor(new_doc))
                     {       
-                        //change it when doc home page made
-                        _navigation.CurrentViewModel = new PatHomeViewModel(_hospital, _navigation);
+                      _navigation.CurrentViewModel = new DocHomeViewModel(_hospital, _navigation,new_doc);
                     }
 
                 }
@@ -105,9 +104,8 @@ namespace Clinicc.Commands
                                                _signUpViewModel.UsernameSUP,
                                                _signUpViewModel.PasswordSUP);
                     if (_hospital.AddPatient(new_pat))
-                    {
-                        new_pat.SaveInDatabase();
-                        _navigation.CurrentViewModel = new PatHomeViewModel(_hospital, _navigation);
+                    {                       
+                      _navigation.CurrentViewModel = new PatHomeViewModel(_hospital, _navigation,new_pat);
                     }
                 }
             }

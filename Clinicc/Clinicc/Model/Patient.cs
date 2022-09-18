@@ -20,7 +20,7 @@ namespace Clinicc.Model
             login = _login;
             password = _password;
             Id = _id;
-            
+            code = "PAT";
             adress = String.Empty;
             med_history_name = _surname + _pesel[9];
         }
@@ -33,14 +33,10 @@ namespace Clinicc.Model
             login = _login;
             password = _password;
             Id = 0;
-
+            code = "PAT";
             adress = String.Empty;
             med_history_name = _surname + _pesel[9];
         }
-        public void SaveInDatabase()
-        {
-            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\ExistingPatients.txt";
-            SaveUserInDatabase(fileName,GetLineDatabase());
-        }
+       
     }
 }

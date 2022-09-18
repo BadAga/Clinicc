@@ -18,12 +18,14 @@ namespace Clinicc.Commands
 
         private NavigationStore _navigation;
 
+        private User _user;
+
         public LogInCommand(MainViewModel mainViewModel, Hospital hospital,NavigationStore navigation)
         {
             this._hospital = hospital;
             this._MainViewModel = mainViewModel;
             this._navigation = navigation;
-
+            this._user=new User();
             _MainViewModel.PropertyChanged += OnViewModelPropertyChanged;
         }
         private void HandleMessages(int code)
@@ -32,7 +34,7 @@ namespace Clinicc.Commands
             {
                 _MainViewModel.LoginMessage = "User not found";
             }
-            else if(code==2)
+            else if(code==-1)
             {
                 _MainViewModel.LoginMessage = "Wrong password";
             }
@@ -46,15 +48,24 @@ namespace Clinicc.Commands
         }
         public override void Execute(object parameter)
         {
-            //1-successfull 2-wrong password 0-no user found 
-            int answer = _hospital.LogIn(_MainViewModel.UsernameMP, _MainViewModel.PasswordMP);
-            if (answer==1)
+            //1-sucessfull -1-wrong password 0-no user found             
+            KeyValuePair<int, User> answer = _hospital.LogIn(_MainViewModel.UsernameMP, _MainViewModel.PasswordMP);
+            if (answer.Key==1)
             {
-                _navigation.CurrentViewModel = new PatHomeViewModel(_hospital,_navigation);
+                if(answer.Value.code=="PAT")
+                {
+                    Clinicc.Model.Patient pat = (Model.Patient)answer.Value;
+                    _navigation.CurrentViewModel = new PatHomeViewModel(_hospital,_navigation,pat);
+                }
+                else if(answer.Value.code == "DOC")
+                {
+                    Clinicc.Model.Doctor doc = (Model.Doctor)answer.Value;
+                    _navigation.CurrentViewModel = new DocHomeViewModel(_hospital, _navigation,doc);
+                }
             }
             else
             {
-                HandleMessages(answer);
+                HandleMessages(answer.Key);
                 //well massages need to be handled
             }
         }

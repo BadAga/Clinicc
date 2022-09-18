@@ -23,6 +23,9 @@
             <DataTemplate DataType="{x:Type viewmodels:PatHomeViewModel}">
                 <views:PatientHomePageView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:DocHomeViewModel}">
+                <views:DoctorHomePageView />
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}"/>

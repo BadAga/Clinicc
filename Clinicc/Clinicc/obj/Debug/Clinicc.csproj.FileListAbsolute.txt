@@ -29,3 +29,5 @@ C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\Patient
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\SignUpView.baml
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\bin\Debug\Database.mdf
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\bin\Debug\Database_log.ldf
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorHomePageView.g.cs
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorHomePageView.baml

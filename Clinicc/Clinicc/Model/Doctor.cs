@@ -12,7 +12,7 @@ namespace Clinicc.Model
 
         public Schedule schedule;
 
-        public Doctor(int _id,string _name, string _surname, string _pesel, string _login, string _password, string spec)
+        public Doctor(int _id,string _name, string _surname, string _pesel, string _login, string _password, string spec_num)
         {
             name = _name;
             surname = _surname;
@@ -20,21 +20,21 @@ namespace Clinicc.Model
             login = _login;
             password = _password;
             Id = _id;
-
+            code = "DOC";
             schedule = new Schedule(Id);
-            specialization = new Specialization(int.Parse(spec));
+            specialization = new Specialization(int.Parse(spec_num));
         }
-        public Doctor(string _name, string _surname, string _pesel, string _login, string _password, string spec)
+        public Doctor(int _id,string _name, string _surname, string _pesel, string _login, string _password, int spec_id)
         {
             name = _name;
             surname = _surname;
             PESEL = _pesel;
             login = _login;
             password = _password;
-            Id = 0;
-
+            Id = _id;
+            code = "DOC";
             schedule = new Schedule(Id);
-            specialization = new Specialization(int.Parse(spec));
+            specialization = new Specialization(spec_id);
         }
         public Doctor(string _name, string _surname,
              string _pesel, string _login, string _password)
@@ -45,22 +45,11 @@ namespace Clinicc.Model
             login = _login;
             password = _password;
             Id = 0;
-
+            code = "DOC";
             schedule = new Schedule(Id);
             specialization = new Specialization();
         }
-        public string GetFullLineDatabase()
-        {
-            string line = GetLineDatabase() + ' ' + specialization.Id_SPEC;
-            return line;
-        }
-
-        public void SaveInDatabase()
-        {
-            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\ExistingDoctors.txt";
-            SaveUserInDatabase(fileName, GetFullLineDatabase());
-        }
-
+        
         public void SetSpecializationFromDictionary()
         {
             Specialization spec = new Specialization(int.Parse(Specialization.GetSpecIdFromFile(this.PESEL)));

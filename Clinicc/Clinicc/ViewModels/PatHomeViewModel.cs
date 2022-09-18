@@ -99,8 +99,13 @@ namespace Clinicc.ViewModels
         public ICommand EditUsernameHPCommand { get; }
 
 
-        public PatHomeViewModel(Hospital hospital, NavigationStore navigation)
+        public PatHomeViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Patient pat)
         {
+            UsernameHP = pat.login;
+            NameHP= pat.name;
+            SurnameHP = pat.surname;
+            PeselHP = pat.PESEL;
+            AddressHP = pat.adress;
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital); 
         }
     }

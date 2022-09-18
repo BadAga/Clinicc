@@ -15,6 +15,8 @@ namespace Clinicc.Model
         public string PESEL { get; set; }
         public string password { get; set; }
         public string login { get; set; }
+
+        public string code { get; set; }
         public User(string _name, string _surname, string _pesel, string _login, string _password)
         {
             name = _name;
@@ -22,6 +24,7 @@ namespace Clinicc.Model
             PESEL = _pesel;
             login = _login;
             password = _password;
+            code = string.Empty;
         }
         public User()
         {
@@ -30,19 +33,8 @@ namespace Clinicc.Model
             PESEL = "no data";
             login = "no data";
             password = "no data";
-        }
-        protected string GetLineDatabase()
-        {
-            string line = Id.ToString() + ' ' + name + ' ' + surname + ' ' + PESEL + ' ' + login + ' ' + password;
-            return line;
-        }
-        protected void SaveUserInDatabase(string filename, string data_to_insert)
-        {
-            using (TextWriter tw = new StreamWriter(filename, true))
-            {
-                tw.WriteLine(data_to_insert);
-            }
-        }
+            code = string.Empty;
+        }           
         static public bool CheckIfDoctor(string pesel_to_check)
         {
             string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\DocPeselList.txt";
@@ -62,14 +54,7 @@ namespace Clinicc.Model
             }
             return false;
         }
-        public bool SucessfullLogIn(string entered_password)
-        {
-            if(password==entered_password)
-            {
-                return true;
-            }
-            return false;
-        }
+        
 
     }
 }

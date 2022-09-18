@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Clinicc.Model
@@ -20,83 +14,7 @@ namespace Clinicc.Model
             doctors = new Dictionary<int, Doctor>();
             patients = new Dictionary<int, Patient>();
         }
-
-        public void AddExistingDoctors()
-        {
-            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\ExistingDoctors.txt";
-
-            IEnumerable<string> lines = File.ReadLines(fileName);
-            
-            string id = String.Empty;
-            string name = String.Empty;
-            string surname = String.Empty;
-            string pesel = String.Empty;
-            string login = String.Empty;
-            string password = String.Empty;
-            string spec = String.Empty;
-
-            foreach (string line in lines)
-            {
-                var words = line.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
-                if (words.Length == 7)
-                {
-                    id = words[0];
-                    name = words[1];
-                    surname = words[2];
-                    pesel = words[3];
-                    login = words[4];
-                    password = words[5];
-                    spec = words[6];
-
-                    Doctor new_doctor = new Doctor(int.Parse(id), name, surname, pesel, login, password, spec);
-                    AddDoctor(new_doctor);
-                    id = String.Empty;
-                    name = String.Empty;
-                    surname = String.Empty;
-                    pesel = String.Empty;
-                    login = String.Empty;
-                    password = String.Empty;
-                    spec = String.Empty;
-                }
-            }
-        }
-        public void AddExistingPatients()
-        {
-            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\ExistingPatients.txt";
-
-            IEnumerable<string> lines = File.ReadLines(fileName);
-
-            string id = String.Empty;
-            string name = String.Empty;
-            string surname = String.Empty;
-            string pesel = String.Empty;
-            string login = String.Empty;
-            string password = String.Empty;            
-
-            foreach (string line in lines)
-            {
-
-                var words = line.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
-                if (words.Length == 6)
-                {
-                    id = words[0];
-                    name = words[1];
-                    surname = words[2];
-                    pesel = words[3];
-                    login = words[4];
-                    password = words[5];
-
-                    Patient new_patient = new Patient(int.Parse(id), name, surname, pesel, login, password);
-                    AddPatient(new_patient);                   
-                }
-                id = String.Empty;
-                name = String.Empty;
-                surname = String.Empty;
-                pesel = String.Empty;
-                login = String.Empty;
-                password = String.Empty;
-            }
-        }
+        
         public bool AddDoctor(Doctor doc)
         {
             if (NoLoginReapeating(doc))
@@ -172,16 +90,17 @@ namespace Clinicc.Model
             return true;
         }
 
-        public int LogIn(string login, string password)
+        public KeyValuePair<int, User> LogIn(string login, string password)
         {
             return TryLogIn(login, password);
         }
-        private int TryLogIn(string login, string password)
+        private KeyValuePair<int,User> TryLogIn(string login, string password)
         {
             int successful_login = 0;
+            User user=new User();
             if (CheckIfUser(login))
             {
-                successful_login = 2;
+                successful_login = -1;
                 Clinicc.Doctor doc_to_log;
                 Clinicc.Patient pat_to_log;
 
@@ -197,7 +116,15 @@ namespace Clinicc.Model
                 {
                     if(doc_to_log.password==password)
                     {
-                        successful_login = 1;
+                        successful_login = 1;                        
+                        Clinicc.Model.Doctor doc = new Doctor(doc_to_log.Id,
+                                                            doc_to_log.name,
+                                                            doc_to_log.surname,
+                                                            doc_to_log.PESEL,
+                                                            doc_to_log.login,
+                                                            doc_to_log.password,
+                                                            doc_to_log.spec_id);
+                        user = doc;
                     }
                 }
                 else
@@ -205,10 +132,18 @@ namespace Clinicc.Model
                     if (pat_to_log.password == password)
                     {
                         successful_login = 1;
+                        Clinicc.Model.Patient pat = new Patient(pat_to_log.Id,
+                                                            pat_to_log.name,
+                                                            pat_to_log.surname,
+                                                            pat_to_log.PESEL,
+                                                            pat_to_log.login,
+                                                            pat_to_log.password);
+                        user = pat;
                     }
                 }
             }             
-            return successful_login;
+            KeyValuePair<int,User> result = new KeyValuePair<int,User>(successful_login, user);
+            return result;
         }
 
         private bool CheckIfUser(string login)

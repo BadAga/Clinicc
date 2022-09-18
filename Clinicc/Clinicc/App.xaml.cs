@@ -20,9 +20,7 @@ namespace Clinicc
         private NavigationStore _navigation;
         public App()
         {
-            _hospital = new Hospital();
-            //_hospital.AddExistingDoctors();
-            //_hospital.AddExistingPatients();
+            _hospital = new Hospital();            
             _navigation = new NavigationStore();           
         }
         protected override void OnStartup(StartupEventArgs e)
