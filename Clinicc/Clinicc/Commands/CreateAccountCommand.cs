@@ -79,34 +79,43 @@ namespace Clinicc.Commands
         }
         public override void Execute(object parameter)
         {            
-            _signUpViewModel.TrimInputs();
+            _signUpViewModel.TrimInputs(); //to not include any whithespaces at the begining or ending
             if (CheckAllInputs())
-            {
-                if (User.CheckIfDoctor(_signUpViewModel.PeselSUP))
+            {                
+                if (Hospital.CheckIfPeselNotTaken(_signUpViewModel.PeselSUP))
                 {
-                    Clinicc.Model.Doctor new_doc = new Clinicc.Model.Doctor(_signUpViewModel.NameSUP,
-                                               _signUpViewModel.SurnameSUP,
-                                               _signUpViewModel.PeselSUP,
-                                               _signUpViewModel.UsernameSUP,
-                                               _signUpViewModel.PasswordSUP);
-                    new_doc.SetSpecializationFromDictionary();
-                    if (_hospital.AddDoctor(new_doc))
-                    {       
-                      _navigation.CurrentViewModel = new DocHomeViewModel(_hospital, _navigation,new_doc);
-                    }
+                    if (User.CheckIfDoctor(_signUpViewModel.PeselSUP))
+                    {
+                        Clinicc.Model.Doctor new_doc = new Clinicc.Model.Doctor(_signUpViewModel.NameSUP,
+                                                   _signUpViewModel.SurnameSUP,
+                                                   _signUpViewModel.PeselSUP,
+                                                   _signUpViewModel.UsernameSUP,
+                                                   _signUpViewModel.PasswordSUP);
+                        new_doc.SetSpecializationFromDictionary();
+                        if (_hospital.AddDoctor(new_doc))
+                        {
+                            _navigation.CurrentViewModel = new DocHomeViewModel(_hospital, _navigation, new_doc);
+                        }
+                        _signUpViewModel.UsernameMessage = "This username is already taken";
 
+                    }
+                    else
+                    {
+                        Clinicc.Model.Patient new_pat = new Clinicc.Model.Patient(_signUpViewModel.NameSUP,
+                                                   _signUpViewModel.SurnameSUP,
+                                                   _signUpViewModel.PeselSUP,
+                                                   _signUpViewModel.UsernameSUP,
+                                                   _signUpViewModel.PasswordSUP);
+                        if (_hospital.AddPatient(new_pat))
+                        {
+                            _navigation.CurrentViewModel = new PatHomeViewModel(_hospital, _navigation, new_pat);
+                        }
+                        _signUpViewModel.UsernameMessage = "This username is already taken";
+                    }
                 }
                 else
                 {
-                    Clinicc.Model.Patient new_pat = new Clinicc.Model.Patient(_signUpViewModel.NameSUP,
-                                               _signUpViewModel.SurnameSUP,
-                                               _signUpViewModel.PeselSUP,
-                                               _signUpViewModel.UsernameSUP,
-                                               _signUpViewModel.PasswordSUP);
-                    if (_hospital.AddPatient(new_pat))
-                    {                       
-                      _navigation.CurrentViewModel = new PatHomeViewModel(_hospital, _navigation,new_pat);
-                    }
+                    _signUpViewModel.PeselMessage = "You already have an account";
                 }
             }
         }

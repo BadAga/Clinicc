@@ -64,7 +64,6 @@ namespace Clinicc.Model
             
             //to do: login exists messagge
         }
-
         private bool NoLoginReapeating(User user)
         {
 
@@ -166,6 +165,36 @@ namespace Clinicc.Model
             }
             return true;     
         }
-       
+
+        static public bool CheckIfPeselNotTaken(string pesel)
+        {
+            Clinicc.Doctor doc_to_log;
+            Clinicc.Patient pat_to_log;
+
+            using (var db = new DatabaseEntities())
+            {
+                doc_to_log = db.Doctors.Where(dr => dr.PESEL == pesel).FirstOrDefault<Clinicc.Doctor>();
+            }
+            using (var db = new DatabaseEntities())
+            {
+                pat_to_log = db.Patients.Where(pat => pat.PESEL == pesel).FirstOrDefault<Clinicc.Patient>();
+            }
+
+            //pats have to insert pesel to create account
+            //docs in database whether they have an account or not ALL have pesel
+            // only docs who have an account have somthing else than pesel and specialization
+            if (doc_to_log != null)
+            {
+                if (doc_to_log.login != null)
+                {
+                    return false; //doc made an account
+                }                
+            }
+            else if(pat_to_log != null)
+            {
+                return false; 
+            }
+            return true;
+        }
     }
 }

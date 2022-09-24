@@ -105,6 +105,9 @@
     <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Commands\NavigateToMainViewCommand.cs" />
     <Compile Include="Commands\NavigateToSignUpViewCommand.cs" />
+    <Compile Include="Components\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Doctor.cs">
       <DependentUpon>CliniccDBModel.tt</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
     <Compile Include="Views\SignUpView.xaml.cs">
       <DependentUpon>SignUpView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
