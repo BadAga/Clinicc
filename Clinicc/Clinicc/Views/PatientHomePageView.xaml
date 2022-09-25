@@ -132,7 +132,7 @@
 
                 <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
                     x:Name="AccountOverviewBtn" 
-                    Command="{Binding OverviewHPCommand}"
+                    Command="{Binding OverviewPatientCommand}"
                     Content="Overview"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
@@ -193,7 +193,7 @@
                 <Separator Background="#1E2527"/>
 
                 <Button x:Name="BookAppointmentBtn"                 
-                    Command="{Binding BookAppHPCommand }"    
+                    Command="{Binding BookAppPatientCommand }"    
                     Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="Book an appointment"
                     FontSize="15" Cursor="Hand"

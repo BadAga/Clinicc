@@ -19,5 +19,6 @@ namespace Clinicc
         public int Id_pat { get; set; }
         public int Id_schedule { get; set; }
         public System.DateTime time { get; set; }
+        public Nullable<int> all_day { get; set; }
     }
 }

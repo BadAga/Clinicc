@@ -102,8 +102,12 @@
     </Compile>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CreateAccountCommand.cs" />
+    <Compile Include="Commands\PatientBookingAppointmentCommand.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
+    <Compile Include="Commands\MyScheduleDoctorCommand.cs" />
+    <Compile Include="Commands\NavigateToDoctorMainView.cs" />
     <Compile Include="Commands\NavigateToMainViewCommand.cs" />
+    <Compile Include="Commands\NavigateToPatientMainView.cs" />
     <Compile Include="Commands\NavigateToSignUpViewCommand.cs" />
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
@@ -131,16 +135,24 @@
     </Compile>
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\DocHomeViewModel.cs" />
+    <Compile Include="ViewModels\DoctorScheduleViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PatHomeViewModel.cs" />
+    <Compile Include="ViewModels\PatientBookingApp.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\DoctorHomePageView.xaml.cs">
       <DependentUpon>DoctorHomePageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DoctorMyScheduleView.xaml.cs">
+      <DependentUpon>DoctorMyScheduleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientBookingAppView.xaml.cs">
+      <DependentUpon>PatientBookingAppView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PatientHomePageView.xaml.cs">
       <DependentUpon>PatientHomePageView.xaml</DependentUpon>
@@ -168,7 +180,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DoctorMyScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientBookingAppView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\App.xaml
-6379849709
+8-1265743476
 41154985637
-39-566577607
+471126306524
 18-545806795
-Components\BindablePasswordBox.xaml;MainWindow.xaml;Views\DoctorHomePageView.xaml;Views\MainView.xaml;Views\PatientHomePageView.xaml;Views\SignUpView.xaml;
+Components\BindablePasswordBox.xaml;MainWindow.xaml;Views\DoctorHomePageView.xaml;Views\DoctorMyScheduleView.xaml;Views\MainView.xaml;Views\PatientBookingAppView.xaml;Views\PatientHomePageView.xaml;Views\SignUpView.xaml;
 
 False
 

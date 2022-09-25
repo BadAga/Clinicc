@@ -124,7 +124,7 @@
             </Grid>
             <!--menu-->
             <StackPanel x:Name="OptionsBarPM" Grid.Row="1" Background="#A27B5C">
-                <!--<Separator Background="#1E2527"/>-->
+                
                 <Label Foreground="#1E2527" FontSize="10" Opacity="20"  Margin="5,0,0,0">
                     ACCOUNT
                 </Label>
@@ -132,7 +132,7 @@
 
                 <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
                     x:Name="AccountOverviewBtn" 
-                    
+                    Command="{Binding OverviewDoctorCommand}"
                     Content="Overview"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
@@ -194,6 +194,7 @@
                 <Button x:Name="ScheduleBtn"
                     Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="My Schedule"
+                    Command="{Binding MyScheduleDoctorCommand}"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
                     <Button.Style>
@@ -219,7 +220,7 @@
                     </Button.Template>
                 </Button>
                 <Button x:Name="MyStatisticsBtn"                
-                    Command="{Binding PatAppointmentsHPCommand}"
+                    
                     Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="My Statistics"
                     FontSize="15" Cursor="Hand"

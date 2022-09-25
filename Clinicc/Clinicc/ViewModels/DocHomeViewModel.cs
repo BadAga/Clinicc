@@ -70,6 +70,8 @@ namespace Clinicc.ViewModels
 
         //commands
         public ICommand LogOutHPCommand { get; }
+        public ICommand OverviewDoctorCommand { get; }
+        public ICommand MyScheduleDoctorCommand { get; }
         public DocHomeViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Doctor doc)
         {
             UsernameHP = doc.login;
@@ -78,6 +80,8 @@ namespace Clinicc.ViewModels
             PeselHP = doc.PESEL;
             
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
+            OverviewDoctorCommand = new NavigateToDoctorMainView(hospital, navigation, doc);
+            MyScheduleDoctorCommand=new MyScheduleDoctorCommand(hospital, navigation, doc);
         }
     }
 }
