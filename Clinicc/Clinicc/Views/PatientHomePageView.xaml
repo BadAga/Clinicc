@@ -432,7 +432,10 @@
                         <!--pesel-->
                         <TextBlock  Grid.Row="1" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="PESEL:" VerticalAlignment="Center" Margin="2" />
-                        <TextBox Grid.Row="1" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
+                        <TextBox Grid.Row="1" 
+                                 Grid.Column="2" 
+                                 Foreground="#DCD7C9" 
+                                 Background="#2C3639"
                              Margin="5,5,0,5"  MaxLength="11"
                              Text="{Binding PeselHP , UpdateSourceTrigger=PropertyChanged}"/>
                         <Button x:Name="PatEditPeselBtn"
@@ -470,7 +473,7 @@
                                 FontSize="8" Text="ADDRESS:" VerticalAlignment="Center" Margin="5" />
                         <TextBox Grid.Row="1" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639 "
                              Margin="5,5,0,5" MaxLength="20"
-                             Text="{Binding AddressHP, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding AddressHP, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextBox_TextChanged"/>
                         <Button x:Name="PatEditAddressBtn"
                             Command="{Binding EditAddressHPCommand}"
                             Grid.Row="1" Grid.Column="6" 

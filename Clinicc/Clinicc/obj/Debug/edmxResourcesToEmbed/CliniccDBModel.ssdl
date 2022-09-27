@@ -9,6 +9,7 @@
     <Property Name="Id_pat" Type="int" Nullable="false" />
     <Property Name="Id_schedule" Type="int" Nullable="false" />
     <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="all_day" Type="int" />
   </EntityType>
   <EntityType Name="Doctor">
     <Key>

@@ -24,7 +24,7 @@ namespace Clinicc.Commands
 
         public override void Execute(object parameter)
         {
-            _navigation.CurrentViewModel = new PatientBookingApp(_hospital, _navigation, _pat);
+            _navigation.CurrentViewModel = new PatientBookingAppViewModel(_hospital, _navigation, _pat);
         }
     }
 }

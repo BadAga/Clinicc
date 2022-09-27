@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Appointments">
       <EntityTypeMapping TypeName="DatabaseModel.Appointment">
         <MappingFragment StoreEntitySet="Appointment">
+          <ScalarProperty Name="all_day" ColumnName="all_day" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Id_doc" ColumnName="Id_doc" />
           <ScalarProperty Name="Id_pat" ColumnName="Id_pat" />

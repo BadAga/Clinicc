@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace Clinicc.Model
 {
@@ -71,6 +72,19 @@ namespace Clinicc.Model
                 }
             }
             return spec_id;
+        }
+
+        static public ObservableCollection<String> GetSpecsNameList()
+        {
+            ObservableCollection<String> observable_names = new ObservableCollection<String>();
+            using (var db = new DatabaseEntities())
+            {
+                var names = (from s in db.Specializations
+                             select s.name);
+                List<String> names_list = names.ToList();
+                observable_names = new ObservableCollection<String>(names);
+            }
+            return observable_names;
         }
     }
 }
