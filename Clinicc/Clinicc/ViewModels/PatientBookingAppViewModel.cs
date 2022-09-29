@@ -73,6 +73,49 @@ namespace Clinicc.ViewModels
             }            
         }
 
+        private DateTime _selecteddate=DateTime.Now;
+        public DateTime SelectedDate
+        {
+            get
+            {
+                return _selecteddate;
+            }
+            set
+            {
+                _selecteddate = value;
+                OnPropertyChanged(nameof(SelectedDate));
+            }
+        }
+
+        private DateTime _startdate;
+        public DateTime StartDate
+        {
+            get
+            {
+                return _startdate;
+            }
+            set
+            {
+                _startdate = value;
+                OnPropertyChanged(nameof(StartDate));
+            }
+        }
+
+        private DateTime _enddate;
+        public DateTime EndDate
+        {
+            get
+            {
+                return _enddate;
+            }
+            set
+            {
+                _enddate = value;
+                OnPropertyChanged(nameof(EndDate));
+            }
+        }
+
+
         private bool _is_specialization_selected = false;
         public bool IsSpecializationSelected
         {
@@ -102,7 +145,8 @@ namespace Clinicc.ViewModels
             OverviewPatientCommand = new NavigateToPatientMainView(hospital, navigation, pat);
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
             Specs = Model.Specialization.GetSpecsNameList();
-           
+            StartDate=DateTime.Now;
+            EndDate = StartDate.AddMonths(4);
         }        
         private void PrepareDocListBasedOnSpecialization()
         {

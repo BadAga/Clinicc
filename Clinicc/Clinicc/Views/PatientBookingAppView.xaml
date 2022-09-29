@@ -606,7 +606,7 @@
             
             <Grid Grid.Row="1"
                   Grid.Column="1"
-                  Margin="50,10,50,20">
+                  Margin="30,10,30,20">
                 <Grid.ColumnDefinitions>                    
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -618,25 +618,62 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>                    
                 </Grid.RowDefinitions>
                 
-                    <TextBlock  Grid.Row="0"
+                  <TextBlock    Grid.Row="0"
                                 Grid.Column="0"                        
                                 VerticalAlignment="Center" 
                                 HorizontalAlignment="Right"                             
                                 Foreground="#DCD7C9" 
                                 Text="Choose speacialization:"
-                                Margin="0,10,5,10"/>
-                    <TextBlock  Grid.Row="1"
-                                Grid.Column="0"
-                                VerticalAlignment="Center" 
-                                HorizontalAlignment="Right"                             
-                                Foreground="#DCD7C9" 
-                                Text="Pick a doctor:"
-                                Margin="0,10,5,10"/>                   
+                                Margin="0,10,5,10"
+                                Panel.ZIndex="1"/>
                
+                  <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
                 
-                    <ComboBox Grid.Row="0"
+                  <TextBlock  Grid.Row="1"
+                              Grid.Column="0"
+                              VerticalAlignment="Center" 
+                              HorizontalAlignment="Right"                             
+                              Foreground="#DCD7C9" 
+                              Text="Pick a doctor:"
+                              Margin="0,10,5,10"/>
+                
+                  <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+                
+                  <TextBlock  Grid.Row="2"
+                              Grid.Column="0"
+                              VerticalAlignment="Center" 
+                              HorizontalAlignment="Right"                             
+                              Foreground="#DCD7C9" 
+                              Text="Choose date:"
+                              Margin="0,10,5,10"/>
+                  <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+
+
+                <ComboBox Grid.Row="0"
                               Grid.Column="1"
                               Grid.ColumnSpan="2"
                               Style="{DynamicResource ComboBoxStyle1}" 
@@ -644,7 +681,7 @@
                               VerticalAlignment="Center"   
                               HorizontalAlignment="Stretch"                             
                               Foreground="#DCD7C9"
-                              Margin="0,10,0,10"
+                              Margin="0,10,20,10"
                               
                               ItemsSource="{Binding Path=Specs}"
                               SelectedItem="{Binding Path=ChosenSpec,Mode=TwoWay}" >
@@ -685,14 +722,13 @@
                     </ComboBox>
 
                 <ComboBox     Grid.Row="1"
-                              Grid.Column="1"
-                              Grid.ColumnSpan="2"
+                              Grid.Column="1"                             
                               Style="{DynamicResource ComboBoxStyle1}"
                               x:Name="BookingDoctor"
                               VerticalAlignment="Center"  
                               HorizontalAlignment="Stretch"                             
                               Foreground="#DCD7C9"
-                              Margin="0,10,0,10"
+                              Margin="0,10,20,10"
                               
                               ItemsSource="{Binding Path=Docs}"
                               SelectedItem="{Binding Path=ChosenDoc, Mode=TwoWay}"
@@ -732,8 +768,15 @@
                                     AncestorType=ComboBox}, Path=ActualWidth}"/>
                             </Style>
                         </ComboBox.Resources>
-                    </ComboBox>                   
-                
+                    </ComboBox>
+
+                <DatePicker Grid.Row="2" Grid.Column="1" 
+                            VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                            
+                            DisplayDateStart="{Binding StartDate}"
+                            DisplayDateEnd="{Binding EndDate}"                            
+                            SelectedDate="{Binding SelectedDate,UpdateSourceTrigger=PropertyChanged}"/>
+
             </Grid>           
 
         </Grid>
