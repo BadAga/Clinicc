@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 
@@ -70,7 +72,8 @@ namespace Clinicc.Model
             DatabaseEntities db = new DatabaseEntities();
 
             
-            var docs = from d in db.Doctors where d.login != null select d;
+            var docs = from d in db.Doctors 
+                       where d.login != null select d;
             
             foreach (var doc in docs)
             {
@@ -196,5 +199,46 @@ namespace Clinicc.Model
             }
             return true;
         }
+        static protected Model.Doctor ConvertDbDoctorToMOdelDoctor(Clinicc.Doctor dbdoc)
+        {
+            Model.Doctor modeldoc = new Model.Doctor(dbdoc.Id, dbdoc.name, dbdoc.surname, dbdoc.PESEL, dbdoc.login, dbdoc.password, dbdoc.spec_id);
+            return modeldoc;
+        }
+        static public List<Model.Doctor> GetAllDocsWithChosenSpec(Model.Specialization specialization)
+        {
+            
+            using (var db = new DatabaseEntities())            {
+               
+                var dbdoctors = (from dr in db.Doctors
+                             where dr.spec_id==specialization.Id_SPEC
+                             select dr);
+                List<Model.Doctor> modeldoctors = new List<Model.Doctor>();
+                foreach(var dr in dbdoctors)
+                {
+                    modeldoctors.Add(ConvertDbDoctorToMOdelDoctor(dr));
+                }
+                return modeldoctors;
+               
+            }
+            
+        }
+
+        static public List<Model.Doctor> GetAllDocs()
+        {
+            using (var db = new DatabaseEntities())
+            {
+                var dbdoctors = (from dr in db.Doctors
+                                 where dr.login!=null
+                                 select dr);
+                List<Model.Doctor> modeldoctors = new List<Model.Doctor>();
+                foreach (var dr in dbdoctors)
+                {
+                    modeldoctors.Add(ConvertDbDoctorToMOdelDoctor(dr));
+                }
+                return modeldoctors;
+            }
+        }
+
+
     }
 }

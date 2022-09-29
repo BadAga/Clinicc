@@ -55,6 +55,16 @@ namespace Clinicc.Model
             }
         }
 
+        static public int GetSpecializationId(string spec_name)
+        {
+            using (var db = new DatabaseEntities())
+            {
+                var id = (from s in db.Specializations
+                             where s.name==spec_name
+                             select s.Id).SingleOrDefault();
+                return id;
+            }
+        }
         static public string GetSpecIdFromFile(string pesel_to_check)
         {            
             string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\DocPeselList.txt";
@@ -74,17 +84,26 @@ namespace Clinicc.Model
             return spec_id;
         }
 
-        static public ObservableCollection<String> GetSpecsNameList()
+        static public Model.Specialization ConvertDBSpecToModelSpec(Clinicc.Specialization dbspec)
         {
-            ObservableCollection<String> observable_names = new ObservableCollection<String>();
+            Model.Specialization spec = new Model.Specialization();
+            spec.Id_SPEC = dbspec.Id;
+            spec.name = dbspec.name;
+            return spec;
+        }
+        static public List<Specialization> GetSpecsNameList()
+        {            
             using (var db = new DatabaseEntities())
             {
-                var names = (from s in db.Specializations
-                             select s.name);
-                List<String> names_list = names.ToList();
-                observable_names = new ObservableCollection<String>(names);
-            }
-            return observable_names;
+                var dbspecializations = (from s in db.Specializations
+                             select s);
+                List<Specialization> model_specs_list = new List<Specialization>();
+                foreach ( var dbs in dbspecializations)
+                {
+                    model_specs_list.Add(ConvertDBSpecToModelSpec(dbs));
+                }
+                return model_specs_list;
+            }            
         }
     }
 }

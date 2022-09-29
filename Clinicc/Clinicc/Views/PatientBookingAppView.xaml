@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Clinicc.Views"
              mc:Ignorable="d" 
-     d:DesignHeight="470" d:DesignWidth="700" FontSize="12" Foreground="#1E2527"
+     d:DesignHeight="470" d:DesignWidth="700" FontSize="14" Foreground="#1E2527"
             FontFamily="Segoe UI Light"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <UserControl.Resources>
@@ -71,13 +71,13 @@
             <GradientStop Color="#FFC4E0FC" Offset="1.0"/>
         </LinearGradientBrush>
         <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Border" Color="#FF569DE5"/>
-        <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#FFF0F0F0"/>
-        <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="#FFD9D9D9"/>
-        <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#FFBFBFBF"/>
-        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Background" Color="#FFFFFFFF"/>
-        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Border" Color="#FFBFBFBF"/>
-        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Background" Color="Transparent"/>
-        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Border" Color="Transparent"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#2C3639"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="#2C3639"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#2C3639"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Background" Color="#2C3639"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Border" Color="#2C3639"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Background" Color="#2C3639"/>
+        <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Border" Color="#2C3639"/>
         <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
             <Setter Property="OverridesDefaultStyle" Value="true"/>
             <Setter Property="IsTabStop" Value="false"/>
@@ -612,37 +612,129 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Row="0"
-                            Grid.Column="0">
-                    <Label  VerticalAlignment="Center" 
-                            HorizontalAlignment="Left"                             
-                            Foreground="#DCD7C9" 
-                            Content="Choose speacialization:"/>
-                    
-                </StackPanel>
-                <StackPanel Grid.Row="0"
-                            Grid.Column="1"
-                            Grid.ColumnSpan="2">
-                    <ComboBox Style="{DynamicResource ComboBoxStyle1}" Grid.Row="0"
-                              Grid.Column="0"
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                    <TextBlock  Grid.Row="0"
+                                Grid.Column="0"                        
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Right"                             
+                                Foreground="#DCD7C9" 
+                                Text="Choose speacialization:"
+                                Margin="0,10,5,10"/>
+                    <TextBlock  Grid.Row="1"
+                                Grid.Column="0"
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Right"                             
+                                Foreground="#DCD7C9" 
+                                Text="Pick a doctor:"
+                                Margin="0,10,5,10"/>                   
+               
+                
+                    <ComboBox Grid.Row="0"
+                              Grid.Column="1"
+                              Grid.ColumnSpan="2"
+                              Style="{DynamicResource ComboBoxStyle1}" 
                               x:Name="BookingSpecialization"
-                              VerticalAlignment="Top"                                 
-                              ItemsSource="{Binding Path=Specs}"
-                              SelectedItem="{Binding Path=Spec}"
+                              VerticalAlignment="Center"   
                               HorizontalAlignment="Stretch"                             
                               Foreground="#DCD7C9"
-                              Background="Yellow" >
-                       
+                              Margin="0,10,0,10"
+                              
+                              ItemsSource="{Binding Path=Specs}"
+                              SelectedItem="{Binding Path=ChosenSpec,Mode=TwoWay}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                             <ComboBox.ItemContainerStyle>   
-                                <Style TargetType="ComboBoxItem">
+                                <Style  TargetType="ComboBoxItem">
                                 <Setter Property="Background" Value="#2C3639"/>
-                                <Setter Property="BorderBrush" Value="#2C3639"/>
-                                </Style>
+                                <Setter Property="BorderBrush" Value="#2C3639"/>                               
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ComboBoxItem">
+                                            <Border x:Name="Bdcombobox" Background="#2C3639">
+                                                <ContentPresenter HorizontalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bdcombobox" 
+                                                            Property="Background"
+                                                            Value="#161b1c"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
                         </ComboBox.ItemContainerStyle>
+                        <ComboBox.Resources>
+                            <Style TargetType="Popup">
+                                <Setter Property="Width" 
+                                Value="{Binding RelativeSource={RelativeSource FindAncestor,
+                                    AncestorType=ComboBox}, Path=ActualWidth}"/>
+                            </Style>
+                        </ComboBox.Resources>
                     </ComboBox>
-                </StackPanel>
-            </Grid>
-            
+
+                <ComboBox     Grid.Row="1"
+                              Grid.Column="1"
+                              Grid.ColumnSpan="2"
+                              Style="{DynamicResource ComboBoxStyle1}"
+                              x:Name="BookingDoctor"
+                              VerticalAlignment="Center"  
+                              HorizontalAlignment="Stretch"                             
+                              Foreground="#DCD7C9"
+                              Margin="0,10,0,10"
+                              
+                              ItemsSource="{Binding Path=Docs}"
+                              SelectedItem="{Binding Path=ChosenDoc, Mode=TwoWay}"
+                              IsEnabled="{Binding IsSpecializationSelected}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding surname}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+
+                        <ComboBox.ItemContainerStyle>
+                            <Style  TargetType="ComboBoxItem">
+                                <Setter Property="Background" Value="#2C3639"/>
+                                <Setter Property="BorderBrush" Value="#2C3639"/>                               
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ComboBoxItem">
+                                            <Border x:Name="Bdcombobox" Background="#2C3639">
+                                                <ContentPresenter HorizontalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="Bdcombobox" 
+                                                            Property="Background"
+                                                            Value="#161b1c"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                        <ComboBox.Resources>
+                            <Style TargetType="Popup">
+                                <Setter Property="Width" 
+                                Value="{Binding RelativeSource={RelativeSource FindAncestor,
+                                    AncestorType=ComboBox}, Path=ActualWidth}"/>
+                            </Style>
+                        </ComboBox.Resources>
+                    </ComboBox>                   
+                
+            </Grid>           
 
         </Grid>
     </Grid>
