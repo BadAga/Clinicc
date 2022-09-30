@@ -268,6 +268,7 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        
         <Style x:Key="ComboBoxStyle1" TargetType="{x:Type ComboBox}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource ComboBox.Static.Background}"/>
@@ -288,6 +289,98 @@
                     <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate}"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+        
+        
+        
+        <Style x:Key="DatePickerStyle1" TargetType="{x:Type DatePicker}">
+            <Setter Property="Foreground" Value="#DCD7C9"/>
+            <Setter Property="IsTodayHighlighted" Value="True"/>
+            <Setter Property="SelectedDateFormat" Value="Short"/>
+            <Setter Property="Background" Value="#2C3639"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="BorderBrush" Value="#FFACACAC"/>            
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DatePicker}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="PART_DisabledVisual" To="1" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid x:Name="PART_Root" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid.Resources>
+                                    <SolidColorBrush x:Key="DisabledBrush" Color="#A5FFFFFF"/>                                   
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="PART_Button" Grid.Column="1" 
+                                        Focusable="False" HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0"  
+                                        VerticalAlignment="Top" Width="20" BorderBrush="Transparent">
+                                    <Image Source="/Images/calendar.png"/>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#232b2d"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border BorderBrush="#161b1c"
+                                                    Padding="2"
+                                                    Background="{TemplateBinding Background}">  
+                                                <ContentPresenter VerticalAlignment="Center" 
+                                                                   HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                                <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" 
+                                                   HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch"
+                                                   BorderBrush="Transparent">
+                                    <DatePickerTextBox.Template >
+                                        <ControlTemplate TargetType="DatePickerTextBox" >
+                                            <Border x:Name="watermark_decorator" BorderBrush="Transparent" BorderThickness="1"  Visibility="Hidden">
+                                                <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </DatePickerTextBox.Template>
+                                </DatePickerTextBox>
+                                <Grid x:Name="PART_DisabledVisual" Grid.Column="0" Grid.ColumnSpan="2" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom"
+                                           PlacementTarget="{Binding ElementName=PART_TextBox}" StaysOpen="False"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="false">
+                                <Setter Property="Foreground" TargetName="PART_TextBox" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
     <Grid Background="#2C3639">
@@ -570,7 +663,7 @@
                     <RowDefinition />
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Button Grid.Row="1" Grid.Column="1"               
+                <Button Grid.Row="0" Grid.Column="1"               
                     x:Name="LogOutBtn" 
                     Command="{Binding LogOutHPCommand}"
                     Content="Log Out"
@@ -614,14 +707,14 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition/>                    
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>                    
                 </Grid.RowDefinitions>
                 
-                  <TextBlock    Grid.Row="0"
+                <!--choosing specialization-->
+                <TextBlock    Grid.Row="0"
                                 Grid.Column="0"                        
                                 VerticalAlignment="Center" 
                                 HorizontalAlignment="Right"                             
@@ -630,7 +723,7 @@
                                 Margin="0,10,5,10"
                                 Panel.ZIndex="1"/>
                
-                  <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                               Stroke="#61787a"
                               Fill="#61787a"                              
                               Stretch="Fill"
@@ -639,40 +732,6 @@
                               RadiusX="10"
                               RadiusY="10"/>
                 
-                  <TextBlock  Grid.Row="1"
-                              Grid.Column="0"
-                              VerticalAlignment="Center" 
-                              HorizontalAlignment="Right"                             
-                              Foreground="#DCD7C9" 
-                              Text="Pick a doctor:"
-                              Margin="0,10,5,10"/>
-                
-                  <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
-                              Stroke="#61787a"
-                              Fill="#61787a"                              
-                              Stretch="Fill"
-                              Panel.ZIndex="-1"
-                              Margin="5"
-                              RadiusX="10"
-                              RadiusY="10"/>
-                
-                  <TextBlock  Grid.Row="2"
-                              Grid.Column="0"
-                              VerticalAlignment="Center" 
-                              HorizontalAlignment="Right"                             
-                              Foreground="#DCD7C9" 
-                              Text="Choose date:"
-                              Margin="0,10,5,10"/>
-                  <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-                              Stroke="#61787a"
-                              Fill="#61787a"                              
-                              Stretch="Fill"
-                              Panel.ZIndex="-1"
-                              Margin="5"
-                              RadiusX="10"
-                              RadiusY="10"/>
-
-
                 <ComboBox Grid.Row="0"
                               Grid.Column="1"
                               Grid.ColumnSpan="2"
@@ -685,41 +744,59 @@
                               
                               ItemsSource="{Binding Path=Specs}"
                               SelectedItem="{Binding Path=ChosenSpec,Mode=TwoWay}" >
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding name}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                            <ComboBox.ItemContainerStyle>   
-                                <Style  TargetType="ComboBoxItem">
-                                <Setter Property="Background" Value="#2C3639"/>
-                                <Setter Property="BorderBrush" Value="#2C3639"/>                               
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ComboBoxItem">
-                                            <Border x:Name="Bdcombobox" Background="#2C3639">
-                                                <ContentPresenter HorizontalAlignment="Center"/>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="Bdcombobox" 
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <ComboBox.ItemContainerStyle>
+                        <Style  TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="#2C3639"/>
+                            <Setter Property="BorderBrush" Value="#2C3639"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ComboBoxItem">
+                                        <Border x:Name="Bdcombobox" Background="#2C3639">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Bdcombobox" 
                                                             Property="Background"
                                                             Value="#161b1c"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                        <ComboBox.Resources>
-                            <Style TargetType="Popup">
-                                <Setter Property="Width" 
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBox.Resources>
+                        <Style TargetType="Popup">
+                            <Setter Property="Width" 
                                 Value="{Binding RelativeSource={RelativeSource FindAncestor,
                                     AncestorType=ComboBox}, Path=ActualWidth}"/>
-                            </Style>
-                        </ComboBox.Resources>
-                    </ComboBox>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>                
+                
+                <!--choosing doctor-->
+                <TextBlock  Grid.Row="1"
+                              Grid.Column="0"
+                              VerticalAlignment="Center" 
+                              HorizontalAlignment="Right"                             
+                              Foreground="#DCD7C9" 
+                              Text="Pick a doctor:"
+                              Margin="0,10,5,10"/>
+                
+                <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
 
                 <ComboBox     Grid.Row="1"
                               Grid.Column="1"                             
@@ -728,55 +805,156 @@
                               VerticalAlignment="Center"  
                               HorizontalAlignment="Stretch"                             
                               Foreground="#DCD7C9"
-                              Margin="0,10,20,10"
+                              Margin="5"
                               
                               ItemsSource="{Binding Path=Docs}"
                               SelectedItem="{Binding Path=ChosenDoc, Mode=TwoWay}"
                               IsEnabled="{Binding IsSpecializationSelected}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding surname}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding surname}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
 
-                        <ComboBox.ItemContainerStyle>
-                            <Style  TargetType="ComboBoxItem">
-                                <Setter Property="Background" Value="#2C3639"/>
-                                <Setter Property="BorderBrush" Value="#2C3639"/>                               
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ComboBoxItem">
-                                            <Border x:Name="Bdcombobox" Background="#2C3639">
-                                                <ContentPresenter HorizontalAlignment="Center"/>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="Bdcombobox" 
+                    <ComboBox.ItemContainerStyle>
+                        <Style  TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="#2C3639"/>
+                            <Setter Property="BorderBrush" Value="#2C3639"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ComboBoxItem">
+                                        <Border x:Name="Bdcombobox" Background="#2C3639">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Bdcombobox" 
                                                             Property="Background"
                                                             Value="#161b1c"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                        <ComboBox.Resources>
-                            <Style TargetType="Popup">
-                                <Setter Property="Width" 
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBox.Resources>
+                        <Style TargetType="Popup">
+                            <Setter Property="Width" 
                                 Value="{Binding RelativeSource={RelativeSource FindAncestor,
                                     AncestorType=ComboBox}, Path=ActualWidth}"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+                
+                <Button Content="Any Doctor" x:Name="AnyDoctorBtn"
+                        Grid.Column="2" Grid.Row="1"                        
+                        FontSize="16"  
+                        Margin="10,10,20,10"
+                        BorderThickness="0" Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#3F4E4F"/>
+                                <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#161b1c "/>
+                                    </Trigger>
+                                </Style.Triggers>
                             </Style>
-                        </ComboBox.Resources>
-                    </ComboBox>
+                        </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="15" 
+                                        BorderThickness="2" 
+                                        BorderBrush="#161b1c"
+                                        Padding="2"
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                                          HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <!--choosing date-->
+                <TextBlock  Grid.Row="2"
+                              Grid.Column="0"
+                              VerticalAlignment="Center" 
+                              HorizontalAlignment="Right"                             
+                              Foreground="#DCD7C9" 
+                              Text="Choose a date:"
+                              Margin="0,10,5,10"/>
+                
+                <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
 
-                <DatePicker Grid.Row="2" Grid.Column="1" 
+                <DatePicker Style="{DynamicResource DatePickerStyle1}" Grid.Row="2" Grid.Column="1" 
                             VerticalAlignment="Center" HorizontalAlignment="Stretch"
                             
                             DisplayDateStart="{Binding StartDate}"
                             DisplayDateEnd="{Binding EndDate}"                            
-                            SelectedDate="{Binding SelectedDate,UpdateSourceTrigger=PropertyChanged}"/>
+                            SelectedDate="{Binding SelectedDate,UpdateSourceTrigger=PropertyChanged}">
+                    
+                </DatePicker>
+                
+                <Button x:Name="EarliestAppBtn"
+                        Grid.Column="2" Grid.Row="2"
+                        Margin="10,10,20,10"
+                        BorderThickness="0" Cursor="Hand">
+                    <TextBlock Text="Earliest appointment available" TextWrapping="Wrap"
+                               FontSize="10" HorizontalAlignment="Center"/>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#3F4E4F"/>
+                            <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#161b1c "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="15" 
+                                        BorderThickness="2" 
+                                        BorderBrush="#161b1c"
+                                        Padding="2"
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                                          HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                
+                <!--choosing time-->
+                <TextBlock    Grid.Row="3"
+                              Grid.Column="0"
+                              VerticalAlignment="Center" 
+                              HorizontalAlignment="Right"                             
+                              Foreground="#DCD7C9" 
+                              Text="Choose time:"
+                              Margin="0,10,5,10"/>
 
+                <Rectangle    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+
+                
             </Grid>           
 
         </Grid>
