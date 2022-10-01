@@ -52,6 +52,7 @@ namespace Clinicc.ViewModels
             {
                 _doc = value;
                 OnPropertyChanged(nameof(ChosenDoc));
+                IsDoctorSelected=true;
             }            
         }
         private Model.Specialization _spec;
@@ -130,11 +131,20 @@ namespace Clinicc.ViewModels
             }
         }
 
+        public bool IsDoctorSelected = false;
 
+
+        public bool anyDoctor = false;
+             
+        public bool earliestAppointment = false;     
+
+      
         //done commands
         public ICommand OverviewPatientCommand { get; }
         public ICommand BookAppPatientCommand { get; }
         public ICommand LogOutHPCommand { get; }
+        public RelayCommand ChooseAnyDoctorCommand { get; private set; }
+        public RelayCommand EarliestAppointmentCommand { get; private set; }
         //to do commands:
 
 
@@ -144,6 +154,9 @@ namespace Clinicc.ViewModels
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
             OverviewPatientCommand = new NavigateToPatientMainView(hospital, navigation, pat);
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
+            ChooseAnyDoctorCommand = new RelayCommand(AnyDocToTrue);
+            EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);
+
             Specs = Model.Specialization.GetSpecsNameList();
             StartDate=DateTime.Now;
             EndDate = StartDate.AddMonths(4);
@@ -151,8 +164,15 @@ namespace Clinicc.ViewModels
         private void PrepareDocListBasedOnSpecialization()
         {
             Docs = Hospital.GetAllDocsWithChosenSpec(ChosenSpec);
+        }        
+        public void AnyDocToTrue(object message)
+        {
+            anyDoctor = true;
         }
-        
-        
+        public void EarliestAppToTrue(object message)
+        {
+            earliestAppointment = true;
+        }
+
     }
 }

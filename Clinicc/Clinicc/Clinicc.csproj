@@ -110,6 +110,7 @@
     <Compile Include="Commands\NavigateToMainViewCommand.cs" />
     <Compile Include="Commands\NavigateToPatientMainView.cs" />
     <Compile Include="Commands\NavigateToSignUpViewCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
