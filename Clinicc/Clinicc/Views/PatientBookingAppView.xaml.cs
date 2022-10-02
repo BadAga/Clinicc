@@ -24,5 +24,10 @@ namespace Clinicc.Views
         {
             InitializeComponent();
         }
+
+        private void ChoosingTime_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -353,14 +353,8 @@
                                 </Button>
                                 <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0" Focusable="{TemplateBinding Focusable}" 
                                                    HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch"
-                                                   BorderBrush="Transparent">
-                                    <DatePickerTextBox.Template >
-                                        <ControlTemplate TargetType="DatePickerTextBox" >
-                                            <Border x:Name="watermark_decorator" BorderBrush="Transparent" BorderThickness="1"  Visibility="Hidden">
-                                                <ContentControl x:Name="PART_Watermark" Focusable="False" IsHitTestVisible="False" Opacity="0" Padding="2"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </DatePickerTextBox.Template>
+                                                   BorderBrush="Transparent" Background="{TemplateBinding Background}">
+                                   
                                 </DatePickerTextBox>
                                 <Grid x:Name="PART_DisabledVisual" Grid.Column="0" Grid.ColumnSpan="2" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
                                     <Grid.ColumnDefinitions>
@@ -714,6 +708,7 @@
                 </Grid.RowDefinitions>
                 
                 <!--choosing specialization-->
+                
                 <TextBlock    Grid.Row="0"
                                 Grid.Column="0"                        
                                 VerticalAlignment="Center" 
@@ -955,7 +950,95 @@
                               RadiusX="10"
                               RadiusY="10"/>
 
-          
+                <ComboBox     Grid.Row="3"
+                              Grid.Column="1"                             
+                              Style="{DynamicResource ComboBoxStyle1}"
+                              x:Name="ChoosingTime"
+                              VerticalAlignment="Center"  
+                              HorizontalAlignment="Stretch"                             
+                              Foreground="#DCD7C9"
+                              Margin="5"
+                              
+                              ItemsSource="{Binding Path=TimeOptions}"
+                              SelectedItem="{Binding Path=ChosenTime, Mode=TwoWay}"
+                              IsEnabled="{Binding IsDateSelected}">                  
+
+                    <ComboBox.ItemContainerStyle>
+                        <Style  TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="#2C3639"/>
+                            <Setter Property="BorderBrush" Value="#2C3639"/>                          
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ComboBoxItem">
+                                        <Border x:Name="Bdcombobox" Background="#2C3639">
+                                            <ContentPresenter HorizontalAlignment="Center"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Bdcombobox" 
+                                                            Property="Background"
+                                                            Value="#161b1c"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBox.Resources>
+                        <Style TargetType="Popup">
+                            <Setter Property="Width" 
+                                Value="{Binding RelativeSource={RelativeSource FindAncestor,
+                                    AncestorType=ComboBox}, Path=ActualWidth}"/>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+                <!--border-->
+                <Rectangle    Grid.Row="0" Grid.RowSpan="4"
+                              Grid.Column="0" Grid.ColumnSpan="3"                              
+                              Fill="Transparent"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"                              
+                              RadiusX="10"
+                              RadiusY="10"
+                              StrokeThickness="2"
+                              Stroke="#A27B5C"/>
+                <!--issue an appointment-->
+
+                <Button x:Name="IssueAppBtn"
+                        Grid.Column="2" 
+                        Grid.Row="3" Grid.RowSpan="2"
+                        Margin="30,30,40,30"
+                        BorderThickness="0" Cursor="Hand"
+                        Command="{Binding IssueAnAppointment}"
+                        IsEnabled="{Binding CanBook}">
+                    <TextBlock Text="Book" TextWrapping="Wrap" 
+                               FontSize="20" HorizontalAlignment="Center" />
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#81624a "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="15" 
+                                        BorderThickness="2" 
+                                        BorderBrush="#81624a"
+                                        Padding="2"
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                                          HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Grid>           
 
         </Grid>

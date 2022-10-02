@@ -55,6 +55,7 @@ namespace Clinicc.ViewModels
                 IsDoctorSelected=true;
             }            
         }
+
         private Model.Specialization _spec;
         public Model.Specialization ChosenSpec
         {
@@ -85,6 +86,8 @@ namespace Clinicc.ViewModels
             {
                 _selecteddate = value;
                 OnPropertyChanged(nameof(SelectedDate));
+                IsDateSelected = true;
+                TRYOUTCreateTime();
             }
         }
 
@@ -116,6 +119,23 @@ namespace Clinicc.ViewModels
             }
         }
 
+        private List<DateTime> _time_options;
+        public List<DateTime> TimeOptions
+        {
+            get { return _time_options; }
+            set { _time_options = value; 
+                OnPropertyChanged(nameof(TimeOptions));                
+            }
+        }
+
+        private DateTime _chosen_time;
+        public DateTime ChosenTime 
+        { 
+            get { return _chosen_time; }
+            set { _chosen_time = value;              
+
+                OnPropertyChanged(nameof(_chosen_time));}
+        }
 
         private bool _is_specialization_selected = false;
         public bool IsSpecializationSelected
@@ -130,21 +150,34 @@ namespace Clinicc.ViewModels
                 OnPropertyChanged(nameof(IsSpecializationSelected));               
             }
         }
+        private bool _is_Date_selected = false;
+        public bool IsDateSelected
+        {
+            get
+            {
+                return _is_Date_selected;
+            }
+            set
+            {
+                _is_Date_selected = value;
+                OnPropertyChanged(nameof(IsDateSelected));
+            }
+        }
 
         public bool IsDoctorSelected = false;
 
-
         public bool anyDoctor = false;
              
-        public bool earliestAppointment = false;     
+        public bool earliestAppointment = false;
 
-      
+        public bool CanBook = true;
         //done commands
         public ICommand OverviewPatientCommand { get; }
         public ICommand BookAppPatientCommand { get; }
         public ICommand LogOutHPCommand { get; }
         public RelayCommand ChooseAnyDoctorCommand { get; private set; }
         public RelayCommand EarliestAppointmentCommand { get; private set; }
+        public RelayCommand IssueAnAppointment { get; private set; }
         //to do commands:
 
 
@@ -155,7 +188,7 @@ namespace Clinicc.ViewModels
             OverviewPatientCommand = new NavigateToPatientMainView(hospital, navigation, pat);
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
             ChooseAnyDoctorCommand = new RelayCommand(AnyDocToTrue);
-            EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);
+            EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);            
 
             Specs = Model.Specialization.GetSpecsNameList();
             StartDate=DateTime.Now;
@@ -172,6 +205,18 @@ namespace Clinicc.ViewModels
         public void EarliestAppToTrue(object message)
         {
             earliestAppointment = true;
+        }
+        private void TRYOUTCreateTime()
+        {
+            List<DateTime> list = new List<DateTime>();
+            TimeOptions = list;
+            DateTime time = new DateTime();
+            time = SelectedDate.AddHours(8);
+            for(int i=0; i<=7; i++)
+            {               
+                time = time.AddMinutes(30);
+                TimeOptions.Add(time);
+            }  
         }
 
     }
