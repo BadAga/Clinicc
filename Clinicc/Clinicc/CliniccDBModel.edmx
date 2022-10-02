@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Appointment">
           <Key>
             <PropertyRef Name="Id" />
@@ -13,8 +13,11 @@
           <Property Name="Id_doc" Type="int" Nullable="false" />
           <Property Name="Id_pat" Type="int" Nullable="false" />
           <Property Name="Id_schedule" Type="int" Nullable="false" />
-          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="start_time" Type="datetime" Nullable="false" />
+          <Property Name="end_time" Type="datetime" Nullable="false" />
           <Property Name="all_day" Type="int" />
+          <Property Name="is_appointment" Type="int" />
+          <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -47,6 +50,7 @@
           </Key>
           <Property Name="Id_schedule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_doctor" Type="int" Nullable="false" />
+          <Property Name="schedlue_till" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Specialization">
           <Key>
@@ -62,7 +66,8 @@
           <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -74,8 +79,11 @@
           <Property Name="Id_doc" Type="Int32" Nullable="false" />
           <Property Name="Id_pat" Type="Int32" Nullable="false" />
           <Property Name="Id_schedule" Type="Int32" Nullable="false" />
-          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="start_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="all_day" Type="Int32" />
+          <Property Name="is_appointment" Type="Int32" />
+          <Property Name="status" Type="Int32" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -108,6 +116,7 @@
           </Key>
           <Property Name="Id_schedule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_doctor" Type="Int32" Nullable="false" />
+          <Property Name="schedlue_till" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Specialization">
           <Key>
@@ -132,12 +141,15 @@
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="DatabaseModel.Appointment">
               <MappingFragment StoreEntitySet="Appointment">
-                <ScalarProperty Name="all_day" ColumnName="all_day" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_doc" ColumnName="Id_doc" />
                 <ScalarProperty Name="Id_pat" ColumnName="Id_pat" />
                 <ScalarProperty Name="Id_schedule" ColumnName="Id_schedule" />
-                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="all_day" ColumnName="all_day" />
+                <ScalarProperty Name="is_appointment" ColumnName="is_appointment" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -173,6 +185,7 @@
               <MappingFragment StoreEntitySet="Schedule">
                 <ScalarProperty Name="Id_schedule" ColumnName="Id_schedule" />
                 <ScalarProperty Name="id_doctor" ColumnName="id_doctor" />
+                <ScalarProperty Name="schedlue_till" ColumnName="schedlue_till" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

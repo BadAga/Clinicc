@@ -44,16 +44,28 @@ namespace Clinicc.Model
             PESEL = _pesel;
             login = _login;
             password = _password;
-            Id = 0;
+            Id = GetDoctorId();
             code = "DOC";
             schedule = new Schedule(Id);
             specialization = new Specialization();
         }
         
+        private int GetDoctorId()
+        {
+            int id = 0;
+            using(var db=new DatabaseEntities())
+            {
+                id = (from d in db.Doctors
+                      where d.PESEL == PESEL
+                      select d.Id).SingleOrDefault();
+            }
+            return id;
+        }
         public void SetSpecializationFromDictionary()
         {
             Specialization spec = new Specialization(int.Parse(Specialization.GetSpecIdFromFile(this.PESEL)));
             this.specialization = spec;
         }
+       
     }
 }

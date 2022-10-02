@@ -18,7 +18,10 @@ namespace Clinicc
         public int Id_doc { get; set; }
         public int Id_pat { get; set; }
         public int Id_schedule { get; set; }
-        public System.DateTime time { get; set; }
+        public System.DateTime start_time { get; set; }
+        public System.DateTime end_time { get; set; }
         public Nullable<int> all_day { get; set; }
+        public Nullable<int> is_appointment { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

@@ -8,8 +8,11 @@
     <Property Name="Id_doc" Type="int" Nullable="false" />
     <Property Name="Id_pat" Type="int" Nullable="false" />
     <Property Name="Id_schedule" Type="int" Nullable="false" />
-    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="start_time" Type="datetime" Nullable="false" />
+    <Property Name="end_time" Type="datetime" Nullable="false" />
     <Property Name="all_day" Type="int" />
+    <Property Name="is_appointment" Type="int" />
+    <Property Name="status" Type="int" />
   </EntityType>
   <EntityType Name="Doctor">
     <Key>
@@ -42,6 +45,7 @@
     </Key>
     <Property Name="Id_schedule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_doctor" Type="int" Nullable="false" />
+    <Property Name="schedlue_till" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="Specialization">
     <Key>

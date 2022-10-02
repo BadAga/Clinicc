@@ -8,8 +8,11 @@
     <Property Name="Id_doc" Type="Int32" Nullable="false" />
     <Property Name="Id_pat" Type="Int32" Nullable="false" />
     <Property Name="Id_schedule" Type="Int32" Nullable="false" />
-    <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="all_day" Type="Int32" />
+    <Property Name="is_appointment" Type="Int32" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
   <EntityType Name="Doctor">
     <Key>
@@ -42,6 +45,7 @@
     </Key>
     <Property Name="Id_schedule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_doctor" Type="Int32" Nullable="false" />
+    <Property Name="schedlue_till" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="Specialization">
     <Key>

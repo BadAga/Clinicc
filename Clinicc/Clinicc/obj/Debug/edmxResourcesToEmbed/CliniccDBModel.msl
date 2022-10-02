@@ -4,12 +4,15 @@
     <EntitySetMapping Name="Appointments">
       <EntityTypeMapping TypeName="DatabaseModel.Appointment">
         <MappingFragment StoreEntitySet="Appointment">
-          <ScalarProperty Name="all_day" ColumnName="all_day" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Id_doc" ColumnName="Id_doc" />
           <ScalarProperty Name="Id_pat" ColumnName="Id_pat" />
           <ScalarProperty Name="Id_schedule" ColumnName="Id_schedule" />
-          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="all_day" ColumnName="all_day" />
+          <ScalarProperty Name="is_appointment" ColumnName="is_appointment" />
+          <ScalarProperty Name="status" ColumnName="status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -45,6 +48,7 @@
         <MappingFragment StoreEntitySet="Schedule">
           <ScalarProperty Name="Id_schedule" ColumnName="Id_schedule" />
           <ScalarProperty Name="id_doctor" ColumnName="id_doctor" />
+          <ScalarProperty Name="schedlue_till" ColumnName="schedlue_till" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

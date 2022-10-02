@@ -16,5 +16,6 @@ namespace Clinicc
     {
         public int Id_schedule { get; set; }
         public int id_doctor { get; set; }
+        public System.DateTime schedlue_till { get; set; }
     }
 }
