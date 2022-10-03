@@ -46,6 +46,28 @@ namespace Clinicc.Model
             Id_pat = _id_pat;            
         }
 
+        static public Clinicc.Appointment ConvertModelAppointmentToDBAppointment(Model.Appointment app)
+        {
+            Clinicc.Appointment appointment = new Clinicc.Appointment();
+            appointment.start_time = app.start_time;
+            appointment.end_time = app.end_time;
+            appointment.status = app.status;
+
+            if (app.is_appointment)
+            { appointment.is_appointment = 1; }
+            else { appointment.is_appointment = 0; }
+
+            if (app.is_all_day)
+            {
+                appointment.all_day = 1;
+            }
+            else { appointment.all_day = 0; }
+            appointment.Id_doc=app.Id_doc;
+            appointment.Id_pat = app.Id_pat;
+            appointment.Id_schedule = app.Id_doc; //idk           
+            return appointment;
+        }
+
 
     }
 }

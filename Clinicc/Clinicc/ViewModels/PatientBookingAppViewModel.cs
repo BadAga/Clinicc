@@ -12,7 +12,9 @@ using System.Windows.Input;
 namespace Clinicc.ViewModels
 {
     public class PatientBookingAppViewModel : ViewModelBase
-    {              
+    {
+        public int _patient_id=0;
+
         private List<Model.Specialization> _specs;
         public List<Model.Specialization> Specs
         {
@@ -184,11 +186,14 @@ namespace Clinicc.ViewModels
 
         public PatientBookingAppViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Patient pat)
         {
+            _patient_id = pat.Id;
+
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
             OverviewPatientCommand = new NavigateToPatientMainView(hospital, navigation, pat);
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
             ChooseAnyDoctorCommand = new RelayCommand(AnyDocToTrue);
-            EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);            
+            EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);
+            IssueAnAppointment = new RelayCommand(CreateAppointment);
 
             Specs = Model.Specialization.GetSpecsNameList();
             StartDate=DateTime.Now;
@@ -219,5 +224,21 @@ namespace Clinicc.ViewModels
             }  
         }
 
+
+        public void CreateAppointment(object ob)
+        {
+            if (!earliestAppointment && !anyDoctor)
+            {
+                Clinicc.Appointment new_app = new Appointment();
+                Model.Appointment app = new Model.Appointment(0, ChosenTime, SelectedDate, ChosenDoc.Id, _patient_id);
+                new_app = Model.Appointment.ConvertModelAppointmentToDBAppointment(app);
+                new_app.Id_schedule = ChosenDoc.Id;
+                using(var db = new DatabaseEntities())
+                {
+                    db.Appointments.Add(new_app);
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }
