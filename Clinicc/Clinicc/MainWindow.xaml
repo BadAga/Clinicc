@@ -32,6 +32,9 @@
             <DataTemplate DataType="{x:Type viewmodels:PatientBookingAppViewModel}">
                 <views:PatientBookingAppView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:PatientsAppointmentViewModel}">
+                <views:PatientAppointmentsView />
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}"/>

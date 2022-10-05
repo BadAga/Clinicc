@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CreateAccountCommand.cs" />
+    <Compile Include="Commands\PatAppointmentsCommand.cs" />
     <Compile Include="Commands\PatientBookingAppointmentCommand.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
     <Compile Include="Commands\MyScheduleDoctorCommand.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PatHomeViewModel.cs" />
     <Compile Include="ViewModels\PatientBookingAppViewModel.cs" />
+    <Compile Include="ViewModels\PatientsAppointmentViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\DoctorHomePageView.xaml.cs">
@@ -152,6 +154,9 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientAppointmentsView.xaml.cs">
+      <DependentUpon>PatientAppointmentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PatientBookingAppView.xaml.cs">
       <DependentUpon>PatientBookingAppView.xaml</DependentUpon>
@@ -187,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientAppointmentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

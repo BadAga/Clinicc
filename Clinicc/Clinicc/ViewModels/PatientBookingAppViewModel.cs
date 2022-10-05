@@ -177,6 +177,7 @@ namespace Clinicc.ViewModels
         public ICommand OverviewPatientCommand { get; }
         public ICommand BookAppPatientCommand { get; }
         public ICommand LogOutHPCommand { get; }
+        public ICommand PatAppointmentsCommand { get; }
         public RelayCommand ChooseAnyDoctorCommand { get; private set; }
         public RelayCommand EarliestAppointmentCommand { get; private set; }
         public RelayCommand IssueAnAppointment { get; private set; }
@@ -191,6 +192,8 @@ namespace Clinicc.ViewModels
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
             OverviewPatientCommand = new NavigateToPatientMainView(hospital, navigation, pat);
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
+            PatAppointmentsCommand = new PatAppointmentsCommand(hospital, navigation, pat);
+
             ChooseAnyDoctorCommand = new RelayCommand(AnyDocToTrue);
             EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);
             IssueAnAppointment = new RelayCommand(CreateAppointment);

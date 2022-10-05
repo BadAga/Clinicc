@@ -530,7 +530,7 @@
                 </Button>
                 <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
                     x:Name="RecentActivityBtn"  
-                     Command="{Binding RecentActivityHPCommand}"
+                     Command="{Binding RecentActivityCommand}"
                     Content="Recent Activity"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
@@ -591,7 +591,7 @@
                     </Button.Template>
                 </Button>
                 <Button x:Name="PatientMyAppointmentsBtn"                
-                    Command="{Binding PatAppointmentsHPCommand}"
+                    Command="{Binding PatAppointmentsCommand}"
                     Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="My appointments"
                     FontSize="15" Cursor="Hand"
@@ -619,7 +619,7 @@
                     </Button.Template>
                 </Button>
                 <Button x:Name="PatientMyPrescriptionsBtn" 
-                    Command="{Binding PatPrescriptionsHPCommand}"
+                    Command="{Binding PatPrescriptionsCommand}"
                     Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="My prescriptions"
                     FontSize="15" Cursor="Hand"

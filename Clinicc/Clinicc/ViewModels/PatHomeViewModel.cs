@@ -87,11 +87,12 @@ namespace Clinicc.ViewModels
         public ICommand OverviewPatientCommand { get; }        
         public ICommand BookAppPatientCommand { get; }
         public ICommand LogOutHPCommand { get; }
+        public ICommand PatAppointmentsCommand { get; }
 
         //to do commands:
-        public ICommand RecentActivityHPCommand { get; }
-        public ICommand PatAppointmentsHPCommand { get; }
-        public ICommand PatPrescriptionsHPCommand { get; }
+        public ICommand RecentActivityCommand { get; }        
+        public ICommand PatPrescriptionsCommand { get; }
+
         public ICommand ChangePicHPCommand { get; }       
         public ICommand EditNameHPCommand { get; }
         public ICommand EditSurnameHPCommand { get; }
@@ -107,9 +108,11 @@ namespace Clinicc.ViewModels
             SurnameHP = pat.surname;
             PeselHP = pat.PESEL;
             AddressHP = pat.adress;
+
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
             OverviewPatientCommand=new NavigateToPatientMainView(hospital, navigation, pat);
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
+            PatAppointmentsCommand = new PatAppointmentsCommand(hospital, navigation, pat);
         }
     }
 }
