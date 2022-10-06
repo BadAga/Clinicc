@@ -850,7 +850,7 @@
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#3F4E4F"/>
-                                <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
+                            <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
                                 <Setter Property="Cursor" Value="Hand"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
@@ -909,7 +909,7 @@
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#3F4E4F"/>
-                            <Setter Property="TextElement.Foreground" Value="#E7F6F2"/>
+                            <Setter Property="TextElement.Foreground" Value="#DCD7C9"/>
                             <Setter Property="Cursor" Value="Hand"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">

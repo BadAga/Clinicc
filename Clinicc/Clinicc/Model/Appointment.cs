@@ -14,7 +14,7 @@ namespace Clinicc.Model
         public DateTime date { get; set; }
 
         public int Id_doc;
-        public TimeSpan Length => end_time - start_time;
+        public TimeSpan Length { get; set; }
 
         public int Id_pat;
 
@@ -44,6 +44,7 @@ namespace Clinicc.Model
             is_all_day=isallday;
             status = statusspp;
             ChengeDescriptiveProperties();
+            this.Length = end_time - start_time;
         }
 
         //Constructor for appointments made by patients; with default values; patient appointments are 30 min long
@@ -56,6 +57,7 @@ namespace Clinicc.Model
             Id_doc = _id_doc;
             Id_pat = _id_pat;
             ChengeDescriptiveProperties();
+            this.Length = end_time - start_time;
         }
         private void ChengeDescriptiveProperties()
         {
