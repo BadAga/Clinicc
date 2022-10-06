@@ -11,7 +11,18 @@ using System.Windows.Input;
 namespace Clinicc.ViewModels
 {
     public class PatientsAppointmentViewModel:ViewModelBase
-    {
+    {        
+        Clinicc.Model.Patient pat_vm=null;
+
+        private List<Model.Appointment> appointments = new List<Model.Appointment>();
+        public List<Model.Appointment> Appointments
+        {
+            get { return appointments; }
+            set { appointments = value;
+                  OnPropertyChanged(nameof(Appointments));}
+        } 
+
+
         //done commands
         public ICommand OverviewPatientCommand { get; }
         public ICommand BookAppPatientCommand { get; }
@@ -26,6 +37,13 @@ namespace Clinicc.ViewModels
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
             PatAppointmentsCommand=new PatAppointmentsCommand(hospital, navigation, pat);
 
+            pat_vm = pat;
+            GenerateListOfAppointments();           
+        }
+
+        private void GenerateListOfAppointments()
+        {
+            Appointments = pat_vm.GetListOfAppointments();
         }
 
     }

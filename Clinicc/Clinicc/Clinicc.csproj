@@ -119,6 +119,7 @@
       <DependentUpon>CliniccDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Appointment.cs" />
+    <Compile Include="Model\Converter.cs" />
     <Compile Include="Model\Day.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\InputValidator.cs" />

@@ -199,11 +199,7 @@ namespace Clinicc.Model
             }
             return true;
         }
-        static protected Model.Doctor ConvertDbDoctorToMOdelDoctor(Clinicc.Doctor dbdoc)
-        {
-            Model.Doctor modeldoc = new Model.Doctor(dbdoc.Id, dbdoc.name, dbdoc.surname, dbdoc.PESEL, dbdoc.login, dbdoc.password, dbdoc.spec_id);
-            return modeldoc;
-        }
+       
         static public List<Model.Doctor> GetAllDocsWithChosenSpec(Model.Specialization specialization)
         {
             
@@ -215,7 +211,7 @@ namespace Clinicc.Model
                 List<Model.Doctor> modeldoctors = new List<Model.Doctor>();
                 foreach(var dr in dbdoctors)
                 {
-                    modeldoctors.Add(ConvertDbDoctorToMOdelDoctor(dr));
+                    modeldoctors.Add(Converter.ConvertDoctor(dr));
                 }
                 return modeldoctors;
                
@@ -233,7 +229,7 @@ namespace Clinicc.Model
                 List<Model.Doctor> modeldoctors = new List<Model.Doctor>();
                 foreach (var dr in dbdoctors)
                 {
-                    modeldoctors.Add(ConvertDbDoctorToMOdelDoctor(dr));
+                    modeldoctors.Add(Converter.ConvertDoctor(dr));
                 }
                 return modeldoctors;
             }

@@ -37,6 +37,23 @@ namespace Clinicc.Model
             adress = String.Empty;
             med_history_name = _surname + _pesel[9];
         }
+
+        public List<Model.Appointment> GetListOfAppointments()
+        {
+            List<Model.Appointment> list = new List<Model.Appointment>();
+            using(var db=new DatabaseEntities())
+            {
+                var result=(from ap in db.Appointments
+                            where ap.Id_pat==this.Id
+                            select ap).ToList();
+                foreach(Clinicc.Appointment db_app in result)
+                {
+                    Model.Appointment model_app=Converter.ConvertAppointment(db_app);
+                    list.Add(model_app);
+                }
+            }
+            return list;
+        }
        
     }
 }
