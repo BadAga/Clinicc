@@ -66,6 +66,28 @@ namespace Clinicc.Model
             Specialization spec = new Specialization(int.Parse(Specialization.GetSpecIdFromFile(this.PESEL)));
             this.specialization = spec;
         }
-       
+
+        public new List<Model.Appointment> GetListOfAppointments()
+        {
+            List<Model.Appointment> list = new List<Model.Appointment>();
+            using (var db = new DatabaseEntities())
+            {
+                var result = (from ap in db.Appointments
+                              where ap.Id_doc == this.Id
+                              select ap).ToList();
+                foreach (Clinicc.Appointment db_app in result)
+                {
+                    //appointment e=request is an appointment with status==0, meaning is issued
+
+                    if(db_app.status==0)
+                    { 
+                        Model.Appointment model_app = Converter.ConvertAppointment(db_app);
+                        list.Add(model_app);
+                    }
+                }
+            }
+            return list;
+        }
+
     }
 }

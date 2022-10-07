@@ -130,8 +130,7 @@
                 </Label>
                 <Separator Background="#1E2527"/>
 
-                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="AccountOverviewBtn" 
+                <Button  x:Name="AccountOverviewBtn" 
                     Command="{Binding OverviewDoctorCommand}"
                     Content="Overview"
                     FontSize="15" Cursor="Hand"
@@ -158,8 +157,8 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"                
-                    x:Name="RecentActivityBtn"  
+                
+                <Button x:Name="RecentActivityBtn"  
                     Content="Recent Activity"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
@@ -192,7 +191,6 @@
                 <Separator Background="#1E2527"/>
 
                 <Button x:Name="ScheduleBtn"
-                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                     Content="My Schedule"
                     Command="{Binding MyScheduleDoctorCommand}"
                     FontSize="15" Cursor="Hand"
@@ -219,9 +217,36 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="MyStatisticsBtn"                
-                    
-                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+
+                <Button x:Name="AppointmentRequestsBtn" 
+                    Content="Appointment Requests"
+                    FontSize="15" Cursor="Hand"
+                    Command="{Binding AppointmentRequestsCommand}"
+                    Margin="5,0,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#81624a "/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" Height="30">
+                                <ContentPresenter VerticalAlignment="Center" 
+                                              HorizontalAlignment="Left"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="MyStatisticsBtn"  
                     Content="My Statistics"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0" >
@@ -247,8 +272,8 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="IssuePrescriptionBtn"                     
-                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                
+                <Button x:Name="IssuePrescriptionBtn"     
                     Content="Issue a Prescription"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">

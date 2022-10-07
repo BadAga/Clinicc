@@ -54,7 +54,11 @@ namespace Clinicc.Model
             }
             return false;
         }
-        
 
+        public List<Model.Appointment> GetListOfAppointments()
+        {
+            List<Model.Appointment> list = new List<Model.Appointment>();            
+            return list;
+        }
     }
 }

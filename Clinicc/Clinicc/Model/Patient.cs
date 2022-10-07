@@ -38,7 +38,7 @@ namespace Clinicc.Model
             med_history_name = _surname + _pesel[9];
         }
 
-        public List<Model.Appointment> GetListOfAppointments()
+        public new List<Model.Appointment> GetListOfAppointments()
         {
             List<Model.Appointment> list = new List<Model.Appointment>();
             using(var db=new DatabaseEntities())
