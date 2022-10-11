@@ -343,8 +343,207 @@
                 </Button>
             </Grid>
             <!--schedule-->
-            <Calendar  Grid.Row="1" Grid.Column="1"
-                       />
+            <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--header- weeknames-->
+                <TextBlock Text="Monday" 
+                           Grid.Column="0" Grid.Row="0"
+                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"
+                           Margin="1,1,1,5"/>
+                
+                <ListView Grid.Column="0" Grid.Row="1"
+                          Background="Transparent"
+                          BorderThickness="0">                    
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="Foreground" Value="#1E2527"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="#81624a"/>
+                                    <Setter Property="BorderBrush" Value="#81624a"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                
+
+                <TextBlock Text="Tuesday" 
+                           Grid.Column="1" Grid.Row="0"
+                           Margin="1,1,1,5"
+                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+                <ListView Grid.Column="1" Grid.Row="1"
+                          Background="Transparent"
+                          BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="Foreground" Value="#1E2527"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="#81624a"/>
+                                    <Setter Property="BorderBrush" Value="#81624a"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                
+
+                <TextBlock Text="Wednesday" 
+                           Grid.Column="2" Grid.Row="0"
+                           Margin="1,1,1,5"
+                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+                <ListView Grid.Column="2" Grid.Row="1"
+                          Background="Transparent"
+                          BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="Foreground" Value="#1E2527"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="#81624a"/>
+                                    <Setter Property="BorderBrush" Value="#81624a"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+                
+
+                <TextBlock Text="Thursday" 
+                           Grid.Column="3" Grid.Row="0"
+                           Margin="1,1,1,5"
+                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+                <ListView Grid.Column="3" Grid.Row="1"
+                          Background="Transparent"
+                          BorderThickness="0" >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="Foreground" Value="#1E2527"/>
+                            <Setter Property="FontSize" Value="14"/>                            
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="#81624a"/>
+                                    <Setter Property="BorderBrush" Value="#81624a"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+
+
+                <TextBlock Text="Friday" 
+                           Margin="1,1,1,5"
+                           Grid.Column="4" Grid.Row="0"
+                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+                <ListView Grid.Column="4" Grid.Row="1"
+                          Background="Transparent"
+                          BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="Foreground" Value="#1E2527"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="#81624a"/>
+                                    <Setter Property="BorderBrush" Value="#81624a"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+
+
+                <TextBlock Text="Saturday" 
+                           Margin="1,1,1,5"
+                           Grid.Column="5" Grid.Row="0"
+                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+                <ListView Grid.Column="5" Grid.Row="1"
+                          Background="Transparent"
+                          BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="Foreground" Value="#1E2527"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="#81624a"/>
+                                    <Setter Property="BorderBrush" Value="#81624a"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+
+
+                <TextBlock Text="Sunday" 
+                           Grid.Column="6" Grid.Row="0"
+                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>
+
+                <ListView Grid.Column="6" Grid.Row="1"
+                          Background="Transparent"
+                          Margin="1,1,1,5"
+                          BorderThickness="0">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="#A27B5C"/>
+                            <Setter Property="Foreground" Value="#1E2527"/>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="#81624a"/>
+                                    <Setter Property="BorderBrush" Value="#81624a"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
+            
+            <Rectangle    Grid.Row="1" Grid.Column="1"                                                         
+                          Fill="#61787a"                              
+                          Stretch="Fill"
+                          Panel.ZIndex="-2"                              
+                          RadiusX="10"
+                          RadiusY="10"
+                          StrokeThickness="2"
+                          Stroke="#A27B5C"
+                          Margin="5"/>
+            <Rectangle    Grid.Row="1" Grid.Column="1"                                                         
+                          Fill="#61787a"                              
+                          Stretch="Fill"
+                          Panel.ZIndex="-1"                              
+                          RadiusX="0"
+                          RadiusY="10"
+                          StrokeThickness="2"
+                          Stroke="#A27B5C"
+                          Margin="5,30,5,5"/>
         </Grid>
     </Grid>
 </UserControl>
