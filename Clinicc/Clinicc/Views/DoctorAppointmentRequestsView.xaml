@@ -369,15 +369,88 @@
             <!--appointment list-->
             <ListView Grid.Row="1" Grid.Column="1" Margin="30"
                       ItemsSource="{Binding Appointments}"
+                      SelectedItem="{Binding Path=SelectedAppointment}"
                       Background="Transparent"
                       BorderThickness="0" >
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                         <GridViewColumn Header="Patient" DisplayMemberBinding="{Binding patfullname}"/>
-                        <GridViewColumn Header="From" DisplayMemberBinding="{Binding start_time}"/>
-                        <GridViewColumn Header="Till" DisplayMemberBinding="{Binding end_time}"/>
+                        <GridViewColumn Header="Date and time" DisplayMemberBinding="{Binding start_time}"/>
                         <GridViewColumn Header="Duration" DisplayMemberBinding="{Binding Length}"/>
-                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding status_desc}"/>
+                        <GridViewColumn Header="Change status">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="2">
+                                        <Button Content="Confirm"
+                                                Margin="3"
+                                                Command="{Binding Path=DataContext.ConfirmAppointment, 
+                                                          RelativeSource={RelativeSource FindAncestor,
+                                                          AncestorType={x:Type ItemsControl}}}"
+                                                          CommandParameter="{Binding}" >
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background" Value="#5ca27b"/>
+                                                    <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                                    <Setter Property="Cursor" Value="Hand"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                    <Setter Property="BorderBrush" Value="#4a8162 "/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#53926f "/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" 
+                                                            Height="20" CornerRadius="5" 
+                                                            Width="80">
+                                                        <ContentPresenter VerticalAlignment="Center" 
+                                                            HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                        <Button Content="Deny"
+                                                Margin="3" 
+                                                Command="{Binding Path=DataContext.DenyAppointment, 
+                                                          RelativeSource={RelativeSource FindAncestor,
+                                                          AncestorType={x:Type ItemsControl}}}"
+                                                          CommandParameter="{Binding}" >
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background" Value="#a25c60 "/>
+                                                    <Setter Property="TextElement.Foreground" Value="#1E2527"/>
+                                                    <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
+                                                    <Setter Property="Cursor" Value="Hand"/>
+                                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                                    <Setter Property="BorderBrush" Value="#814a4d "/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#925356 "/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" 
+                                                            Height="20" CornerRadius="5" 
+                                                            Width="80">
+                                                        <ContentPresenter VerticalAlignment="Center" 
+                                                            HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <!--items-->
@@ -385,6 +458,7 @@
                     <Style TargetType="{x:Type ListViewItem}">
                         <Setter Property="Background" Value="#A27B5C"/>
                         <Setter Property="Foreground" Value="#1E2527"/>
+                        <Setter Property="FontSize" Value="14"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter Property="Background" Value="#81624a"/>
@@ -394,6 +468,7 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
+            
             <Rectangle    Grid.Row="1" Grid.Column="1"                                                         
                           Fill="#61787a"                              
                           Stretch="Fill"
@@ -403,7 +478,6 @@
                           StrokeThickness="2"
                           Stroke="#A27B5C"
                           Margin="20"/>
-
 
         </Grid>
     </Grid>

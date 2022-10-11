@@ -24,6 +24,16 @@ namespace Clinicc.ViewModels
                 OnPropertyChanged(nameof(Appointments));
             }
         }
+
+        private Model.Appointment selectedAppointment;
+        public Model.Appointment SelectedAppointment
+        {
+            get { return selectedAppointment; }
+            set { selectedAppointment = value; 
+                OnPropertyChanged(nameof(SelectedAppointment)); }
+        }
+        
+        //commands
         public ICommand LogOutHPCommand { get; }
 
         public ICommand OverviewDoctorCommand { get; }
@@ -31,6 +41,9 @@ namespace Clinicc.ViewModels
         public ICommand MyScheduleDoctorCommand { get; }
 
         public ICommand AppointmentRequestsCommand { get; }
+
+        public RelayCommand ConfirmAppointment { get; private set; }
+        public RelayCommand DenyAppointment { get; private set; }
 
         public DoctorAppointmentRequestsViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Doctor doc)
         {
@@ -40,12 +53,40 @@ namespace Clinicc.ViewModels
             OverviewDoctorCommand = new NavigateToDoctorMainView(hospital, navigation, doc);
             MyScheduleDoctorCommand = new MyScheduleDoctorCommand(hospital, navigation, doc);
             AppointmentRequestsCommand = new AppointmentRequestDoctorCommand(hospital, navigation, doc);
+            ConfirmAppointment = new RelayCommand(ConfirmAppointmentImpl);
+            DenyAppointment = new RelayCommand(DenyAppointmentImpl);
             GenerateListOfAppointmentRequests();
         }
 
         private void GenerateListOfAppointmentRequests()
         {
             Appointments = Doctor.GetListOfAppointments();
+        }
+        private void ConfirmAppointmentImpl(object o)
+        {
+            if(!(o is Model.Appointment))
+            {
+                return;
+            }
+            else
+            {
+                SelectedAppointment = (Model.Appointment)o;
+                SelectedAppointment.ChangeStatus(1);
+
+            }            
+        }
+        private void DenyAppointmentImpl(object o)
+        {
+            if (!(o is Model.Appointment))
+            {
+                return;
+            }
+            else
+            {
+                SelectedAppointment = (Model.Appointment)o;
+                SelectedAppointment.ChangeStatus(2);
+
+            }
         }
 
     }

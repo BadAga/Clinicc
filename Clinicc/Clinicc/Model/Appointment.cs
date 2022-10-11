@@ -93,7 +93,27 @@ namespace Clinicc.Model
                 status_desc = "denied";
             }
         }
-        
+
+
+        //0-issued 1-confirmed 2-denied
+        public void ChangeStatus(int changedStatus)
+        {
+            status = changedStatus;
+            ChangeStatusDesc();
+            Clinicc.Appointment dbapp = new Clinicc.Appointment();
+            using (var db = new DatabaseEntities())
+            {
+                dbapp = (from app in db.Appointments
+                             where app.Id == this.Id_app
+                             select app).SingleOrDefault();               
+            }
+            dbapp.status = this.status;
+            using (var db = new DatabaseEntities())
+            {
+                db.Entry(dbapp).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
         static public Clinicc.Appointment ConvertModelAppointmentToDBAppointment(Model.Appointment app)
         {
             Clinicc.Appointment appointment = new Clinicc.Appointment();
