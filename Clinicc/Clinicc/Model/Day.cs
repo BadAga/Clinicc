@@ -13,8 +13,10 @@ namespace Clinicc.Model
         private Dictionary<int, Appointment> events;
 
 
-        public Day()
+        public Day(int id,DateTime dateParam)
         {
+            this.id_day = id;
+            this.date = dateParam;
             events = new Dictionary<int, Appointment>();
         }
         public IEnumerable<Appointment> GetAppointmentsForPatient(int id_pat)

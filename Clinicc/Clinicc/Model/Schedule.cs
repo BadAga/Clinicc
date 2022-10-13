@@ -58,6 +58,10 @@ namespace Clinicc.Model
             return null;
         }
 
+        public void AddDay(Day day)
+        {
+            calendars.Add(day.date, day);
+        }
         public bool AddAppointment(Appointment new_appointment)
         {
            if(calendars.ContainsKey(new_appointment.date))

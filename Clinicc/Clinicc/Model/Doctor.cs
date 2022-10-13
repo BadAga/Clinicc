@@ -88,6 +88,29 @@ namespace Clinicc.Model
             }
             return list;
         }
-
+        public void FillSchedule()
+        {
+            DateTime today = DateTime.Now.Date;     
+            //patients can schedule appointment within 3 months from today
+            DateTime endOfSchedullingTime = today.AddMonths(4);
+            int duration = (endOfSchedullingTime - today).Days;
+            for(int i=0;i< duration;i++)
+            {
+                Day newDay=new Day(i,today.AddDays(i));
+                this.schedule.AddDay(newDay);
+            }
+            List<Clinicc.Appointment> dbDocApps = new List<Clinicc.Appointment>();
+            using (var db = new DatabaseEntities())
+            {
+                dbDocApps = (from ap in db.Appointments
+                                        where ap.Id_doc == this.Id
+                                        select ap).ToList();
+            }
+            foreach(Clinicc.Appointment dbApp in dbDocApps)
+            {
+                Model.Appointment appointment = Converter.ConvertAppointment(dbApp);
+                bool test=this.schedule.AddAppointment(appointment);
+            }
+        }
     }
 }

@@ -29,6 +29,25 @@ namespace Clinicc.ViewModels
             }            
         }
 
+        private Model.Specialization _spec;
+        public Model.Specialization ChosenSpec
+        {
+            get
+            {
+                return _spec;
+            }
+            set
+            {
+                _spec = value;
+                OnPropertyChanged(nameof(ChosenSpec));
+                if (ChosenSpec != null)
+                {
+                    IsSpecializationSelected = true;
+                    PrepareDocListBasedOnSpecialization();
+                }
+            }
+        }
+
         private List<Model.Doctor> _docs;
         public List<Model.Doctor> Docs
         {
@@ -56,26 +75,7 @@ namespace Clinicc.ViewModels
                 OnPropertyChanged(nameof(ChosenDoc));
                 IsDoctorSelected=true;
             }            
-        }
-
-        private Model.Specialization _spec;
-        public Model.Specialization ChosenSpec
-        {
-            get
-            {
-                return _spec;
-            }
-            set
-            {
-                _spec = value;              
-                OnPropertyChanged(nameof(ChosenSpec));
-                if (ChosenSpec != null)
-                {
-                    IsSpecializationSelected = true;
-                    PrepareDocListBasedOnSpecialization();
-                }               
-            }            
-        }
+        }        
 
         private DateTime _selecteddate=DateTime.Now;
         public DateTime SelectedDate
@@ -88,8 +88,11 @@ namespace Clinicc.ViewModels
             {
                 _selecteddate = value;
                 OnPropertyChanged(nameof(SelectedDate));
-                IsDateSelected = true;
-                TRYOUTCreateTime();
+                if(SelectedDate != null)
+                {
+                    IsDateSelected = true;
+                    CreateTimeOptions();
+                }                
             }
         }
 
@@ -134,10 +137,12 @@ namespace Clinicc.ViewModels
         public DateTime ChosenTime 
         { 
             get { return _chosen_time; }
-            set { _chosen_time = value;              
-
+            set { _chosen_time = value;
+                CanBook = true;
                 OnPropertyChanged(nameof(_chosen_time));}
         }
+
+
 
         private bool _is_specialization_selected = false;
         public bool IsSpecializationSelected
@@ -152,6 +157,7 @@ namespace Clinicc.ViewModels
                 OnPropertyChanged(nameof(IsSpecializationSelected));               
             }
         }
+
         private bool _is_Date_selected = false;
         public bool IsDateSelected
         {
@@ -166,19 +172,31 @@ namespace Clinicc.ViewModels
             }
         }
 
-        public bool IsDoctorSelected = false;
-
-        public bool anyDoctor = false;
+        private bool isDoctorSelected=true;
+        public bool IsDoctorSelected
+        {
+            get { return isDoctorSelected; }
+            set
+            {
+                isDoctorSelected = value;
+                OnPropertyChanged(nameof(IsDoctorSelected));
+            }
+        }
              
         public bool earliestAppointment = false;
 
-        public bool CanBook = true;
+        private bool canBook = false;
+        public bool CanBook
+        {
+            get { return canBook; }
+            set { canBook = value;
+                  OnPropertyChanged(nameof(CanBook));}
+        }
         //done commands
         public ICommand OverviewPatientCommand { get; }
         public ICommand BookAppPatientCommand { get; }
         public ICommand LogOutHPCommand { get; }
         public ICommand PatAppointmentsCommand { get; }
-        public RelayCommand ChooseAnyDoctorCommand { get; private set; }
         public RelayCommand EarliestAppointmentCommand { get; private set; }
         public RelayCommand IssueAnAppointment { get; private set; }
         //to do commands:
@@ -194,7 +212,6 @@ namespace Clinicc.ViewModels
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
             PatAppointmentsCommand = new PatAppointmentsCommand(hospital, navigation, pat);
 
-            ChooseAnyDoctorCommand = new RelayCommand(AnyDocToTrue);
             EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);
             IssueAnAppointment = new RelayCommand(CreateAppointment);
 
@@ -202,36 +219,32 @@ namespace Clinicc.ViewModels
             Specs=Hospital.GetAllSpecsWithDoctors();
             StartDate=DateTime.Now;
             EndDate = StartDate.AddMonths(4);
+            TimeOptions = new List<DateTime>();
         }        
         private void PrepareDocListBasedOnSpecialization()
         {
             Docs = Hospital.GetAllDocsWithChosenSpec(ChosenSpec);
-        }        
-        public void AnyDocToTrue(object message)
-        {
-            anyDoctor = true;
-        }
+        }               
         public void EarliestAppToTrue(object message)
         {
             earliestAppointment = true;
         }
-        private void TRYOUTCreateTime()
+        private void CreateTimeOptions()
         {
-            List<DateTime> list = new List<DateTime>();
-            TimeOptions = list;
-            DateTime time = new DateTime();
-            time = SelectedDate.AddHours(8);
-            for(int i=0; i<=7; i++)
-            {               
-                time = time.AddMinutes(30);
-                TimeOptions.Add(time);
-            }  
+            if (ChosenDoc.schedule.calendars.Count == 0)
+            {
+                ChosenDoc.FillSchedule();
+            }
+            List<DateTime> dates = new List<DateTime>();
+            dates.Add(SelectedDate.AddHours(1));
+            dates.Add(SelectedDate.AddHours(2));
+            TimeOptions = dates;
         }
 
 
         public void CreateAppointment(object ob)
         {
-            if (!earliestAppointment && !anyDoctor)
+            if (!earliestAppointment)
             {
                 Clinicc.Appointment new_app = new Appointment();
                 Model.Appointment app = new Model.Appointment(0, ChosenTime, SelectedDate, ChosenDoc.Id, _patient_id);
