@@ -1,6 +1,7 @@
 ﻿using Clinicc.Commands;
 using Clinicc.Model;
 using Clinicc.Stores;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,11 +69,23 @@ namespace Clinicc.ViewModels
             }
         }
 
+        private String profilePictureSource = "/Images/user.png";
+        public String ProfilePictureSource
+        {
+            get { return profilePictureSource; }
+            set
+            {
+                profilePictureSource = value;
+                OnPropertyChanged(nameof(ProfilePictureSource));
+            }
+        }
+
         //commands
         public ICommand LogOutHPCommand { get; }
         public ICommand OverviewDoctorCommand { get; }
         public ICommand MyScheduleDoctorCommand { get; }
         public ICommand AppointmentRequestsCommand { get; }
+        public RelayCommand ChangeProfilePicCommand { get; }
         public DocHomeViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Doctor doc)
         {
             UsernameHP = doc.login;
@@ -84,6 +97,19 @@ namespace Clinicc.ViewModels
             OverviewDoctorCommand = new NavigateToDoctorMainView(hospital, navigation, doc);
             MyScheduleDoctorCommand=new MyScheduleDoctorCommand(hospital, navigation, doc);
             AppointmentRequestsCommand = new AppointmentRequestDoctorCommand(hospital, navigation, doc);
+            ChangeProfilePicCommand = new RelayCommand(LoadProfilePicture);
         }
-    }
+        private void LoadProfilePicture(object o)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.DefaultExt = (".png");
+            open.Filter = "Pictures (*.jpg;*.gif;*.png)|*.jpg;*.gif;*.png";
+
+            if (open.ShowDialog() == true)
+            {
+                ProfilePictureSource = open.FileName;
+            }
+
+        }
+    }    
 }

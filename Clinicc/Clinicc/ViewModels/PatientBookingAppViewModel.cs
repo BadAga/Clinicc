@@ -198,7 +198,8 @@ namespace Clinicc.ViewModels
             EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);
             IssueAnAppointment = new RelayCommand(CreateAppointment);
 
-            Specs = Model.Specialization.GetSpecsNameList();
+            //Specs = Model.Specialization.GetSpecsNameList();
+            Specs=Hospital.GetAllSpecsWithDoctors();
             StartDate=DateTime.Now;
             EndDate = StartDate.AddMonths(4);
         }        

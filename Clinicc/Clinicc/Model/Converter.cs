@@ -51,5 +51,11 @@ namespace Clinicc.Model
 
             return modelpat;
         }
+
+        static public Model.Specialization ConvertSpecialization (Clinicc.Specialization dbspec)
+        {
+            Model.Specialization modelSpec = new Model.Specialization(dbspec.Id);
+            return modelSpec;
+        }
     }
 }

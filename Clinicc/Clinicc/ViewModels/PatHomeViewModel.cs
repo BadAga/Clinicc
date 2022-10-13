@@ -1,6 +1,7 @@
 ﻿using Clinicc.Commands;
 using Clinicc.Model;
 using Clinicc.Stores;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,8 +69,7 @@ namespace Clinicc.ViewModels
             }
         }
 
-        private string _address;       
-
+        private string _address;
         public string AddressHP
         {
             get
@@ -83,17 +83,28 @@ namespace Clinicc.ViewModels
             }
         }
 
+        private string profilePictureSource="/Images/user.png";
+        public string ProfilePictureSourceHP
+        {
+            get { return profilePictureSource; }
+            set
+            {
+                profilePictureSource = value;
+                OnPropertyChanged(nameof(ProfilePictureSourceHP));
+            }
+        }
+
+
         //done commands
         public ICommand OverviewPatientCommand { get; }        
         public ICommand BookAppPatientCommand { get; }
         public ICommand LogOutHPCommand { get; }
         public ICommand PatAppointmentsCommand { get; }
+        public RelayCommand ChangeProfilePicCommand { get; }
 
         //to do commands:
         public ICommand RecentActivityCommand { get; }        
-        public ICommand PatPrescriptionsCommand { get; }
-
-        public ICommand ChangePicHPCommand { get; }       
+        public ICommand PatPrescriptionsCommand { get; }      
         public ICommand EditNameHPCommand { get; }
         public ICommand EditSurnameHPCommand { get; }
         public ICommand EditPeselHPCommand { get; }
@@ -113,6 +124,17 @@ namespace Clinicc.ViewModels
             OverviewPatientCommand=new NavigateToPatientMainView(hospital, navigation, pat);
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
             PatAppointmentsCommand = new PatAppointmentsCommand(hospital, navigation, pat);
+            ChangeProfilePicCommand = new RelayCommand(LoadProfilePicture);
+        }
+
+        private void LoadProfilePicture(object o)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.DefaultExt = (".png");
+            open.Filter = "Pictures (*.jpg;*.gif;*.png)|*.jpg;*.gif;*.png";
+
+            if (open.ShowDialog() == true)
+                ProfilePictureSourceHP = open.FileName;
         }
     }
 }

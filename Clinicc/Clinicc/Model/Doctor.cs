@@ -63,7 +63,7 @@ namespace Clinicc.Model
         }
         public void SetSpecializationFromDictionary()
         {
-            Specialization spec = new Specialization(int.Parse(Specialization.GetSpecIdFromFile(this.PESEL)));
+            Specialization spec = new Specialization(int.Parse(Specialization.GetSpecIdFromDB(this.PESEL)));
             this.specialization = spec;
         }
 

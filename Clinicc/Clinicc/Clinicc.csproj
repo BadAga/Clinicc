@@ -260,14 +260,10 @@
     <Resource Include="Images\stethoscope.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DataSource\DocPeselList.txt" />
-    <Resource Include="DataSource\ExistingPatients.txt" />
-    <Resource Include="DataSource\ExistingDoctors.txt" />
     <Resource Include="Images\care_light.png" />
     <Resource Include="Images\edit.png" />
     <Resource Include="Images\user.png" />
     <Resource Include="Images\care_dark.png" />
-    <Resource Include="DataSource\SpecializationDictionary.txt" />
     <Resource Include="Images\doctor1.png" />
   </ItemGroup>
   <ItemGroup>

@@ -27,31 +27,12 @@ namespace Clinicc.Model
 
         static public string  GetSpecializationName(int spec_id)
         {
-            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\SpecializationDictionary.txt";
-
-            IEnumerable<string> lines = File.ReadLines(fileName);
-            //Console.WriteLine(String.Join(Environment.NewLine, lines));
-            string spec_name = String.Empty;
-            string spec_code = String.Empty;
-            Dictionary<int, string> specializations = new Dictionary<int, string>();
-            foreach (string line in lines)
+            using(var db=new DatabaseEntities())
             {
-                var words = line.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
-                spec_name = words[0];
-                spec_code = words[1];
-                specializations.Add(int.Parse(spec_code), spec_name);
-                spec_name = String.Empty;
-                spec_code = String.Empty;
-            }
-            string wanted_spec = String.Empty;
-            if (specializations.TryGetValue(spec_id, out wanted_spec))
-            {
-                return wanted_spec;
-            }
-            else
-            {
-                return String.Empty;
-                //to do:wrong spec dictionary input
+                var name = (from spec in db.Specializations
+                            where spec.Id == spec_id
+                            select spec.name).SingleOrDefault();
+                return name;
             }
         }
 
@@ -65,23 +46,15 @@ namespace Clinicc.Model
                 return id;
             }
         }
-        static public string GetSpecIdFromFile(string pesel_to_check)
-        {            
-            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\DocPeselList.txt";
-            IEnumerable<string> pesel_list = File.ReadLines(fileName);
-            string pesel = String.Empty;
-            string spec_id = String.Empty;
-            foreach (var line in pesel_list)
+        static public string GetSpecIdFromDB(string pesel_to_check)
+        {
+            using (var db = new DatabaseEntities())
             {
-                var words = line.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
-                pesel = words[0];
-                spec_id = words[1];
-                if (pesel == pesel_to_check)
-                {
-                    return spec_id;
-                }
+                var id = (from dr in db.Doctors
+                          where dr.PESEL == pesel_to_check
+                          select dr.spec_id).SingleOrDefault();
+                return id.ToString();
             }
-            return spec_id;
         }
 
         static public Model.Specialization ConvertDBSpecToModelSpec(Clinicc.Specialization dbspec)

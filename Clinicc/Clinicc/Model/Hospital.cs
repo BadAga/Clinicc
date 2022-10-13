@@ -17,6 +17,7 @@ namespace Clinicc.Model
             patients = new Dictionary<int, Patient>();
         }
         
+
         public bool AddDoctor(Doctor doc)
         {
             if (NoLoginReapeating(doc))
@@ -219,6 +220,28 @@ namespace Clinicc.Model
             
         }
 
+        static public List<Model.Specialization> GetAllSpecsWithDoctors()
+        {
+            List < Model.Specialization > specs= new List <Model.Specialization >();
+            List<int> specs_id=new List<int> ();
+            using (var db = new DatabaseEntities())
+            {
+                specs_id = (from dr in db.Doctors
+                            where dr.login != null
+                            select dr.spec_id).ToList();
+            }
+            foreach(var specid in specs_id)
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    var spec = (from sp in db.Specializations
+                                where sp.Id == specid
+                                select sp).SingleOrDefault();
+                    specs.Add(Converter.ConvertSpecialization(spec));
+                }
+            }
+            return specs;
+        }
         static public List<Model.Doctor> GetAllDocs()
         {
             using (var db = new DatabaseEntities())
