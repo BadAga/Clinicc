@@ -70,5 +70,10 @@ namespace Clinicc.Model
             }
             return false;
         }
+
+        public List<DateTime> GetAppointmentTimeOptions(DateTime dateOfAppointment)
+        {
+            return calendars[calendars[dateOfAppointment].date].GetAppointmentTimeOptions();    
+        }
     }
 }

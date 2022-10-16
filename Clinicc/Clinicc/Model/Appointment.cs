@@ -59,6 +59,24 @@ namespace Clinicc.Model
             ChengeDescriptiveProperties();
             this.Length = end_time - start_time;
         }
+
+        //used only to create time options
+        //not for creating real appointments
+        public Appointment( DateTime startTime)
+        {
+            this.start_time = startTime;
+            this.date = startTime.Date;
+            this.end_time = start_time.AddMinutes(30);
+            this.Length = end_time - start_time;
+
+            Id_doc = 0;
+            Id_pat = 0;
+            Id_app = 0;
+
+            patfullname = "";
+            docfullname = "";
+        }
+
         private void ChengeDescriptiveProperties()
         {
             ChangeStatusDesc();

@@ -112,5 +112,10 @@ namespace Clinicc.Model
                 bool test=this.schedule.AddAppointment(appointment);
             }
         }
+        public List<DateTime> GetAppointmentTimeOptions(DateTime dateOfAppointment)
+        {
+            return this.schedule.GetAppointmentTimeOptions(dateOfAppointment);
+        }
+       
     }
 }

@@ -234,11 +234,12 @@ namespace Clinicc.ViewModels
             if (ChosenDoc.schedule.calendars.Count == 0)
             {
                 ChosenDoc.FillSchedule();
+                TimeOptions = ChosenDoc.GetAppointmentTimeOptions(SelectedDate);
             }
-            List<DateTime> dates = new List<DateTime>();
-            dates.Add(SelectedDate.AddHours(1));
-            dates.Add(SelectedDate.AddHours(2));
-            TimeOptions = dates;
+            else
+            {
+                TimeOptions = ChosenDoc.GetAppointmentTimeOptions(SelectedDate);
+            }           
         }
 
 

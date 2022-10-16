@@ -16,9 +16,10 @@ namespace Clinicc.Model
         public Day(int id,DateTime dateParam)
         {
             this.id_day = id;
-            this.date = dateParam;
+            this.date = dateParam.Date;
             events = new Dictionary<int, Appointment>();
         }
+
         public IEnumerable<Appointment> GetAppointmentsForPatient(int id_pat)
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -31,7 +32,8 @@ namespace Clinicc.Model
             }
             return appointments;
         }
-        public bool AddApppointment(Appointment new_appointment)
+
+        public bool AddApppointment(Model.Appointment new_appointment)
         {
             if (CheckIfNoAppointmentConflict(new_appointment))
             {
@@ -40,12 +42,12 @@ namespace Clinicc.Model
             }
             return false;
         }
-        public void DeleteApppointment(Appointment appointment)
+
+        public void DeleteApppointment(Model.Appointment appointment)
         {
             events.Remove(appointment.Id_app);
         }
-
-        private bool CheckIfNoAppointmentConflict(Appointment new_appointment)
+        private bool CheckIfNoAppointmentConflict(Model.Appointment new_appointment)
         {
             foreach(var existing_app in events)
             {
@@ -67,6 +69,31 @@ namespace Clinicc.Model
             }
             return true;
         }
+
+        /// <summary>
+        /// For choosing appointments time in BookingAppointment.* (view and viewmodel)
+        /// Allows to choose only free time options
+        /// Each option is 30 min long, since that's the default length of patinet appointment
+        /// Appointment start at 8 am and end at 5 pm
+        /// </summary>
+        /// <returns>list of time options for patinet to choose from as appointment's start time</returns>
+        public List<DateTime> GetAppointmentTimeOptions()
+        {
+            List<DateTime> options = new List<DateTime>();
+            DateTime startingTime = date.AddHours(8);
+            while(startingTime!=date.AddHours(17))
+            {
+                Model.Appointment demo_appointment = new Model.Appointment(startingTime);
+                if (CheckIfNoAppointmentConflict(demo_appointment))
+                {
+                    options.Add(startingTime);
+                }
+                startingTime = startingTime.AddMinutes(30);
+            }
+            return options;
+        }
+
+
 
     }
 }
