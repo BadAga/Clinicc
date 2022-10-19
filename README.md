@@ -1,4 +1,4 @@
-# WPF-projects
+# Clinicc
 Application for booking and managing doctor appointments.
 * WPF application using MVVM desing partern 
 * Entity Framework.
