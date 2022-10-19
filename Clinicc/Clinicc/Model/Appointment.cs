@@ -31,8 +31,15 @@ namespace Clinicc.Model
 
         public String docfullname { get; set; }
 
+        public String JustTime { get; set; }
+
+        public int GetStatus()
+        {
+            return this.status;
+        }
+
         public Appointment(int _id, DateTime _stime, DateTime _end_time, DateTime _date,
-                           int _id_doc, int _id_pat,bool isapp,bool isallday,int statusspp )
+                           int _id_doc, int _id_pat, bool isapp, bool isallday, int statusspp)
         {
             Id_app = _id;
             start_time = _stime;
@@ -40,11 +47,20 @@ namespace Clinicc.Model
             date = _date;
             Id_doc = _id_doc;
             Id_pat = _id_pat;
-            is_appointment=isapp;
-            is_all_day=isallday;
+            is_appointment = isapp;
+            is_all_day = isallday;
             status = statusspp;
             ChengeDescriptiveProperties();
             this.Length = end_time - start_time;
+            if (start_time.Minute < 10)
+            {
+                JustTime = start_time.Hour + ":0" + start_time.Minute;
+            }
+            else
+            {
+                JustTime = start_time.Hour + ":" + start_time.Minute;
+            }
+
         }
 
         //Constructor for appointments made by patients; with default values; patient appointments are 30 min long
@@ -58,6 +74,14 @@ namespace Clinicc.Model
             Id_pat = _id_pat;
             ChengeDescriptiveProperties();
             this.Length = end_time - start_time;
+            if (start_time.Minute < 10)
+            {
+                JustTime = start_time.Hour + ":0" + start_time.Minute;
+            }
+            else
+            {
+                JustTime = start_time.Hour + ":" + start_time.Minute;
+            }
         }
 
         //used only to create time options
@@ -75,6 +99,14 @@ namespace Clinicc.Model
 
             patfullname = "";
             docfullname = "";
+            if (start_time.Minute < 10)
+            {
+                JustTime = start_time.Hour + ":0" + start_time.Minute;
+            }
+            else
+            {
+                JustTime = start_time.Hour + ":" + start_time.Minute;
+            }
         }
 
         private void ChengeDescriptiveProperties()
@@ -153,7 +185,5 @@ namespace Clinicc.Model
             appointment.Id_schedule = app.Id_doc;     
             return appointment;
         }
-
-
     }
 }

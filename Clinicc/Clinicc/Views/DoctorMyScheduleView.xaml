@@ -350,8 +350,6 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -360,17 +358,27 @@
                 <!--header- weeknames-->
                 <TextBlock Text="Monday" 
                            Grid.Column="0" Grid.Row="0"
-                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"
+                           HorizontalAlignment="Center" 
+                           FontFamily="Segoe UI" FontWeight="SemiBold"
                            Margin="1,1,1,5"/>
-                
+
                 <ListView Grid.Column="0" Grid.Row="1"
                           Background="Transparent"
-                          BorderThickness="0">                    
-                    <ListView.ItemContainerStyle>
+                          BorderThickness="0"
+                          ItemsSource="{Binding MondayApp}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding JustTime}"/>
+                                <TextBlock Text="{Binding patfullname}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>                        
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="Background" Value="#A27B5C"/>
                             <Setter Property="Foreground" Value="#1E2527"/>
-                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontSize" Value="10"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
                                     <Setter Property="Background" Value="#81624a"/>
@@ -389,12 +397,21 @@
 
                 <ListView Grid.Column="1" Grid.Row="1"
                           Background="Transparent"
+                          ItemsSource="{Binding TuesdayApp}"
                           BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding JustTime}"/>
+                                <TextBlock Text="{Binding patfullname}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="Background" Value="#A27B5C"/>
                             <Setter Property="Foreground" Value="#1E2527"/>
-                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontSize" Value="10"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
                                     <Setter Property="Background" Value="#81624a"/>
@@ -413,12 +430,21 @@
 
                 <ListView Grid.Column="2" Grid.Row="1"
                           Background="Transparent"
+                          ItemsSource="{Binding WednesdaApp}"
                           BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding JustTime}"/>
+                                <TextBlock Text="{Binding patfullname}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="Background" Value="#A27B5C"/>
                             <Setter Property="Foreground" Value="#1E2527"/>
-                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontSize" Value="10"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
                                     <Setter Property="Background" Value="#81624a"/>
@@ -437,12 +463,21 @@
 
                 <ListView Grid.Column="3" Grid.Row="1"
                           Background="Transparent"
+                          ItemsSource="{Binding ThursdayApp}"
                           BorderThickness="0" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding JustTime}"/>
+                                <TextBlock Text="{Binding patfullname}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="Background" Value="#A27B5C"/>
                             <Setter Property="Foreground" Value="#1E2527"/>
-                            <Setter Property="FontSize" Value="14"/>                            
+                            <Setter Property="FontSize" Value="10"/>                            
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
                                     <Setter Property="Background" Value="#81624a"/>
@@ -461,12 +496,21 @@
 
                 <ListView Grid.Column="4" Grid.Row="1"
                           Background="Transparent"
+                          ItemsSource="{Binding FridayApp}"
                           BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding JustTime}"/>
+                                <TextBlock Text="{Binding patfullname}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="{x:Type ListViewItem}">
                             <Setter Property="Background" Value="#A27B5C"/>
                             <Setter Property="Foreground" Value="#1E2527"/>
-                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="FontSize" Value="10"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
                                     <Setter Property="Background" Value="#81624a"/>
@@ -477,53 +521,6 @@
                     </ListView.ItemContainerStyle>
                 </ListView>
 
-
-                <TextBlock Text="Saturday" 
-                           Margin="1,1,1,5"
-                           Grid.Column="5" Grid.Row="0"
-                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>
-
-                <ListView Grid.Column="5" Grid.Row="1"
-                          Background="Transparent"
-                          BorderThickness="0">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListViewItem}">
-                            <Setter Property="Background" Value="#A27B5C"/>
-                            <Setter Property="Foreground" Value="#1E2527"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter Property="Background" Value="#81624a"/>
-                                    <Setter Property="BorderBrush" Value="#81624a"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-
-
-                <TextBlock Text="Sunday" 
-                           Grid.Column="6" Grid.Row="0"
-                           HorizontalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold"/>
-
-                <ListView Grid.Column="6" Grid.Row="1"
-                          Background="Transparent"
-                          Margin="1,1,1,5"
-                          BorderThickness="0">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListViewItem}">
-                            <Setter Property="Background" Value="#A27B5C"/>
-                            <Setter Property="Foreground" Value="#1E2527"/>
-                            <Setter Property="FontSize" Value="14"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter Property="Background" Value="#81624a"/>
-                                    <Setter Property="BorderBrush" Value="#81624a"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
             </Grid>
             
             <Rectangle    Grid.Row="1" Grid.Column="1"                                                         

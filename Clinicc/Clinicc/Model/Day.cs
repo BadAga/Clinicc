@@ -20,6 +20,19 @@ namespace Clinicc.Model
             events = new Dictionary<int, Appointment>();
         }
 
+        public List<Appointment> GetEventsList()
+        {
+            List<Appointment> list= new List<Appointment>();
+            foreach (var app in events.Values)
+            {
+                if (app.GetStatus() == 1)
+                {
+                    list.Add(app);
+                }
+            }
+            return list;
+        }
+
         public IEnumerable<Appointment> GetAppointmentsForPatient(int id_pat)
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -32,7 +45,6 @@ namespace Clinicc.Model
             }
             return appointments;
         }
-
         public bool AddApppointment(Model.Appointment new_appointment)
         {
             if (CheckIfNoAppointmentConflict(new_appointment))
@@ -42,7 +54,6 @@ namespace Clinicc.Model
             }
             return false;
         }
-
         public void DeleteApppointment(Model.Appointment appointment)
         {
             events.Remove(appointment.Id_app);

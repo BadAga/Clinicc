@@ -405,7 +405,7 @@
                       ItemsSource="{Binding Appointments}"
                       SelectedItem="{Binding Path=SelectedAppointment}"
                       Background="Transparent"
-                      BorderThickness="0" >
+                      BorderThickness="0" SelectionChanged="ListView_SelectionChanged" >
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
                         <GridViewColumn Header="Patient" DisplayMemberBinding="{Binding patfullname}"/>

@@ -75,5 +75,24 @@ namespace Clinicc.Model
         {
             return calendars[calendars[dateOfAppointment].date].GetAppointmentTimeOptions();    
         }
+
+        public List<Appointment> GetListOfWeekdayAppointments(DayOfWeek weekday,int week=0)
+        {
+            List<Appointment> weekdayAppointments = new List<Appointment>();
+            int counter = -1;
+            foreach(var day in calendars.Values)
+            {
+                if(day.date.DayOfWeek==weekday)
+                {
+                    counter++;
+                    if(counter==week)
+                    {
+                        weekdayAppointments = day.GetEventsList();
+                    }
+                }
+            }
+            return weekdayAppointments;
+        }
+
     }
 }
