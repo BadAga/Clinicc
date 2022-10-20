@@ -13,7 +13,7 @@ namespace Clinicc.ViewModels
 {
     public class PatientBookingAppViewModel : ViewModelBase
     {
-        public int _patient_id=0;
+        Clinicc.Model.Patient pat { get; set; }
 
         private List<Model.Specialization> _specs;
         public List<Model.Specialization> Specs
@@ -203,14 +203,13 @@ namespace Clinicc.ViewModels
 
 
 
-        public PatientBookingAppViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Patient pat)
-        {
-            _patient_id = pat.Id;
-
+        public PatientBookingAppViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Patient patParam)
+        {            
+            pat = patParam;
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
-            OverviewPatientCommand = new NavigateToPatientMainView(hospital, navigation, pat);
-            BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
-            PatAppointmentsCommand = new PatAppointmentsCommand(hospital, navigation, pat);
+            OverviewPatientCommand = new NavigateToPatientMainView(hospital, navigation, patParam);
+            BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, patParam);
+            PatAppointmentsCommand = new PatAppointmentsCommand(hospital, navigation, patParam);
 
             EarliestAppointmentCommand= new RelayCommand(EarliestAppToTrue);
             IssueAnAppointment = new RelayCommand(CreateAppointment);
@@ -248,8 +247,8 @@ namespace Clinicc.ViewModels
             if (!earliestAppointment)
             {
                 Clinicc.Appointment new_app = new Appointment();
-                Model.Appointment app = new Model.Appointment(0, ChosenTime, SelectedDate, ChosenDoc.Id, _patient_id);
-                new_app = Model.Appointment.ConvertModelAppointmentToDBAppointment(app);
+                Model.Appointment app = new Model.Appointment(0, ChosenTime, SelectedDate, ChosenDoc.Id, pat.Id,this.pat);
+                new_app =Converter.ConvertAppointment(app);
                 new_app.Id_schedule = ChosenDoc.Id;
                 using(var db = new DatabaseEntities())
                 {

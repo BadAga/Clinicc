@@ -370,7 +370,8 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding JustTime}"/>
-                                <TextBlock Text="{Binding patfullname}"/>
+                                <TextBlock Text="{Binding pat.name}"/>
+                                <TextBlock Text="{Binding pat.surname}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -403,7 +404,8 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding JustTime}"/>
-                                <TextBlock Text="{Binding patfullname}"/>
+                                <TextBlock Text="{Binding pat.name}"/>
+                                <TextBlock Text="{Binding pat.surname}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -436,7 +438,8 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding JustTime}"/>
-                                <TextBlock Text="{Binding patfullname}"/>
+                                <TextBlock Text="{Binding pat.name}"/>
+                                <TextBlock Text="{Binding pat.surname}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -469,7 +472,8 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding JustTime}"/>
-                                <TextBlock Text="{Binding patfullname}"/>
+                                <TextBlock Text="{Binding pat.name}"/>
+                                <TextBlock Text="{Binding pat.surname}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -502,7 +506,8 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding JustTime}"/>
-                                <TextBlock Text="{Binding patfullname}"/>
+                                <TextBlock Text="{Binding pat.name}"/>
+                                <TextBlock Text="{Binding pat.surname}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

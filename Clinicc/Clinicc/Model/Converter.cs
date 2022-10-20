@@ -38,6 +38,28 @@ namespace Clinicc.Model
                                                               db_app.Id_pat, is_appointment, is_all_day, status);
             return converted;
         }
+
+        static public Clinicc.Appointment ConvertAppointment(Model.Appointment db_app)
+        {
+            Clinicc.Appointment appointment = new Clinicc.Appointment();
+            appointment.start_time = db_app.start_time;
+            appointment.end_time = db_app.end_time;
+            appointment.status = db_app.GetStatus();
+
+            if (db_app.is_appointment)
+            { appointment.is_appointment = 1; }
+            else { appointment.is_appointment = 0; }
+
+            if (db_app.is_all_day)
+            {
+                appointment.all_day = 1;
+            }
+            else { appointment.all_day = 0; }
+            appointment.Id_doc = db_app.Id_doc;
+            appointment.Id_pat = db_app.Id_pat;
+            appointment.Id_schedule = db_app.Id_doc;
+            return appointment;
+        }
         static public Model.Doctor ConvertDoctor(Clinicc.Doctor dbdoc)
         {
             Model.Doctor modeldoc = new Model.Doctor(dbdoc.Id, dbdoc.name, dbdoc.surname, dbdoc.PESEL, dbdoc.login, dbdoc.password, dbdoc.spec_id);

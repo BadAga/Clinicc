@@ -408,7 +408,8 @@
                       BorderThickness="0" SelectionChanged="ListView_SelectionChanged" >
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle1}">
-                        <GridViewColumn Header="Patient" DisplayMemberBinding="{Binding patfullname}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding pat.name}"/>
+                        <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding pat.surname}"/>
                         <GridViewColumn Header="Date and time" DisplayMemberBinding="{Binding start_time}"/>
                         <GridViewColumn Header="Duration" DisplayMemberBinding="{Binding Length}"/>
                         <GridViewColumn Header="Change status">
