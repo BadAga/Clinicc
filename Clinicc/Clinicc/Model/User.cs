@@ -37,21 +37,16 @@ namespace Clinicc.Model
         }           
         static public bool CheckIfDoctor(string pesel_to_check)
         {
-            string fileName = @"C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\DataSource\DocPeselList.txt";
-            IEnumerable<string> pesel_list = File.ReadLines(fileName);
-            string pesel = String.Empty;
-            foreach(var line in pesel_list)
+            using (var db =new DatabaseEntities())
             {
-                var words = line.Split(' ');
-                if (words.Length > 0)
+                var doc = (from d in db.Doctors
+                           where d.PESEL.Equals(pesel_to_check)
+                           select d).SingleOrDefault();
+                if (doc != null)
                 {
-                    pesel = words[0];
-                    if (pesel == pesel_to_check)
-                    {
-                        return true;
-                    }
-                }               
-            }
+                    return true;
+                }
+            }            
             return false;
         }
 

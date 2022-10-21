@@ -88,7 +88,7 @@ namespace Clinicc.Model
             }
             return list;
         }
-        public void FillSchedule()
+        public void PrepareSchedule()
         {
             if (this.schedule.calendars.Count == 0)
             {
@@ -121,11 +121,24 @@ namespace Clinicc.Model
                     bool test = this.schedule.AddAppointment(appointment);
                 }
             }
+            else
+            {
+                this.UpdateSchedule();
+            }
         }
+            private void UpdateSchedule()
+            {
+                foreach(Model.Day day in this.schedule.calendars.Values)
+                {
+                    day.UpdateEventsToday();
+                }
+            }
         public List<DateTime> GetAppointmentTimeOptions(DateTime dateOfAppointment)
         {
             return this.schedule.GetAppointmentTimeOptions(dateOfAppointment);
         }
+
+
        
     }
 }

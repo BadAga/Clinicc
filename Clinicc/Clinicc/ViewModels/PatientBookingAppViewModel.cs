@@ -232,7 +232,7 @@ namespace Clinicc.ViewModels
         {
             if (ChosenDoc.schedule.calendars.Count == 0)
             {
-                ChosenDoc.FillSchedule();
+                ChosenDoc.PrepareSchedule();
                 TimeOptions = ChosenDoc.GetAppointmentTimeOptions(SelectedDate);
             }
             else

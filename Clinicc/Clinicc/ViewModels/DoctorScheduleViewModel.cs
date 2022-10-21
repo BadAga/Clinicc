@@ -76,7 +76,7 @@ namespace Clinicc.ViewModels
         public DoctorScheduleViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Doctor doc)
         {
             Doctor = doc;
-            doc.FillSchedule();
+            doc.PrepareSchedule();
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
             OverviewDoctorCommand = new NavigateToDoctorMainView(hospital, navigation, doc);
             MyScheduleDoctorCommand = new MyScheduleDoctorCommand(hospital, navigation, doc);

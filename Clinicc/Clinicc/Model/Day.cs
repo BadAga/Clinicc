@@ -20,6 +20,8 @@ namespace Clinicc.Model
             events = new Dictionary<int, Appointment>();
         }
 
+
+
         public List<Appointment> GetEventsList()
         {
             List<Appointment> list= new List<Appointment>();
@@ -32,7 +34,6 @@ namespace Clinicc.Model
             }
             return list;
         }
-
         public IEnumerable<Appointment> GetAppointmentsForPatient(int id_pat)
         {
             List<Appointment> appointments = new List<Appointment>();
@@ -58,7 +59,7 @@ namespace Clinicc.Model
         {
             events.Remove(appointment.Id_app);
         }
-        private bool CheckIfNoAppointmentConflict(Model.Appointment new_appointment)
+            private bool CheckIfNoAppointmentConflict(Model.Appointment new_appointment)
         {
             foreach(var existing_app in events)
             {
@@ -102,6 +103,24 @@ namespace Clinicc.Model
                 startingTime = startingTime.AddMinutes(30);
             }
             return options;
+        }
+
+        public void UpdateEventsToday()
+        {
+            foreach (Model.Appointment ap in events.Values)
+            {
+                using(DatabaseEntities db=new DatabaseEntities())
+                {
+                    var status_in_db = (from a in db.Appointments
+                                        where a.Id == ap.Id_app
+                                        select a.status).SingleOrDefault();
+
+                    if(status_in_db!=ap.GetStatus())
+                    {
+                        ap.ChangeStatus((int)status_in_db);
+                    }
+                }
+            }
         }
 
 
