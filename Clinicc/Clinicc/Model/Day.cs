@@ -12,15 +12,12 @@ namespace Clinicc.Model
         public DateTime date { get; set; }
         private Dictionary<int, Appointment> events;
 
-
         public Day(int id,DateTime dateParam)
         {
             this.id_day = id;
             this.date = dateParam.Date;
             events = new Dictionary<int, Appointment>();
         }
-
-
 
         public List<Appointment> GetEventsList()
         {

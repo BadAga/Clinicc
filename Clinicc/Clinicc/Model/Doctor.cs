@@ -138,7 +138,38 @@ namespace Clinicc.Model
             return this.schedule.GetAppointmentTimeOptions(dateOfAppointment);
         }
 
+        public List<int> GetStatistics()
+        {  
+            List<int> statistics = new List<int>();
 
-       
+            List<Clinicc.Appointment> listOfAppointments,sortedListOfAppointments = new List<Clinicc.Appointment>();
+
+            using (var db = new DatabaseEntities())
+            {
+                listOfAppointments=(from ap in db.Appointments
+                                        where this.Id==ap.Id_doc
+                                        select ap).ToList();
+            }
+            if (listOfAppointments.Any())
+            {
+                sortedListOfAppointments = listOfAppointments.OrderBy(o => o.start_time).ToList();
+            }
+            else { return statistics; }
+
+            int counterWeekly = StatisticsMaker.GetWeeklyAppointments(sortedListOfAppointments);
+            int counterMonthly = 0;
+            int counterYearly = 0;
+
+
+            int avgWeekly = 0, avgMonthly = 0;
+            int increse = StatisticsMaker.GetIncreseWeeklyAppointments(sortedListOfAppointments);
+            statistics.Add(counterWeekly);
+            statistics.Add(counterMonthly);
+            statistics.Add(counterYearly);
+            statistics.Add(avgWeekly);
+            statistics.Add(avgMonthly);
+            statistics.Add(increse);
+            return statistics;
+        }
     }
 }

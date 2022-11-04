@@ -230,15 +230,18 @@ namespace Clinicc.ViewModels
         }
         private void CreateTimeOptions()
         {
-            if (ChosenDoc.schedule.calendars.Count == 0)
+            if (SelectedDate >= DateTime.Now)
             {
-                ChosenDoc.PrepareSchedule();
-                TimeOptions = ChosenDoc.GetAppointmentTimeOptions(SelectedDate);
+                if (ChosenDoc.schedule.calendars.Count == 0)
+                {
+                    ChosenDoc.PrepareSchedule();
+                    TimeOptions = ChosenDoc.GetAppointmentTimeOptions(SelectedDate);
+                }
+                else
+                {
+                    TimeOptions = ChosenDoc.GetAppointmentTimeOptions(SelectedDate);
+                }
             }
-            else
-            {
-                TimeOptions = ChosenDoc.GetAppointmentTimeOptions(SelectedDate);
-            }           
         }
 
 

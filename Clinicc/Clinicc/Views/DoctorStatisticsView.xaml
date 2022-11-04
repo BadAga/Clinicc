@@ -316,7 +316,167 @@
                 </Button>
             </Grid>
             <!--my statistics-->
-            
+            <Rectangle Grid.Column="1"
+                       Grid.Row="1"   
+                       Margin="15"
+                       Fill="Transparent"                              
+                       Stretch="Fill"
+                       Panel.ZIndex="-1"                              
+                       RadiusX="10"
+                       RadiusY="10"
+                       StrokeThickness="2"
+                       Stroke="#A27B5C"/>
+            <Grid Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--rectangles background-->
+                <Rectangle    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+                <Rectangle    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+                <Rectangle    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+                <Rectangle    Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+                <Rectangle    Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+                <Rectangle    Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                              Stroke="#61787a"
+                              Fill="#61787a"                              
+                              Stretch="Fill"
+                              Panel.ZIndex="-1"
+                              Margin="5"
+                              RadiusX="10"
+                              RadiusY="10"/>
+                <!--text lables-->
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           Margin="0,0,5,0"
+                           HorizontalAlignment="Right">Number of appointment requests in this week: </TextBlock>                
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           Margin="0,0,5,0"
+                           HorizontalAlignment="Right">Increase of appointment requests weekly (%): </TextBlock>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="2"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           Margin="0,0,5,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right">Number of appointment requests in this month: </TextBlock>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="3"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           Margin="0,0,5,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right">Number of appointment requests in this year: </TextBlock>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="4"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           Margin="0,0,5,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right">Average number of appointment requests weekly: </TextBlock>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="5"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           Margin="10,0,5,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right">Average number of appointment requests in each month: </TextBlock>
+                <!--data-->
+                <TextBlock Grid.Column="1"
+                           Grid.Row="0"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Text="{Binding RequestsWeekly}"/>
+                <TextBlock Grid.Column="1"
+                           Grid.Row="1"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Text="{Binding IncreaseWeekly}"/>
+                <TextBlock Grid.Column="1"
+                           Grid.Row="2"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Text="{Binding RequestsMonthly}"/>
+                <TextBlock Grid.Column="1"
+                           Grid.Row="3"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Text="{Binding RequestsYearly}"/>
+                <TextBlock Grid.Column="1"
+                           Grid.Row="4"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Text="{Binding AverageWeekly}"/>
+                <TextBlock Grid.Column="1"
+                           Grid.Row="5"
+                           Foreground="#DCD7C9"
+                           FontSize="15"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Text="{Binding AverageMonthly}"/>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

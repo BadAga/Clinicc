@@ -130,6 +130,7 @@
     <Compile Include="Model\Schedule.cs" />
     <Compile Include="Model\Specialization.cs" />
     <Compile Include="Model\Hospital.cs" />
+    <Compile Include="Model\StatisticsMaker.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Patient.cs">
       <DependentUpon>CliniccDBModel.tt</DependentUpon>
