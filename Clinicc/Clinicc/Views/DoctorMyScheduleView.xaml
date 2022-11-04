@@ -157,33 +157,6 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
-                <Button x:Name="RecentActivityBtn"  
-                    Content="Recent Activity"
-                    FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#A27B5C"/>
-                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
-                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                            <Setter Property="Cursor" Value="Hand"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#81624a "/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" Height="30">
-                                <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
 
                 <Label Foreground="#1E2527" FontSize="10" Opacity="20" Margin="5,0,0,0">
                     APPOINTMENTS
@@ -248,6 +221,7 @@
 
                 <Button x:Name="MyStatisticsBtn"         
                     Content="My Statistics"
+                    Command="{Binding StatisticsCommand}"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0" >
                     <Button.Style>

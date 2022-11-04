@@ -41,6 +41,7 @@ namespace Clinicc.ViewModels
         public ICommand MyScheduleDoctorCommand { get; }
 
         public ICommand AppointmentRequestsCommand { get; }
+        public ICommand StatisticsCommand { get; }
 
         public RelayCommand ConfirmAppointment { get; private set; }
         public RelayCommand DenyAppointment { get; private set; }
@@ -51,8 +52,10 @@ namespace Clinicc.ViewModels
 
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
             OverviewDoctorCommand = new NavigateToDoctorMainView(hospital, navigation, doc);
-            MyScheduleDoctorCommand = new MyScheduleDoctorCommand(hospital, navigation, doc);
-            AppointmentRequestsCommand = new AppointmentRequestDoctorCommand(hospital, navigation, doc);
+            MyScheduleDoctorCommand = new NavigateToMyScheduleDoctorCommand(hospital, navigation, doc);
+            AppointmentRequestsCommand = new NavigateToAppointmentRequestDoctorCommand(hospital, navigation, doc);
+            StatisticsCommand = new NavigateToDoctorStatisticsCommand(hospital, navigation, doc);
+
             ConfirmAppointment = new RelayCommand(ConfirmAppointmentImpl);
             DenyAppointment = new RelayCommand(DenyAppointmentImpl);
             GenerateListOfAppointmentRequests();

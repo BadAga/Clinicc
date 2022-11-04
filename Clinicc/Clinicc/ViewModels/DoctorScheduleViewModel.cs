@@ -73,14 +73,17 @@ namespace Clinicc.ViewModels
 
         public ICommand AppointmentRequestsCommand { get; }
 
+        public ICommand StatisticsCommand { get; }
+
         public DoctorScheduleViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Doctor doc)
         {
             Doctor = doc;
             doc.PrepareSchedule();
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
             OverviewDoctorCommand = new NavigateToDoctorMainView(hospital, navigation, doc);
-            MyScheduleDoctorCommand = new MyScheduleDoctorCommand(hospital, navigation, doc);
-            AppointmentRequestsCommand = new AppointmentRequestDoctorCommand(hospital, navigation, doc);
+            MyScheduleDoctorCommand = new NavigateToMyScheduleDoctorCommand(hospital, navigation, doc);
+            AppointmentRequestsCommand = new NavigateToAppointmentRequestDoctorCommand(hospital, navigation, doc);
+            StatisticsCommand = new NavigateToDoctorStatisticsCommand(hospital, navigation, doc);
             FillAppointmentLists();
 
         }

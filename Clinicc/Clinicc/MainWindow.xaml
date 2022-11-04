@@ -38,6 +38,9 @@
             <DataTemplate DataType="{x:Type viewmodels:DoctorAppointmentRequestsViewModel}">
                 <views:DoctorAppointmentRequestsView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:DoctorStatisticsViewModel}">
+                <views:DoctorStatisticsView/>
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}"/>

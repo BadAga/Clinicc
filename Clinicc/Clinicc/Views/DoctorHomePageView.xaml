@@ -123,7 +123,7 @@
                 </TextBlock>
             </Grid>
             <!--menu-->
-            <StackPanel x:Name="OptionsBarPM" Grid.Row="1" Background="#A27B5C">
+            <StackPanel x:Name="OptionsBarPM" Grid.Row="1" Background="#A27B5C" Cursor="Hand">
                 
                 <Label Foreground="#1E2527" FontSize="10" Opacity="20"  Margin="5,0,0,0">
                     ACCOUNT
@@ -133,33 +133,6 @@
                 <Button  x:Name="AccountOverviewBtn" 
                     Command="{Binding OverviewDoctorCommand}"
                     Content="Overview"
-                    FontSize="15" Cursor="Hand"
-                    Margin="5,0,0,0">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="#A27B5C"/>
-                            <Setter Property="TextElement.Foreground" Value="#1E2527"/>
-                            <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                            <Setter Property="Cursor" Value="Hand"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#81624a "/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" Height="30">
-                                <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                
-                <Button x:Name="RecentActivityBtn"  
-                    Content="Recent Activity"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0">
                     <Button.Style>
@@ -248,6 +221,7 @@
 
                 <Button x:Name="MyStatisticsBtn"  
                     Content="My Statistics"
+                    Command="{Binding StatisticsCommand}"
                     FontSize="15" Cursor="Hand"
                     Margin="5,0,0,0" >
                     <Button.Style>
@@ -462,9 +436,8 @@
                         <!--pesel-->
                         <TextBlock  Grid.Row="1" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="PESEL:" VerticalAlignment="Center" Margin="2" />
-                        <TextBox Grid.Row="1" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
-                             Margin="5,5,0,5"  MaxLength="11"
-                             Text="{Binding PeselHP , UpdateSourceTrigger=PropertyChanged}"/>
+                      <TextBlock Grid.Row="1" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
+                             Margin="5,5,0,5" Text="{Binding PeselHP , UpdateSourceTrigger=PropertyChanged}"/>
                         <Button x:Name="PatEditPeselBtn"
                            
                             Grid.Row="1" Grid.Column="3" 
@@ -536,6 +509,7 @@
                         <Button Content="Save changes"
                                 FontSize="12" Cursor="Hand"
                                 Background="Transparent"
+                                Command="{Binding SaveChangesCommand}"
                                 Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center" Margin="5,0,0,0">

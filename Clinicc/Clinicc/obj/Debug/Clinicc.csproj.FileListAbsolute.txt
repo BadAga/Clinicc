@@ -41,3 +41,5 @@ C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\Patient
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\PatientAppointmentsView.baml
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorAppointmentRequestsView.g.cs
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorAppointmentRequestsView.baml
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorStatisticsView.g.cs
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorStatisticsView.baml

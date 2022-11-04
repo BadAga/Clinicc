@@ -13,6 +13,8 @@ namespace Clinicc.ViewModels
 {
     public class DocHomeViewModel: ViewModelBase
     {
+        public Model.Doctor myDoctor { get; set; }
+
         private string _username;
         public string UsernameHP
         {
@@ -86,17 +88,25 @@ namespace Clinicc.ViewModels
         public ICommand MyScheduleDoctorCommand { get; }
         public ICommand AppointmentRequestsCommand { get; }
         public RelayCommand ChangeProfilePicCommand { get; }
+        public ICommand StatisticsCommand { get; }
+        public ICommand SaveChangesCommand { get; }
+
+
         public DocHomeViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Doctor doc)
         {
-            UsernameHP = doc.login;
-            NameHP = doc.name;
-            SurnameHP = doc.surname;
-            PeselHP = doc.PESEL;
-            
+            myDoctor = doc;
+
+            UsernameHP = myDoctor.login;
+            NameHP = myDoctor.name;
+            SurnameHP = myDoctor.surname;
+            PeselHP = myDoctor.PESEL;
+
             LogOutHPCommand = new NavigateToMainViewCommand(navigation, hospital);
             OverviewDoctorCommand = new NavigateToDoctorMainView(hospital, navigation, doc);
-            MyScheduleDoctorCommand=new MyScheduleDoctorCommand(hospital, navigation, doc);
-            AppointmentRequestsCommand = new AppointmentRequestDoctorCommand(hospital, navigation, doc);
+            MyScheduleDoctorCommand=new NavigateToMyScheduleDoctorCommand(hospital, navigation, doc);
+            AppointmentRequestsCommand = new NavigateToAppointmentRequestDoctorCommand(hospital, navigation, doc);
+            StatisticsCommand = new NavigateToDoctorStatisticsCommand(hospital, navigation, doc);
+            SaveChangesCommand = new SaveChangesCommand(myDoctor,_username, _name, _surname,hospital, navigation);
             ChangeProfilePicCommand = new RelayCommand(LoadProfilePicture);
         }
         private void LoadProfilePicture(object o)

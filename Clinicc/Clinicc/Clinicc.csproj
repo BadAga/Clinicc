@@ -101,18 +101,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CliniccDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Commands\AppointmentRequestDoctorCommand.cs" />
+    <Compile Include="Commands\NavigateToAppointmentRequestDoctorCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\CreateAccountCommand.cs" />
+    <Compile Include="Commands\NavigateToDoctorStatisticsCommand.cs" />
     <Compile Include="Commands\PatAppointmentsCommand.cs" />
     <Compile Include="Commands\PatientBookingAppointmentCommand.cs" />
     <Compile Include="Commands\LogInCommand.cs" />
-    <Compile Include="Commands\MyScheduleDoctorCommand.cs" />
+    <Compile Include="Commands\NavigateToMyScheduleDoctorCommand.cs" />
     <Compile Include="Commands\NavigateToDoctorMainView.cs" />
     <Compile Include="Commands\NavigateToMainViewCommand.cs" />
     <Compile Include="Commands\NavigateToPatientMainView.cs" />
     <Compile Include="Commands\NavigateToSignUpViewCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\SaveChangesCommand.cs" />
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
@@ -142,6 +144,7 @@
     <Compile Include="ViewModels\DocHomeViewModel.cs" />
     <Compile Include="ViewModels\DoctorAppointmentRequestsViewModel.cs" />
     <Compile Include="ViewModels\DoctorScheduleViewModel.cs" />
+    <Compile Include="ViewModels\DoctorStatisticsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PatHomeViewModel.cs" />
@@ -157,6 +160,9 @@
     </Compile>
     <Compile Include="Views\DoctorMyScheduleView.xaml.cs">
       <DependentUpon>DoctorMyScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DoctorStatisticsView.xaml.cs">
+      <DependentUpon>DoctorStatisticsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -198,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DoctorMyScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DoctorStatisticsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
