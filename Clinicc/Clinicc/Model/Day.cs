@@ -60,27 +60,27 @@ namespace Clinicc.Model
             events.Remove(appointment.Id_app);
         }
             private bool CheckIfNoAppointmentConflict(Model.Appointment new_appointment)
-        {
-            foreach(var existing_app in events)
             {
-                if(existing_app.Value.start_time<=new_appointment.start_time &&
-                    existing_app.Value.end_time >= new_appointment.end_time)
+                foreach (var existing_app in events)
                 {
-                    return false;
+                    if (existing_app.Value.start_time <= new_appointment.start_time &&
+                        existing_app.Value.end_time >= new_appointment.end_time)
+                    {
+                        return false;
+                    }
+                    else if (existing_app.Value.start_time <= new_appointment.start_time &&
+                        existing_app.Value.end_time > new_appointment.start_time)
+                    {
+                        return false;
+                    }
+                    else if (existing_app.Value.start_time < new_appointment.end_time &&
+                        existing_app.Value.end_time >= new_appointment.end_time)
+                    {
+                        return false;
+                    }
                 }
-                else if(existing_app.Value.start_time <= new_appointment.start_time &&
-                    existing_app.Value.end_time >= new_appointment.start_time)
-                {
-                    return false;
-                }
-                else if (existing_app.Value.start_time <= new_appointment.end_time &&
-                    existing_app.Value.end_time >= new_appointment.end_time)
-                {
-                    return false;
-                }
+                return true;
             }
-            return true;
-        }
 
         /// <summary>
         /// For choosing appointments time in BookingAppointment.* (view and viewmodel)
