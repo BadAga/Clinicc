@@ -14,16 +14,16 @@ namespace Clinicc.ViewModels
     {
         Model.Doctor myDoctor { get; set; }
 
-        private int requestsWeekly = 0;
-        public int RequestsWeekly
+        private String requestsWeekly;
+        public String RequestsWeekly
         {
             get { return requestsWeekly; }
             set { requestsWeekly = value; 
                   OnPropertyChanged(nameof(RequestsWeekly));}
         }
 
-        private int requestsMonthly = 1;
-        public int RequestsMonthly
+        private String requestsMonthly ;
+        public String RequestsMonthly
         {
             get { return requestsMonthly; }
             set
@@ -33,8 +33,8 @@ namespace Clinicc.ViewModels
             }
         }
 
-        private int requestsYearly = 2;
-        public int RequestsYearly
+        private String requestsYearly ;
+        public String RequestsYearly
         {
             get { return requestsYearly; }
             set
@@ -44,8 +44,8 @@ namespace Clinicc.ViewModels
             }
         }
 
-        private int increaseWeekly = 3;
-        public int IncreaseWeekly
+        private String increaseWeekly ;
+        public String IncreaseWeekly
         {
             get { return increaseWeekly; }
             set { increaseWeekly = value;
@@ -53,8 +53,8 @@ namespace Clinicc.ViewModels
             }
         }
 
-        private int averageWeekly = 4;
-        public int AverageWeekly
+        private String averageWeekly ;
+        public String AverageWeekly
         {
             get { return averageWeekly; }
             set
@@ -64,8 +64,8 @@ namespace Clinicc.ViewModels
             }
         }
 
-        private int averageMonthly = 5;
-        public int AverageMonthly
+        private String averageMonthly ;
+        public String AverageMonthly
         {
             get { return averageMonthly; }
             set
@@ -96,11 +96,13 @@ namespace Clinicc.ViewModels
             AppointmentRequestsCommand = new NavigateToAppointmentRequestDoctorCommand(hospital, navigation, doc);
             StatisticsCommand=new NavigateToDoctorStatisticsCommand(hospital, navigation, doc);
 
-            List<int> statistics = doc.GetStatistics();
+            List<string> statistics = doc.GetStatistics();
             RequestsWeekly = statistics[0];
-
-           
-            IncreaseWeekly=statistics[5];
+            RequestsMonthly = statistics[1];
+            RequestsYearly= statistics[2];
+            AverageWeekly = statistics[3];
+            averageMonthly = statistics[4];
+            IncreaseWeekly =statistics[5];
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Clinicc.Model
@@ -138,9 +140,9 @@ namespace Clinicc.Model
             return this.schedule.GetAppointmentTimeOptions(dateOfAppointment);
         }
 
-        public List<int> GetStatistics()
+        public List<string> GetStatistics()
         {  
-            List<int> statistics = new List<int>();
+            List<string> statistics = new List<string>();
 
             List<Clinicc.Appointment> listOfAppointments,sortedListOfAppointments = new List<Clinicc.Appointment>();
 
@@ -154,21 +156,24 @@ namespace Clinicc.Model
             {
                 sortedListOfAppointments = listOfAppointments.OrderBy(o => o.start_time).ToList();
             }
-            else { return statistics; }
+            else 
+            { return statistics; }
 
-            int counterWeekly = StatisticsMaker.GetWeeklyAppointments(sortedListOfAppointments);
-            int counterMonthly = 0;
-            int counterYearly = 0;
+            StatisticsMaker statisticsMaker=new StatisticsMaker(sortedListOfAppointments);
+            int counterWeekly = statisticsMaker.GetWeeklyAppointments();
+            int counterMonthly = statisticsMaker.GetMonthlyAppointments();
+            int counterYearly = statisticsMaker.GetYearlyAppointments();
 
+            double avgWeekly = statisticsMaker.GetAverageWeeklyNumAppointments();
+            double avgMonthly = statisticsMaker.GetAverageMonthlyNumAppointments();
+            int increse = statisticsMaker.GetIncreseWeeklyAppointments();
+            statistics.Add(counterWeekly.ToString());
+            statistics.Add(counterMonthly.ToString());
+            statistics.Add(counterYearly.ToString());
 
-            int avgWeekly = 0, avgMonthly = 0;
-            int increse = StatisticsMaker.GetIncreseWeeklyAppointments(sortedListOfAppointments);
-            statistics.Add(counterWeekly);
-            statistics.Add(counterMonthly);
-            statistics.Add(counterYearly);
-            statistics.Add(avgWeekly);
-            statistics.Add(avgMonthly);
-            statistics.Add(increse);
+            statistics.Add(String.Format("{0:0.0000}", avgWeekly));
+            statistics.Add(String.Format("{0:0.0000}", avgMonthly));
+            statistics.Add(increse.ToString());
             return statistics;
         }
     }
