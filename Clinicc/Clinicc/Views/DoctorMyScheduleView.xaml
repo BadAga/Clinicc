@@ -328,6 +328,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition/>
+                    <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                 <!--header- weeknames-->
                 <TextBlock Text="Monday" 
@@ -499,9 +500,32 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
-
+                <!--show prev week--> 
+                <Button Grid.Row="2" Grid.Column="0"
+                        Background="Transparent"
+                        BorderBrush="#3F4E4F">
+                    <DockPanel>
+                        <Image Source="/Images/prev.png">
+                        </Image>
+                        <TextBlock Margin="2,0,0,0">
+                            Previous Week
+                        </TextBlock>
+                    </DockPanel>
+                </Button>
+                <!--show next week-->
+                <Button Grid.Row="2" Grid.Column="4"
+                        Background="Transparent"
+                        BorderBrush="#3F4E4F">
+                    <DockPanel>
+                        <TextBlock Margin="0,0,10,0">
+                            Next Week
+                        </TextBlock>
+                        <Image Source="/Images/next.png">
+                        </Image>
+                        </DockPanel>
+                </Button>
             </Grid>
-            
+
             <Rectangle    Grid.Row="1" Grid.Column="1"                                                         
                           Fill="#61787a"                              
                           Stretch="Fill"
@@ -520,6 +544,7 @@
                           StrokeThickness="2"
                           Stroke="#A27B5C"
                           Margin="5,30,5,5"/>
+            
         </Grid>
     </Grid>
 </UserControl>

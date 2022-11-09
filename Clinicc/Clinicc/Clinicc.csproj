@@ -310,6 +310,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Resource Include="Images\prev.png" />
+    <Resource Include="Images\next.png" />
     <Resource Include="Images\calendar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
