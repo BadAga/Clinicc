@@ -75,7 +75,15 @@ namespace Clinicc.ViewModels
 
         public ICommand StatisticsCommand { get; }
 
-        public DoctorScheduleViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Doctor doc)
+        public ICommand PrevWeekCommand { get; }
+
+        public ICommand NextWeekCommand { get; }
+
+        public bool CanGoPrev { get; set; }
+
+        private int week;
+
+        public DoctorScheduleViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Doctor doc, int week = 0)
         {
             Doctor = doc;
             doc.PrepareSchedule();
@@ -84,17 +92,28 @@ namespace Clinicc.ViewModels
             MyScheduleDoctorCommand = new NavigateToMyScheduleDoctorCommand(hospital, navigation, doc);
             AppointmentRequestsCommand = new NavigateToAppointmentRequestDoctorCommand(hospital, navigation, doc);
             StatisticsCommand = new NavigateToDoctorStatisticsCommand(hospital, navigation, doc);
+            NextWeekCommand = new ShowDifferentWeekCommand(hospital, navigation, doc, (week + 1));
+            PrevWeekCommand = new ShowDifferentWeekCommand(hospital, navigation, doc, (week - 1));
+            this.week = week;
+            if(week==0)
+            {
+                CanGoPrev = false;
+            }
+            else
+            {
+                CanGoPrev = true;
+            }
             FillAppointmentLists();
-
+           
         }
 
         private void FillAppointmentLists()
         {
-            MondayApp=Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Monday);
-            TuesdayApp = Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Tuesday);
-            WednesdaApp= Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Wednesday);
-            ThursdayApp = Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Thursday);
-            FridayApp= Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Friday);
+            MondayApp=Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Monday,week);
+            TuesdayApp = Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Tuesday, week);
+            WednesdaApp= Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Wednesday, week);
+            ThursdayApp = Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Thursday, week);
+            FridayApp= Doctor.schedule.GetListOfWeekdayAppointments(DayOfWeek.Friday, week);
         }
     }
 }

@@ -80,6 +80,7 @@ namespace Clinicc.Model
         {
             List<Appointment> weekdayAppointments = new List<Appointment>();
             int counter = -1;
+            bool weekFound = false;
             foreach(var day in calendars.Values)
             {
                 if(day.date.DayOfWeek==weekday)
@@ -87,6 +88,7 @@ namespace Clinicc.Model
                     counter++;
                     if(counter==week)
                     {
+                        weekFound= true;
                         weekdayAppointments = day.GetEventsList();
                     }
                 }

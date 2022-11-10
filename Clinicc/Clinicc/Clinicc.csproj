@@ -115,6 +115,7 @@
     <Compile Include="Commands\NavigateToSignUpViewCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Commands\SaveChangesCommand.cs" />
+    <Compile Include="Commands\ShowDifferentWeekCommand.cs" />
     <Compile Include="Components\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
