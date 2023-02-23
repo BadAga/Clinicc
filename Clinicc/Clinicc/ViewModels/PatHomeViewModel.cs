@@ -13,6 +13,8 @@ namespace Clinicc.ViewModels
 {
     public class PatHomeViewModel:ViewModelBase
     {
+        private Clinicc.Model.Patient patient;
+        private Hospital hospital;
         private string _username;
         public string UsernameHP
         {
@@ -93,7 +95,7 @@ namespace Clinicc.ViewModels
                 OnPropertyChanged(nameof(ProfilePictureSourceHP));
             }
         }
-
+              
 
         //done commands
         public ICommand OverviewPatientCommand { get; }        
@@ -110,10 +112,12 @@ namespace Clinicc.ViewModels
         public ICommand EditPeselHPCommand { get; }
         public ICommand EditAddressHPCommand { get; }
         public ICommand EditUsernameHPCommand { get; }
-
+        public ICommand SaveChangesCommand { get; }
 
         public PatHomeViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Patient pat)
         {
+            patient = pat;
+            this.hospital = hospital;
             UsernameHP = pat.login;
             NameHP= pat.name;
             SurnameHP = pat.surname;
@@ -125,6 +129,41 @@ namespace Clinicc.ViewModels
             BookAppPatientCommand = new PatientBookingAppointmentCommand(hospital, navigation, pat);
             PatAppointmentsCommand = new PatAppointmentsCommand(hospital, navigation, pat);
             ChangeProfilePicCommand = new RelayCommand(LoadProfilePicture);
+            SaveChangesCommand = new RelayCommand(SaveChanges);
+
+        }
+
+        private void SaveChanges(object o)
+        {
+            Clinicc.Patient dbPatient = new Clinicc.Patient();
+            using (DatabaseEntities db = new DatabaseEntities())
+            {
+                dbPatient = (from p in db.Patients
+                             where p.Id == this.patient.Id
+                             select p).SingleOrDefault();
+                //checkingg hat have been modified
+                if (dbPatient != null)
+                {
+                    if (dbPatient.login != UsernameHP)
+                    {
+                        if(hospital.NoLoginReapeating(UsernameHP))
+                        {
+                            dbPatient.login = UsernameHP;
+                            patient.login = UsernameHP;
+                        }
+                    }
+                    if (dbPatient.adress != this.AddressHP)
+                    {
+                        dbPatient.adress = AddressHP;
+                        patient.adress = this.AddressHP;
+                    }
+                }
+            }
+            using (var db = new DatabaseEntities())
+            {
+                db.Entry(dbPatient).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         private void LoadProfilePicture(object o)

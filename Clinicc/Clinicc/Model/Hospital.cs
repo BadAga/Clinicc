@@ -20,7 +20,7 @@ namespace Clinicc.Model
 
         public bool AddDoctor(Doctor doc)
         {
-            if (NoLoginReapeating(doc))
+            if (NoLoginReapeating(doc.login))
             {
                 Clinicc.Doctor doc_to_update;
                 using (var db = new DatabaseEntities())
@@ -48,7 +48,7 @@ namespace Clinicc.Model
         }
         public bool AddPatient(Patient pat)
         {
-            if (NoLoginReapeating(pat))
+            if (NoLoginReapeating(pat.login))
             {
                 Clinicc.Patient new_pat = new Clinicc.Patient();
                 new_pat.login=pat.login;
@@ -67,25 +67,23 @@ namespace Clinicc.Model
             
             //to do: login exists messagge
         }
-        private bool NoLoginReapeating(User user)
+        public bool NoLoginReapeating(String login)
         {
-
             DatabaseEntities db = new DatabaseEntities();
-
-            
+                        
             var docs = from d in db.Doctors 
                        where d.login != null select d;
             
             foreach (var doc in docs)
             {
-                if ((doc.login == user.login))
+                if ((doc.login == login))
                 {
                     return false;
                 }
             }
             foreach (User existing_user in patients.Values)
             {
-                if (existing_user.login == user.login)
+                if (existing_user.login == login)
                 {
                     return false;
                 }
@@ -140,7 +138,8 @@ namespace Clinicc.Model
                                                             pat_to_log.surname,
                                                             pat_to_log.PESEL,
                                                             pat_to_log.login,
-                                                            pat_to_log.password);
+                                                            pat_to_log.password,
+                                                            pat_to_log.adress);
                         user = pat;
                     }
                 }

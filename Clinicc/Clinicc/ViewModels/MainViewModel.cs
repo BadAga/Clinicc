@@ -54,11 +54,32 @@ namespace Clinicc.ViewModels
             }
         }
 
+        private bool _isLoading=false;
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
+        private System.Windows.Visibility _spinnerVisibility = System.Windows.Visibility.Hidden;
+
+        public System.Windows.Visibility  SpinnerVisibility
+        {
+            get { return _spinnerVisibility; }
+            set
+            {
+                _spinnerVisibility = value;
+                OnPropertyChanged(nameof(SpinnerVisibility));
+            }
+        }
         //commands
         public ICommand LogInMPCommand { get; }
         public ICommand ForgotPasswordMPCommand { get; }
         public ICommand SignUpMPCommand { get; }
-
 
         public MainViewModel(Hospital hospital, NavigationStore navigation )
         {

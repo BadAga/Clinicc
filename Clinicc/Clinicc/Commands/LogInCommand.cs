@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Clinicc.Commands
 {
@@ -38,6 +39,7 @@ namespace Clinicc.Commands
             {
                 _MainViewModel.LoginMessage = "Wrong password";
             }
+
         }
 
         public override bool CanExecute(object parameter)
@@ -48,28 +50,31 @@ namespace Clinicc.Commands
         }
         public override void Execute(object parameter)
         {
-            //1-sucessfull -1-wrong password 0-no user found             
+            //1-sucessfull -1-wrong password 0-no user found           
+            _MainViewModel.SpinnerVisibility=Visibility.Visible;
+           // _MainViewModel.ChangeIsLoading(true);
+            _MainViewModel.LoginMessage = "checking...";
             KeyValuePair<int, User> answer = _hospital.LogIn(_MainViewModel.UsernameMP, _MainViewModel.PasswordMP);
-            if (answer.Key==1)
+            if (answer.Key == 1)
             {
-                if(answer.Value.code=="PAT")
+                if (answer.Value.code == "PAT")
                 {
                     Clinicc.Model.Patient pat = (Model.Patient)answer.Value;
-                    _navigation.CurrentViewModel = new PatHomeViewModel(_hospital,_navigation,pat);
+                    _navigation.CurrentViewModel = new PatHomeViewModel(_hospital, _navigation, pat);
                 }
-                else if(answer.Value.code == "DOC")
+                else if (answer.Value.code == "DOC")
                 {
                     Clinicc.Model.Doctor doc = (Model.Doctor)answer.Value;
-                    _navigation.CurrentViewModel = new DocHomeViewModel(_hospital, _navigation,doc);
+                    _navigation.CurrentViewModel = new DocHomeViewModel(_hospital, _navigation, doc);
                 }
             }
             else
             {
                 HandleMessages(answer.Key);
-                //well massages need to be handled
+                //massages need to be handled
             }
+          //  _MainViewModel.ChangeIsLoading(false);
         }
-
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(MainViewModel.UsernameMP) ||

@@ -367,122 +367,33 @@
                     <!--name-->
                     <TextBlock  Grid.Row="0" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="NAME:" VerticalAlignment="Center" Margin="2" />
-                    <TextBox Grid.Row="0" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
-                                 Margin="3,8,3,8" MaxLength="20"
+                    <TextBlock Grid.Row="0" Grid.Column="2" Foreground="#DCD7C9" Background="#2C3639 "
+                                 Margin="3,8,3,8"
                                  Text="{Binding NameHP, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="PatEditNameBtn"
-                            Command="{Binding EditNameHPCommand}"
-                            Grid.Row="0" Grid.Column="3" 
-                            Margin="5,5,2,5"
-                            BorderBrush="Transparent"
-                            Background="Transparent" 
-                            Cursor="Hand" >
-                        <Image Source="/Images/edit.png" 
-                           VerticalAlignment="Bottom" Width="8" />
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                
 
                     <!--surname-->
                     <TextBlock  Grid.Row="0" Grid.Column="4" Foreground="#DCD7C9" 
                                 FontSize="8" Text="SURNAME:" VerticalAlignment="Center" Margin="5" />
-                    <TextBox Grid.Row="0" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639" 
-                            Margin="3,8,3,8" MaxLength="30"
+                    <TextBlock Grid.Row="0" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639" 
+                            Margin="3,8,3,8"
                              VerticalAlignment="Stretch"
                              Text="{Binding SurnameHP, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="PatEditSurnameBtn"
-                            Command="{Binding EditSurnameHPCommand}"
-                            Grid.Row="0" Grid.Column="6" 
-                            Margin="5,5,2,5"
-                            BorderBrush="Transparent" 
-                            Background="Transparent" 
-                            Cursor="Hand" >
-                        <Image Source="/Images/edit.png" 
-                           VerticalAlignment="Bottom" Width="8" />
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
                     <!--pesel-->
                     <TextBlock  Grid.Row="1" Grid.Column="1" Foreground="#DCD7C9" 
                                 FontSize="8" Text="PESEL:" VerticalAlignment="Center" Margin="2" />
-                    <TextBox Grid.Row="1" 
+                    <TextBlock Grid.Row="1" 
                                  Grid.Column="2" 
                                  Foreground="#DCD7C9" 
                                  Background="#2C3639"
-                                Margin="3,8,3,8"  MaxLength="11"
+                                 Margin="3,8,3,8" 
                                  VerticalAlignment="Stretch"
                                  Text="{Binding PeselHP , UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button x:Name="PatEditPeselBtn"
-                            Command="{Binding EditPeselHPCommand}"
-                            Grid.Row="1" Grid.Column="3" 
-                            Margin="5,5,2,5"
-                            BorderBrush="Transparent" 
-                            Background="Transparent" 
-                            Cursor="Hand" >
-                        <Image Source="/Images/edit.png" 
-                           VerticalAlignment="Bottom" Width="8" />
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="TextElement.FontFamily" Value="Segoe UI"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" 
-                                              HorizontalAlignment="Left"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
                     <!--address-->
                     <TextBlock  Grid.Row="1" Grid.Column="4" Foreground="#DCD7C9" 
                                 FontSize="8" Text="ADDRESS:" VerticalAlignment="Center" Margin="5" />
                     <TextBox Grid.Row="1" Grid.Column="5" Foreground="#DCD7C9" Background="#2C3639 "
-                                 Margin="3,8,3,8" MaxLength="20"
+                                 Margin="3,8,3,8" MaxLength="45"
                                  VerticalAlignment="Stretch"
                                  Text="{Binding AddressHP, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextBox_TextChanged"/>
                     <Button x:Name="PatEditAddressBtn"
@@ -523,7 +434,7 @@
                                  Margin="3,8,3,8"  MaxLength="20"
                                  Text="{Binding UsernameHP, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button x:Name="PatEditUsernameBtn"
-                            Command="{Binding EditUsernameHPCommand}"
+                            Command="{Binding EditUsernameHPCommand}"                            
                             Grid.Row="2" Grid.Column="3" 
                             Margin="5,5,2,5"
                             BorderBrush="Transparent" 
@@ -555,6 +466,7 @@
                     <!--save changes-->
 
                     <Button Content="Save changes"
+                            Command="{Binding SaveChangesCommand}"
                                 FontSize="12" Cursor="Hand"
                                 Background="Transparent"
                                 Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3"

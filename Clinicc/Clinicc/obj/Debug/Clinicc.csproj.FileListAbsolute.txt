@@ -43,3 +43,5 @@ C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorA
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorAppointmentRequestsView.baml
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorStatisticsView.g.cs
 C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\obj\Debug\Views\DoctorStatisticsView.baml
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\bin\Debug\FontAwesome.WPF.dll
+C:\Users\agnie\source\repos\WPF-projects\Clinicc\Clinicc\bin\Debug\FontAwesome.WPF.xml

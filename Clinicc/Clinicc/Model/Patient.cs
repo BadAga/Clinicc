@@ -12,7 +12,7 @@ namespace Clinicc.Model
         public string med_history_name;
 
         public Patient(int _id,  string _name,string _surname,
-            string _pesel, string _login, string _password)
+            string _pesel, string _login, string _password,string _adress="")
         {          
             name = _name;
             surname = _surname;
@@ -21,7 +21,7 @@ namespace Clinicc.Model
             password = _password;
             Id = _id;
             code = "PAT";
-            adress = String.Empty;
+            adress = _adress;
             med_history_name = _surname + _pesel[9];
         }
         public Patient( string _name, string _surname,

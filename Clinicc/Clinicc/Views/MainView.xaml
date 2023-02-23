@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:Clinicc.Views" xmlns:components="clr-namespace:Clinicc.Components"
              mc:Ignorable="d" 
              d:DesignHeight="470" d:DesignWidth="700">
@@ -106,7 +107,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <!--Header-->
                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="40,0,40,0">
@@ -175,13 +176,21 @@
                     </Grid.Background>
                 </Grid>
                 <!--log in view-->
-                <Grid Grid.Row="1" Grid.Column="0" Margin="0,0,40,0" Grid.RowSpan="2" >
+                <Grid Grid.Row="1" Grid.Column="0" 
+                      Margin="0,0,40,0" Grid.RowSpan="2" >
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Margin="95,10,65,10" Name="DataGetter">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Margin="95,10,65,10" 
+                                Name="DataGetter">
                         <!--username-->
                         <Label Foreground="#DCD7C9" Content="Username:"/>
                         <TextBox Foreground="#DCD7C9" Background="#2C3639" 
@@ -194,17 +203,27 @@
                                  Password="{Binding PasswordMP, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
                     </StackPanel>
                     <!--message-->
-                    <TextBlock  Grid.Row="1" Text="{Binding LoginMessage}"
+                    <TextBlock  Grid.Row="1" 
+                                Grid.Column="0"
+                                Text="{Binding LoginMessage}"
                                 Margin="40,0,30,0"
                                 FontSize="13"
                                 VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Right"
                                 Foreground="OrangeRed"> 
                         <ContentPresenter VerticalAlignment="Center"/>
                         </TextBlock>
+                    <fa:ImageAwesome Grid.Row="1" Grid.Column="1"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Left"
+                                     Visibility="{Binding SpinnerVisibility}"
+                                     Icon="Spinner" Spin="{Binding IsLoading}"
+                                     Width="20" Height="20"/>
                     <!--log in buttons-->
-                    <StackPanel Orientation="Horizontal" Grid.Row="2" 
-                        Margin="60,3,10,10">
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="2" 
+                                Grid.ColumnSpan="2"
+                                Margin="60,3,10,10">
                         <Button x:Name="LogInBtn" 
                     Command="{Binding LogInMPCommand}"
                     Grid.Row="2"
