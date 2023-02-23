@@ -30,5 +30,6 @@ namespace Clinicc
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Specialization> Specializations { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
     }
 }

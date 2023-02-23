@@ -124,6 +124,9 @@
     <Compile Include="Doctor.cs">
       <DependentUpon>CliniccDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>CliniccDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Converter.cs" />
     <Compile Include="Model\Day.cs" />
