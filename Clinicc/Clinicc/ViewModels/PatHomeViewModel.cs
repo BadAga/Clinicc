@@ -95,23 +95,62 @@ namespace Clinicc.ViewModels
                 OnPropertyChanged(nameof(ProfilePictureSourceHP));
             }
         }
-              
 
+        private bool _canEditAddress = false;
+        public bool CanEditAddress
+        {
+            get { return _canEditAddress; }
+            set
+            {
+                _canEditAddress = value;
+                OnPropertyChanged(nameof(CanEditAddress));
+            }
+        }
+
+        private bool _canEditUsername = false;
+        public bool CanEditUsername
+        {
+            get { return _canEditUsername; }
+            set
+            {
+                _canEditUsername = value;
+                OnPropertyChanged(nameof(CanEditUsername));
+            }
+        }
+
+        private string editPictureAddress= "/Images/edit.png";
+        public string EditPictureAddress
+        {
+            get { return editPictureAddress; }
+            set
+            {
+                editPictureAddress = value;
+                OnPropertyChanged(nameof(EditPictureAddress));
+            }
+        }
+
+        private string editPictureUsername = "/Images/edit.png";
+        public string EditPictureUsername
+        {
+            get { return editPictureUsername; }
+            set
+            {
+                editPictureUsername = value;
+                OnPropertyChanged(nameof(EditPictureUsername));
+            }
+        }
         //done commands
         public ICommand OverviewPatientCommand { get; }        
         public ICommand BookAppPatientCommand { get; }
         public ICommand LogOutHPCommand { get; }
         public ICommand PatAppointmentsCommand { get; }
         public RelayCommand ChangeProfilePicCommand { get; }
+        public RelayCommand EditAddressHPCommand { get; }
+        public RelayCommand EditUsernameHPCommand { get; }
 
         //to do commands:
         public ICommand RecentActivityCommand { get; }        
-        public ICommand PatPrescriptionsCommand { get; }      
-        public ICommand EditNameHPCommand { get; }
-        public ICommand EditSurnameHPCommand { get; }
-        public ICommand EditPeselHPCommand { get; }
-        public ICommand EditAddressHPCommand { get; }
-        public ICommand EditUsernameHPCommand { get; }
+        public ICommand PatPrescriptionsCommand { get; }     
         public ICommand SaveChangesCommand { get; }
 
         public PatHomeViewModel(Hospital hospital, NavigationStore navigation, Clinicc.Model.Patient pat)
@@ -130,9 +169,40 @@ namespace Clinicc.ViewModels
             PatAppointmentsCommand = new PatAppointmentsCommand(hospital, navigation, pat);
             ChangeProfilePicCommand = new RelayCommand(LoadProfilePicture);
             SaveChangesCommand = new RelayCommand(SaveChanges);
-
+            EditAddressHPCommand = new RelayCommand(ChangeEditAddressState);
+            EditUsernameHPCommand = new RelayCommand(ChangeEditUsernameState);
         }
 
+        private void ChangeEditAddressState(Object o)
+        {
+            if (CanEditAddress)
+            {
+                CanEditAddress = false;
+                //edit icon brighter
+                EditPictureAddress = "/Images/edit.png";
+            }
+            else
+            {
+                CanEditAddress = true;
+                //edit icon faded
+                EditPictureAddress = "/Images/edit_faded.png";
+            }
+        }
+        private void ChangeEditUsernameState(Object o)
+        {
+            if (CanEditUsername)
+            {
+                CanEditUsername = false;
+                //edit icon brighter
+                EditPictureUsername = "/Images/edit.png";
+            }
+            else
+            {
+                CanEditUsername = true;
+                //edit icon faded
+                EditPictureUsername = "/Images/edit_faded.png";
+            }
+        }
         private void SaveChanges(object o)
         {
             Clinicc.Patient dbPatient = new Clinicc.Patient();
