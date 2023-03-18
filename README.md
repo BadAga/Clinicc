@@ -1,10 +1,10 @@
-# Clinicc
+# :pill: Clinicc
 Clinicc is a powerful **WPF** application designed to help doctors and patients manage appointments with ease. The application uses the **MVVM** design pattern along with **Entity Framework Core** to manage patient records, keep track of appointment schedules. Whether you are a doctor or a patient, Clinicc simplifies the appointment process, saving time and ensuring that appointments are scheduled efficiently.
 
-## Usage
+## :sparkles: Usage
 Clinicc provides a user-friendly interface that allows patients and doctors to manage their appointments with ease. Here's a breakdown of the different features available to each user:
 
-### Patients
+### :standing_man: Patients
 As a patient, you can do the following:
 * Schedule appointments: You can schedule appointments with available doctors by selecting a date and time that works best for you. 
 ![Zrzut ekranu 2023-03-07 114636](https://user-images.githubusercontent.com/72341763/223401502-51ead468-5430-46cf-9bc4-e4ffa061dfaa.png)
@@ -16,7 +16,7 @@ As a patient, you can do the following:
 * Edit your profile: You can update your personal information, such as username, address or profile picture
 ![Zrzut ekranu 2023-03-07 114537](https://user-images.githubusercontent.com/72341763/223401521-1f0a6125-3284-4ce7-82cd-c496d74a57b2.png)
 
-### Doctors
+### :health_worker: Doctors
 As a doctor, you can do the following:
 * Edit your profile: You can update your personal information, including your schedule and availability.
 
@@ -27,7 +27,7 @@ As a doctor, you can do the following:
 * View appointment statistics: You can view appointment statistics for a particular period, making it easy to track your performance.
 
 * Give prescriptions: You can give prescriptions to patients, which they can view in their profile. 
-## Attribiutions
+## :muscle: Attribiutions
 
 Icon authors:
 * [calendar.png](https://github.com/BadAga/WPF-projects/blob/main/Clinicc/Clinicc/Images/calendar.png "calendar.png")-<a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Freepik - Flaticon</a>
